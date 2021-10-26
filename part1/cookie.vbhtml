@@ -3,6 +3,6 @@
     <title>Cookie</title>
   </head>
   <body>
-    <p>The date and time is @DateTime.Now</p> 
+<p>Your IP address is @Request.UserHostAddress()</p> 
   </body>
 </html>
