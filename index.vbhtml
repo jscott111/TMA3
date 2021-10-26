@@ -1,4 +1,4 @@
 
 <?php
-  header("Location: TMA2/part2/start.php");
+header("Location: part1/cookie.vbhtml");
 ?>
