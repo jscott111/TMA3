@@ -39,7 +39,7 @@ jobs:
     needs: build
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      url: https://tma3.azurewebsites.net/part1/cookie.vbhtml
 
     steps:
       - name: Download artifact from build job
