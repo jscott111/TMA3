@@ -4,9 +4,10 @@
   </head>
   <body>
     <p>Your IP address is @Request.UserHostAddress()</p> 
-    <p>Your time zone is @TimeZone.CurrentTimeZone.StandardName</p>
-    <script>
-      document.write("<p>" + Intl.DateTimeFormat().resolvedOptions().timeZone + "</p>");
-    </script>
+    <p>Your time zone is 
+      <script>
+        document.write(Intl.DateTimeFormat().resolvedOptions().timeZone);
+      </script>
+    </p>
   </body>
 </html>
