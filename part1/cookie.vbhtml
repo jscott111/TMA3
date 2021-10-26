@@ -3,7 +3,7 @@
     <title>Cookie</title>
   </head>
   <body>
-    <p>Your IP address is @Request.UserHostAddress()</p> 
+    <p>Your IP address is @System.Net.Dns.GetHostAddresses(System.Net.Dns.GetHostName()).GetValue(0).ToString()</p> 
     <p>Your time zone is 
       <script>
         document.write(Intl.DateTimeFormat().resolvedOptions().timeZone);
