@@ -12,13 +12,13 @@
     @{
       HttpCookie cookie = new HttpCookie("cookie");
 
-      cookie.Values.Add(System.Web.HttpContext.Current.Request.ServerVariables("REMOTE_ADDR"), "Hello");
+      'cookie.Values.Add(System.Web.HttpContext.Current.Request.ServerVariables("REMOTE_ADDR"), "Hello");
 
-      cookie.Expires = DateTime.Now.AddYears(5);
+      'cookie.Expires = DateTime.Now.AddYears(5);
 
-      Response.Cookies.Add(cookie);
+      'Response.Cookies.Add(cookie);
   
-      string cookieValue = cookie.Values[System.Web.HttpContext.Current.Request.ServerVariables("REMOTE_ADDR")].ToString();
+      'string cookieValue = cookie.Values[System.Web.HttpContext.Current.Request.ServerVariables("REMOTE_ADDR")].ToString();
     }
   </body>
 </html>
