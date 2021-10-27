@@ -16,7 +16,7 @@
     <%
             HttpCookie cookie = new HttpCookie("cookie");
 
-            cookie.Values.Add("cook", "1");
+            cookie.Values.Add(Request.UserHostAddress, "1");
 
             cookie.Expires = DateTime.Now.AddYears(5);
 
