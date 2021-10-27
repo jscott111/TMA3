@@ -9,6 +9,5 @@
         document.write(Intl.DateTimeFormat().resolvedOptions().timeZone);
       </script>
     </p>
-      @Dim c As New HttpCookie(System.Web.HttpContext.Current.Request.ServerVariables("REMOTE_ADDR"))
   </body>
 </html>
