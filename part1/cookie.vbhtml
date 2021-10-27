@@ -10,7 +10,7 @@
       </script>
     </p>
     @{
-      HttpCookie cookie = new HttpCookie("cookie");
+      'HttpCookie cookie = new HttpCookie("cookie");
 
       'cookie.Values.Add(System.Web.HttpContext.Current.Request.ServerVariables("REMOTE_ADDR"), "Hello");
 
