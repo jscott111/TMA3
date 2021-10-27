@@ -1,6 +1,11 @@
 <html>
   <head>
     <title>Cookie</title>
+    <configuration>
+    <system.web>
+        <customErrors mode="Off"/>
+    </system.web>
+</configuration>
   </head>
   <body>
     <p>Your IP address is @System.Web.HttpContext.Current.Request.ServerVariables("REMOTE_ADDR")</p> 
