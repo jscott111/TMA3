@@ -5,9 +5,12 @@
   <body>
     <p>Your IP address is @System.Web.HttpContext.Current.Request.ServerVariables("REMOTE_ADDR")</p> 
     <p>Your time zone is 
-      <script>
-        document.write(Intl.DateTimeFormat().resolvedOptions().timeZone);
-      </script>
+    <script>
+      document.write(Intl.DateTimeFormat().resolvedOptions().timeZone);
+    </script>
     </p>
+    @{
+      HttpCookie cookie = new HttpCookie("cookie");
+    }
   </body>
 </html>
