@@ -10,15 +10,13 @@
       </script>
     </p>
     @{
-      'HttpCookie cookie = new HttpCookie("cookie");
+      Dim c As New HttpCookie(System.Web.HttpContext.Current.Request.ServerVariables("REMOTE_ADDR"))
 
-      'cookie.Values.Add(System.Web.HttpContext.Current.Request.ServerVariables("REMOTE_ADDR"), "Hello");
+      'c.Value = DateTime.Now.ToString()
 
-      'cookie.Expires = DateTime.Now.AddYears(5);
+      'c.Expires = DateTime.Now.AddMonths(2)
 
-      'Response.Cookies.Add(cookie);
-  
-      'string cookieValue = cookie.Values[System.Web.HttpContext.Current.Request.ServerVariables("REMOTE_ADDR")].ToString();
+      'Response.Cookies.Add(c)
     }
   </body>
 </html>
