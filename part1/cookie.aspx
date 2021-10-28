@@ -6,8 +6,8 @@
         <meta charset="utf-8" />
         <title>Cookie</title>    
     </head>
-    <body style="height: 532px; margin-bottom: 0px;">
-        <div style="width: 565px; margin-left: 436px; margin-right: 453px; height: 143px; margin-top: 175px; margin-bottom: 0px;">
+    <body style="height: 532px; text-align: center;">
+        <div style="text-align: center;">
             <%
                 if(Request.Cookies[Request.UserHostAddress] != null)
                 {
@@ -31,18 +31,19 @@
                     Response.Cookies.Add(cookie);
                 }
             %>
-            <p style="font-size: xx-large; margin-top: 0px; width: 561px; margin-left: 0px; margin-bottom: 0px;">
+            <p style="font-size: xx-large; text-align: center;">
                 Your IP address is <b><%=Request.UserHostAddress%></b>
             </p>
-            <p style="width: 562px; height: 36px; font-size: xx-large; margin-left: 0px; margin-right: 0px; margin-top: 5px; margin-bottom: 0px;">
+            <p style="font-size: xx-large; text-align: center;">
                 Your time zone is 
                 <b><script>
                     document.write(Intl.DateTimeFormat().resolvedOptions().timeZone);
                 </script></b>
             </p>
-            <p style="font-size: xx-large; margin-top: 5px; margin-left: 0px; width: 560px; margin-right: 0px;">You've visited this site <b><%=Request.Cookies[Request.UserHostAddress].Value.Substring(Request.Cookies[Request.UserHostAddress].Name.Length + 1)%></b> times</p>
+            <p style="font-size: xx-large; text-align: center;">You've visited this site <b><%=Request.Cookies[Request.UserHostAddress].Value.Substring(Request.Cookies[Request.UserHostAddress].Name.Length + 1)%></b> times</p>
         </div>
     </body>
 </html>
+
 
 
