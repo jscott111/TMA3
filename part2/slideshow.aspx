@@ -28,14 +28,14 @@
         </configuration>
     </head>
     <body>
-        <asp:Image ID="picture" ImageUrl="./Images/CRW_5523.jpg" runat="server" style="border:1px solid #000000;"></asp:Image>
+        <asp:Image ID="picture" runat="server" style="border:1px solid #000000;"></asp:Image>
         <button id="toggleButton" type="button" value="random" class="button" style="padding: 5px;">Random</button>
         <button id="playButton" type="button" value="play" class="button" style="padding: 5px;">Pause</button><br />
         <button id="previousButton" type="button" value="previous" class="button" style="padding: 5px;">Previous</button>
         <button id="nextButton" type="button" value="next" class="button" style="padding: 5px;">Next</button><br />
         <!--<%
             
-            /*drawImageActualSize();
+            drawImageActualSize();
 
 
             void drawImageActualSize() {
@@ -54,19 +54,19 @@
                 }
                 con.Close();
 
-                picture.Width = Request.Browser.ScreenPixelsWidth - 20;
-                picture.Height = Request.Browser.ScreenPixelsHeight - 110;
+                //picture.Width = Request.Browser.ScreenPixelsWidth - 20;
+                //picture.Height = Request.Browser.ScreenPixelsHeight - 110;
 
-                float ratio = this.naturalHeight / picture.Height;
+                //float ratio = this.naturalHeight / picture.Height;
 
-                ctx.drawImage(this, 0, 0, this.naturalWidth / ratio, picture.Height);
-                ctx.font = "20px Arial";
-                ctx.strokeText(findElement(pictures, "id", (20 + counter) % 20)["caption"], 850, 50);
+                //ctx.drawImage(this, 0, 0, this.naturalWidth / ratio, picture.Height);
+                //ctx.font = "20px Arial";
+                //ctx.strokeText(findElement(pictures, "id", (20 + counter) % 20)["caption"], 850, 50);
             }
 
 
             
-            var counter = 0;
+            /*var counter = 0;
             var image = new Image();
             var sequentialID;
             var randomID;
