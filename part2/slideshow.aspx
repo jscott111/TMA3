@@ -34,22 +34,24 @@
         <button id="previousButton" type="button" value="previous" class="button" style="padding: 5px;">Previous</button>
         <button id="nextButton" type="button" value="next" class="button" style="padding: 5px;">Next</button><br />
         <%
-
-            int drawImageActualSize() {
-                SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=photos;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        
+            SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=photos;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             
-                SqlCommand command = new SqlCommand("SELECT name, caption, url FROM [dbo].[pic]", con);
-                con.Open();
-                command.ExecuteNonQuery();
+            SqlCommand command = new SqlCommand("SELECT name, caption, url FROM [dbo].[pic]", con);
+            con.Open();
+            command.ExecuteNonQuery();
 
-                using(SqlDataReader reader = command.ExecuteReader())
+            using(SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        picture.ImageUrl = reader[2].ToString();
-                    }
+                    picture.ImageUrl = reader[2].ToString();
                 }
-                con.Close();
+            }
+            con.Close();
+
+            /*int drawImageActualSize() {
+                
 
                 //picture.Width = Request.Browser.ScreenPixelsWidth - 20;
                 //picture.Height = Request.Browser.ScreenPixelsHeight - 110;
@@ -67,7 +69,7 @@
 
 
             
-            /*var counter = 0;
+            var counter = 0;
             var image = new Image();
             var sequentialID;
             var randomID;
