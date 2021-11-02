@@ -37,17 +37,18 @@
         
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=photos;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             
-            SqlCommand command = new SqlCommand("SELECT name, caption, url FROM [dbo].[pic] WHERE name='cliffside'", con);
+            SqlCommand command = new SqlCommand("SELECT url FROM [dbo].[pic] WHERE name='cliffside'", con);
             con.Open();
             command.ExecuteNonQuery();
 
-            using(SqlDataReader reader = command.ExecuteReader())
+            /*using(SqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    picture.ImageUrl = reader[2].ToString();
+                    picture.ImageUrl = reader[0].ToString();
                 }
-            }
+            }*/
+            picture.ImageUrl = "./Images/CRW_5523.jpg";
             con.Close();
 
             /*int drawImageActualSize() {
