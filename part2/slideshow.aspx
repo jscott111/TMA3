@@ -35,7 +35,7 @@
         <button id="nextButton" type="button" value="next" class="button" style="padding: 5px;">Next</button><br />
         <%
 
-            void drawImageActualSize() {
+            int drawImageActualSize() {
                 SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=photos;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             
                 SqlCommand command = new SqlCommand("SELECT name, caption, url FROM [dbo].[pic]", con);
@@ -59,6 +59,8 @@
                 //ctx.drawImage(this, 0, 0, this.naturalWidth / ratio, picture.Height);
                 //ctx.font = "20px Arial";
                 //ctx.strokeText(findElement(pictures, "id", (20 + counter) % 20)["caption"], 850, 50);
+                
+                return 0;
             }
             
             drawImageActualSize();
