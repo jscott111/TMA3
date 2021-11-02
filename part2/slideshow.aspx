@@ -49,23 +49,23 @@
                 {
                     while (reader.Read())
                     {
-                        //picture.ImageUrl = reader[2].ToString();
+                        picture.ImageUrl = reader[2].ToString();
                     }
                 }
                 con.Close();
 
-                //picture.Width = Request.Browser.ScreenPixelsWidth - 20;
-                //picture.Height = Request.Browser.ScreenPixelsHeight - 110;
+                picture.Width = Request.Browser.ScreenPixelsWidth - 20;
+                picture.Height = Request.Browser.ScreenPixelsHeight - 110;
 
-                /*float ratio = this.naturalHeight / picture.Height;
+                float ratio = this.naturalHeight / picture.Height;
 
                 ctx.drawImage(this, 0, 0, this.naturalWidth / ratio, picture.Height);
                 ctx.font = "20px Arial";
-                ctx.strokeText(findElement(pictures, "id", (20 + counter) % 20)["caption"], 850, 50);*/
+                ctx.strokeText(findElement(pictures, "id", (20 + counter) % 20)["caption"], 850, 50);
             }
 
 
-            /*
+            
             var counter = 0;
             var image = new Image();
             var sequentialID;
@@ -154,7 +154,7 @@
                 for (var i=0; i < a.length; i++)
                 if (a[i][name] == value)
                     return a[i];
-            }*/*/
+            }*/
         %>-->
     </body>
 </html>
