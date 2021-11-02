@@ -34,9 +34,6 @@
         <button id="previousButton" type="button" value="previous" class="button" style="padding: 5px;">Previous</button>
         <button id="nextButton" type="button" value="next" class="button" style="padding: 5px;">Next</button><br />
         <%
-            
-            drawImageActualSize();
-
 
             void drawImageActualSize() {
                 SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=photos;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
@@ -63,6 +60,8 @@
                 //ctx.font = "20px Arial";
                 //ctx.strokeText(findElement(pictures, "id", (20 + counter) % 20)["caption"], 850, 50);
             }
+            
+            drawImageActualSize();
 
 
             
