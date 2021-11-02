@@ -21,6 +21,11 @@
                 margin-right: 5px;
             }
         </style>
+        <configuration>
+            <system.web>
+                <customErrors mode="Off"/>
+            </system.web>
+        </configuration>
     </head>
     <body>
         <asp:Image ID="picture" ImageUrl="./Images/CRW_5523.jpg" runat="server" style="border:1px solid #000000;"></asp:Image>
