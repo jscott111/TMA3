@@ -35,7 +35,7 @@
         <button id="nextButton" type="button" value="next" class="button" style="padding: 5px;">Next</button><br />
         <!--<%
             
-            drawImageActualSize();
+            /*drawImageActualSize();
 
 
             void drawImageActualSize() {
@@ -154,7 +154,7 @@
                 for (var i=0; i < a.length; i++)
                 if (a[i][name] == value)
                     return a[i];
-            }*/
+            }*/*/
         %>-->
     </body>
 </html>
