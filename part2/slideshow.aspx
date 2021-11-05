@@ -24,7 +24,7 @@
     <body>
         <%
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=photos;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-            System.Drawing.Image img = System.Drawing.Image.FromFile(@"C:\Users\scott\source\repos\TMA3\TMA3\Images\CRW_5523.jpg");
+            System.Drawing.Image img = System.Drawing.Image.FromFile(@"https://tma3.azurewebsites.net/part2/Images/CRW_5523.jpg");
 
             SqlCommand command = new SqlCommand("SELECT name, caption, url FROM [dbo].[pic]", con);
             con.Open();
