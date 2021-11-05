@@ -33,7 +33,7 @@
             using (SqlDataReader reader = command.ExecuteReader()) {
                 while (reader.Read()) {
                     picture.ImageUrl = reader[2].ToString();
-                    img = System.Drawing.Image.FromFile(@"C:\Users\scott\source\repos\TMA3\TMA3\" + picture.ImageUrl);
+                    img = System.Drawing.Image.FromFile(@"https://tma3.azurewebsites.net/part2/" + picture.ImageUrl);
                 }
             }
             con.Close();
