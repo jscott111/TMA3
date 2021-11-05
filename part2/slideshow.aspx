@@ -1,4 +1,4 @@
-<%@ Page Language="C#" %>
+<%@ Page Language="C#" Debug="true"%>
 <%@ Import Namespace="System" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Data" %>
