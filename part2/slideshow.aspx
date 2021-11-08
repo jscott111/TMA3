@@ -26,16 +26,11 @@
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=photos;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             byte[] originalCoverData;
             string imageUrl = "https://tma3.azurewebsites.net/part2/Images/CRW_5523.jpg";
-
-
             originalCoverData = new System.Net.WebClient().DownloadData(imageUrl);
-
-
             System.IO.MemoryStream stream = new System.IO.MemoryStream(originalCoverData);
             System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
-
-
             img.Save(Server.MapPath("img.bmp"));
+            originalCoverData.Close();
 
             SqlCommand command = new SqlCommand("SELECT name, caption, url FROM [dbo].[pic]", con);
             con.Open();
@@ -49,6 +44,7 @@
                     stream = new System.IO.MemoryStream(originalCoverData);
                     img = System.Drawing.Image.FromStream(stream);
                     img.Save(Server.MapPath("img.bmp"));
+                    originalCoverData.Close();
                 }
             }
             con.Close();
