@@ -44,7 +44,11 @@
             using (SqlDataReader reader = command.ExecuteReader()) {
                 while (reader.Read()) {
                     picture.ImageUrl = reader[2].ToString();
-                    img = System.Drawing.Image.FromStream(@"https://tma3.azurewebsites.net/part2/" + picture.ImageUrl);
+                    imageUrl = "https://tma3.azurewebsites.net/part2/" + picture.ImageUrl;
+                    originalCoverData = new System.Net.WebClient().DownloadData(imageUrl);
+                    stream = new System.IO.MemoryStream(originalCoverData);
+                    img = System.Drawing.Image.FromStream(stream);
+                    img.Save(Server.MapPath("img.bmp"));
                 }
             }
             con.Close();
