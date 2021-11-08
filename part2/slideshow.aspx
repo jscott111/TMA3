@@ -30,7 +30,6 @@
             System.IO.MemoryStream stream = new System.IO.MemoryStream(originalCoverData);
             System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
             img.Save(Server.MapPath("img.bmp"));
-            originalCoverData.Close();
 
             SqlCommand command = new SqlCommand("SELECT name, caption, url FROM [dbo].[pic]", con);
             con.Open();
@@ -44,7 +43,6 @@
                     stream = new System.IO.MemoryStream(originalCoverData);
                     img = System.Drawing.Image.FromStream(stream);
                     img.Save(Server.MapPath("img.bmp"));
-                    originalCoverData.Close();
                 }
             }
             con.Close();
