@@ -18,16 +18,14 @@
         </style>
     </head>
     <body>
-        <asp:Form runat="server">
-            <div class="picture">
-                <asp:Image ID="picture" runat="server" style="border:1px solid #000000;"></asp:Image><br />
-            </div>
-            <button id="toggleButton" type="button" value="random" class="button" style="padding: 5px;">Random</button>
-            <button id="playButton" type="button" value="play" class="button" style="padding: 5px;">Pause</button><br />
-            <button id="previousButton" type="button" value="previous" class="button" style="padding: 5px;">Previous</button>
-            <button id="nextButton" type="button" value="next" class="button" style="padding: 5px;">Next</button><br />
+        <div class="picture">
+            <asp:Image ID="picture" runat="server" style="border:1px solid #000000;"></asp:Image><br />
+        </div>
+        <button id="toggleButton" type="button" value="random" class="button" style="padding: 5px;">Random</button>
+        <button id="playButton" type="button" value="play" class="button" style="padding: 5px;">Pause</button><br />
+        <button id="previousButton" type="button" value="previous" class="button" style="padding: 5px;">Previous</button>
+        <button id="nextButton" type="button" value="next" class="button" style="padding: 5px;">Next</button><br />
 
-            <asp:Label ID="messages" runat="server"></asp:Label>
-        </asp:Form>
+        <asp:Label ID="messages" runat="server"></asp:Label>
     </body>
 </html>
