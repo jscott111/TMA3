@@ -51,12 +51,12 @@ namespace Project
                 con.Close();
             });
 
-            void print()
-            {
-                messages.Text += "Picture Loaded ";
-            }
-
             messages.Text += "Program Finished ";
+        }
+
+        void print()
+        {
+            messages.Text += "Picture Loaded ";
         }
     }
 }
