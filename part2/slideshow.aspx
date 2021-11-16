@@ -1,4 +1,4 @@
-<%@ Page Language="C#" Debug="true" Async="true" CodeFile="Slideshow.aspx.cs" Inherits="Project.Slideshow" %>
+<%@ Page Language="C#" Debug="true" Async="true" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Slideshow.aspx.cs" Inherits="Project.Slideshow" %>
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
