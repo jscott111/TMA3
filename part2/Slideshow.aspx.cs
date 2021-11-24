@@ -20,7 +20,7 @@ namespace Project
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=photos;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             byte[] imageData;
             string imageUrl = "http://tma3.azurewebsites.net/part2/Images/CRW_5523.jpg";
-            int height = (Request.Browser.ScreenPixelsHeight) * 2 - 400;
+            int height = (Request.Browser.ScreenPixelsHeight) * 2 - 430;
 
             imageData = new System.Net.WebClient().DownloadData(imageUrl);
             System.IO.MemoryStream stream = new System.IO.MemoryStream(imageData);
