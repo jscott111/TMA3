@@ -94,7 +94,6 @@ function sequentialLoop() {
                 document.getElementById(String(counter)).style.display = "inline-block";
                 document.getElementById("cap" + String(counter)).style.display = "inline-block";
             }
-            document.getElementById("messages").textContent = "W:" + document.getElementById(String(counter)).width + "H:" + document.getElementById(String(counter)).height;
         }, 5000)
     }
 }
