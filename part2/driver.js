@@ -80,29 +80,33 @@ previousButton.addEventListener("click", e => {
 
 
 function sequentialLoop() {
-    sequentialID = setInterval(function () {
-        document.getElementById(String(counter)).style.display = "none";
-        document.getElementById("cap" + String(counter)).style.display = "none";
-        counter++;
-        try {
-            document.getElementById(String(counter)).style.display = "inline-block";
-            document.getElementById("cap" + String(counter)).style.display = "inline-block";
-        }
-        catch (err) {
-            counter = 0;
-            document.getElementById(String(counter)).style.display = "inline-block";
-            document.getElementById("cap" + String(counter)).style.display = "inline-block";
-        }
-        document.getElementById("messages").textContent = "W:" + document.getElementById(String(counter)).width + "H:" + document.getElementById(String(counter)).height;
-    }, 5000)
+    if (playButton.innerHTML == "Pause") {
+        sequentialID = setInterval(function () {
+            document.getElementById(String(counter)).style.display = "none";
+            document.getElementById("cap" + String(counter)).style.display = "none";
+            counter++;
+            try {
+                document.getElementById(String(counter)).style.display = "inline-block";
+                document.getElementById("cap" + String(counter)).style.display = "inline-block";
+            }
+            catch (err) {
+                counter = 0;
+                document.getElementById(String(counter)).style.display = "inline-block";
+                document.getElementById("cap" + String(counter)).style.display = "inline-block";
+            }
+            document.getElementById("messages").textContent = "W:" + document.getElementById(String(counter)).width + "H:" + document.getElementById(String(counter)).height;
+        }, 5000)
+    }
 }
 
 function randomLoop() {
-    randomID = setInterval(function () {
-        document.getElementById(String(counter)).style.display = "none";
-        document.getElementById("cap" + String(counter)).style.display = "none";
-        counter = Math.floor(Math.random() * parseInt(numPics.value));
-        document.getElementById(String(counter)).style.display = "inline-block";
-        document.getElementById("cap" + String(counter)).style.display = "inline-block";
-    }, 5000)
+    if (playButton.innerHTML == "Pause") {
+        randomID = setInterval(function () {
+            document.getElementById(String(counter)).style.display = "none";
+            document.getElementById("cap" + String(counter)).style.display = "none";
+            counter = Math.floor(Math.random() * parseInt(numPics.value));
+            document.getElementById(String(counter)).style.display = "inline-block";
+            document.getElementById("cap" + String(counter)).style.display = "inline-block";
+        }, 5000)
+    }
 }
