@@ -1,5 +1,3 @@
-# TMA2
-
 <html>
     <head>
         <meta charset = "utf-8">
@@ -10,33 +8,63 @@
         <h2>Assignment 3</h2>
         <h2>John Scott 3542569</h2>
         <ul>
-            <h4>Start Date: Oct 25 2021</h4>
+            <h4>Start Date: Oct 26 2021</h4>
             <h4>End Date: </h4>
-            <h4>Hours Spent: </h4>
+            <h4>Hours Spent: 300</h4>
         </ul>
         <h2>Part 1</h2>
         <ul style="margin-left: 20px; margin-right: 40%;">
             <p>
-                
+                In this persistent cookie application I provided a basic webpage that nicely displays the IP address of the client, the client's timezone and the number of visits by the client in the middle of the screen. I used C# to get the IP address from the request and checked if a cookie already existed for that IP address and if that was true, the application converts the value from a string type to an integer type, delete that cookie, increase the value by 1, and convert back to a string type and save that as a new cookie and set the expiry date to 5 years out. If the IP doesn't exist as a key, simply create a new persistent cookie with an expiry date of 5 years and set the value to 1.
             </p>
             <p>
-                
+                The first thing I display is the IP address of the client using the Request class. I use in line commands to reference and print out the 'Request.UserHostAddress' result. I put the important information in bold to make it more visible. Next, I use JavaScript to get the
+                time zone of the client and print it using 'document.write()' to print it in line with the html body text.
             </p>
             <p>
-                
+                To print the number of times an IP address visited the site I use 'Request.Cookies[Request.UserHostAddress].Value.Substring(Request.Cookies[Request.UserHostAddress].Name.Length + 1)' to retrieve the string number and I had to use the Substring method to seperate the value from the key because the .Value attribute was returning a string with the key and the value so I had to seperate the value by using the length of the IP address to use as a starting point to get the value only.
             </p>
+            <a href="https://tmapart2.azurewebsites.net/TMA3/part3/cookie.aspx" target="_blank">Click here to open the cookie application.</a>
         </ul>
         <h2>Part 2</h2>
         <ul style="margin-left: 20px; margin-right: 40%;">
             <p>
-                
+                For this part I mostly copied the one that I made from Assignment 1 with the main difference being that the images are not stored locally but rather in a database and on the server. I stored the URL and captions in a table in the database, I reference it to get the URL and caption using this query "SELECT name, caption, url FROM [dbo].[pic]", display the caption and open a stream for the URL to get the actual image. I display the caption underneath the image as well as the buttons. I handle events for these buttons and the image switching with JavaScript like I did with A1. In C#, I create each image as an asp:Image and captions as an asp:Label but set the display to 'none' and display the image and its caption one at a time one at a time by setting display to 'inline-block' through JS.
             </p>
             <p>
-                
+                The app starts with displaying the first image and caption with ID = '0' by setting the display to 'inline-block' and calling the sequential loop using a counter to keep track of the current image and decide the next image whether it be just the next Id number or randomizing the next image. When the pause button is pushed, I clear the ID of the interval but because I have the number of the current image stored as the counter variable so that it can continue from that point. I use a try-catch to know when I've reached the last image and reset the counter to 0. I had a bug where I could pause the loop but if I clicked the button to toggle between random and sequential it would start that loop and mess up the pause/play button and have two loops going at once. I fixed it by only starting the new loop if the pause button said 'pause' which meant it was in a play state. Once the play button is pressed to start the loop again, I check the text of the toggle button to see which loop to start and call the proper loop.
             </p>
             <p>
-                
+                To get the right size of the image, I used (Request.Browser.ScreenPixelsHeight) * 2 - 400 to calculate the right height of the image. I needed to download the image in a memory stream and bitmap. I needed to use this to get the actual dimensions of the image because just creating an asp:Image and setting the URL to the images's URL doesn't hold the dimensions of the image. I calculate the ratio of the bitmap image to know what to set the width of the asp:Image so that it's ratio is set to the right amount in ratio to the height that I'm looking for.
             </p>
+            <img src="" alt="">
+            <p>
+
+            </p>
+
+            <br><a href="https://tmapart2.azurewebsites.net/TMA3/part2/slideshow.aspx" target="_blank">Click here to open the slideshow application.</a>
+        </ul>
+        <h2>Part 3 & 4</h2>
+        <ul style="margin-left: 20px; margin-right: 40%;">
+            <p>
+                I was instructed to look at some online stores and analyse the layout. I went to NewEgg.ca and noticed that there is a search bar and filter type of catagory menu with options such as Cyber Monday Deals, Today's Best Deals, Best Sellers and Email Deals. On the left, there is a vertical menu containing categories such as Components, Computer Systems, Electronics and Gaming. The front page contains categories and display items in those categories such as Today's Best Deals, Staff Picks, Trending Now and a list of categories. When hovering over one of the left menu items, it then display subcategories of the hovered category each with other subcategories. This design to me speaks that they want the user to be able to find their desired product with the least clicks possible to remove confusion about where to find it and having to switch from page to page to find the desired products. When I ignore the subcategories and click the components category, it loads a new page but display all if the expandable submenu items and their categories from the previous page as a vertical menu on the left side of the page. On the component page, the search bar and menu at the top of the page remain there like on the first page. On the body of the page, the components and images of them are displayed along with the top two significant categories of it, such as for CPU's there is Intel and AMD CPUs listed beside the image. The bar with the search and logo and sign in/registration and cart buttons is fixed to the top of the screen for constant access. So to summerize, the layout of NewEgg is consistent accross each page.
+
+                Analising the functionality and technical aspects of NewEgg, when I click on a full desktop system, there is a popup that appears with images of the product, the name of the product, brief bullet points about significant specifications of the unit, the price, a complete list of specs, reviews and a button to add it to your cart and a button to view more details which opens a new tab. When I click add to cart, it seems like the item is added to a cart that is saved as a cookie because it does not require me to make an account or log in and if I leave the site and come back, the cart is saved and won't be lost. It opens up a side pop out that shows what was added to my cart with the total price of the cart, a button to view the cart on a new page, a button to go to checkout and then some suggestions on other products I would like to buy. When I open the cart, I see the desktop listed with the quantity and the price per unit. Underneath the name of the product, the important specs specifically important to a desktop computer were listed. Beneath the specs, there are 2 buttons, one for moving the item to your wish list and one for saving for later and off to the right is a button to remove it from the cart. On the right side of the screen there is a panel with the summary of the contents of the cart added with the estimated shipping costs, an option to add a promo code and it is all totaled before the button to go to the secure checkout or paypal. Once I click the checkout button, I am then prompted to sign in or register. The rest of the site works the same way as I've described previously when looking at and purchasing products.
+            </p>
+            <p>
+                Next, I went to Amazon.ca and noticed first that there is a bunch of cards each focusing on things such as my account, "Epic Deals", "Deals From Top Brands", "Recently Viewed" and "Shop Holiday Gift Guides". At the top left there are three horizontal lines which is a symbol for menu, when I expand it I see categories with other subcategories such as "Trending", "Digital Content and Devices", "Shop By Department" and "Programs and Features". I clicked "Electronics, Computers & Office" under the "Shop By Department" category and it flipped over to a list of different electronics and each option I choose, the page layout looks the same but the products displayed are different for each type of electronic. The page is organized like NewEgg where at the top of the page there is a logo, search bar, country, account, and cart. Below that there are some uncommon categories of items such as "Gift Cards", "Pet Supplies", "Buy Again" and "Coupons". Beneath that is another horizontal menu that contains even further categories within "Home and Portable Audio" which I clicked such as "Best Sellers", "Speakers", "Portable Speakers", "Headphones" and "Home Theater Systems". There's a vertical filter menu on the left side of the page containing many different filters to apply to the products displayed in the body. In the body, various products categorized by "Best Sellers", "Top Rated", "Under $25" and "Recommend For You" are displayed with options to see more which will take you to a list of products with all conditions and filters the user has applied as they've navigated to this part of the website by choosing diferent categories and subcategories.
+
+                I opened the Amazon Echo item, the same horizontal menus are at the top of the page. Similarily to NewEgg, there is an image of the product next to small images of the product which are previews of all of the images of the product. Next to the big image at the top of the body is the name or title of the product, beneath that it says the brand and it's star rating. There is then a divider and beneath that is the price with the delivery cost, then the inventory status, then the version, the colour and configuration as well as a bullet point list of similar products to buy. Because this is Amazon's product, they have a very nice advertisement level display on what the product does and it's functions. Beneath that is a table with price and feature comparisons from other generations of Alex's. Beneath that are the questions and answers about this product and lastly is the section of reviews. To the right of the original image and product information is the option to add to cart. In that divider are two radio buttons that display different content depending on which is selected. One of them is for a financing option and the monthly payment is stated, the delivery details, quantity and a button to add to cart. For the second radio it is the same except for a monthly payment, the full price is listed and continuing after the add to cart is a 'buy now' option which skips the cart aspect and begins the checkout process. When an item is added to the cart, the image shows up on the keft sude vertically and asks you if you'd like to proceed to checkout. It is broken up into 3 steps, first, confirming your shipping address, displaying the one on record and a button to change it. Second, is the payment method displaying the current information on record with a box to enter a gift card or promo code and an option to change the price, prime delivery option, quantity and gift options. Below that is abutton to place my order and it's order total briefed  on the right side which also has a button to order, below that is the summary of the price of items, delivery charge, estimated taxes and the added total.
+            </p>
+            <p>
+
+            </p>
+            <img src="https://tmapart2.azurewebsites.net/TMA2/part3/Cart.pdf" alt="">
+            <p>
+
+            </p>
+
+            <br><a href="https://tmapart2.azurewebsites.net/TMA2/part2/start.php" target="_blank">Click here to open the slideshow application.</a>
         </ul>
     </body>
 </html>
