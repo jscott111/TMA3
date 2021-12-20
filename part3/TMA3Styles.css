@@ -1,0 +1,137 @@
+﻿
+.header{
+    background-color: dodgerblue;
+    height: 100px;
+}
+body{
+    margin: 0px;
+}
+.mainmenu {
+    height: 0px;
+}
+.mainmenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    background: orange;
+}
+.mainmenu ul li {
+    display: inline-block;
+    font-size: 25px;
+    background: orange;
+}
+.mainmenu ul li a {
+    color: black;
+    padding: 0px 15px;
+    margin: 0 -2px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.mainmenu ul li ul {
+    position: absolute;
+    z-index: 9999;
+    display: none;
+    width: 250px;
+    background: lightgrey;
+}
+.mainmenu ul li:hover > a {
+    background: grey;
+    display: block;
+    cursor: pointer;
+}
+.mainmenu ul li:hover > ul {
+    display: block;
+}
+    .mainmenu ul li ul li {
+        background: lightgrey;
+        width: 250px;
+    }
+.mainmenu ul li ul li a {
+    color: #000;
+    padding: 0px 15px;
+    margin: 0 -2px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.mainmenu ul li ul li:hover > a {
+    color: #000;
+}
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 20px;
+}
+.topBar { 
+    position: fixed;
+    display: block;
+    width: 100%;
+    top: 0px;
+    margin-bottom: 50px;
+}
+.content {
+    margin-top: 150px;
+}
+b {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.clickable {
+    cursor: pointer;
+}
+.title {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 20px;
+}
+.storeDiv {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+}
+
+.itemDiv {
+    padding: 20px 60px;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+.listItem {
+    padding: 30px 30px;
+    font-size: 30px;
+    display: inline-block;
+    width: 95%;
+    border-bottom: solid;
+    border-width: thin;
+}
+.itemName {
+    font-size: 30px;
+}
+.price {
+    float: right;
+    font-weight: bold;
+    margin-left: 30px;
+}
+.itemImage {
+    float: left;
+}
+.listItemTitle {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    padding: 0px 20px;
+}
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px 40px;
+}
+.seeMore {
+    float: right;
+    margin-right: 30px;
+}
