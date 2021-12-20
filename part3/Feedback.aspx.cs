@@ -21,7 +21,7 @@ namespace Store
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential("john5sco717@gmail.com", "yjevmvzcscjeplxx"),
+                Credentials = new NetworkCredential("john5sco717@gmail.com", "Joh98Sco!!"),
                 EnableSsl = true
             };
 
