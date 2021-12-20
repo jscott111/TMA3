@@ -21,7 +21,8 @@ namespace Store
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential("john5sco717@gmail.com", "wlqebhbzuvtkfqxg")
+                Credentials = new NetworkCredential("john5sco717@gmail.com", "wlqebhbzuvtkfqxg"),
+                EnableSsl = true
             };
 
             smtpClient.Send("john5sco717@gmail.com", "johnascott14@gmail.com", "Thanks for the feedback", "Test");
