@@ -23,12 +23,12 @@
                 <li><a href="SystemList.aspx">Pre-Built Systems</a></li>
                 <li><a>Components</a>
                     <ul>
-                        <li><a href="ComponentList?system=motherboard">Motherboards</a></li>
-                        <li><a href="ComponentList?system=cpu">CPUs</a></li>
-                        <li><a href="ComponentList?system=ram">RAM</a></li>
-                        <li><a href="ComponentList?system=display">Displays</a></li>
-                        <li><a href="ComponentList?system=os">Operating Systems</a></li>
-                        <li><a href="ComponentList?system=soundcard">Soundcards</a></li>
+                        <li><a href="ComponentList.aspx?system=motherboard">Motherboards</a></li>
+                        <li><a href="ComponentList.aspx?system=cpu">CPUs</a></li>
+                        <li><a href="ComponentList.aspx?system=ram">RAM</a></li>
+                        <li><a href="ComponentList.aspx?system=display">Displays</a></li>
+                        <li><a href="ComponentList.aspx?system=os">Operating Systems</a></li>
+                        <li><a href="ComponentList.aspx?system=soundcard">Soundcards</a></li>
                     </ul>
                 </li>
                 <li><a href="Contact.aspx">Contact</a></li>
