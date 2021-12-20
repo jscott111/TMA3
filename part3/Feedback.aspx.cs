@@ -18,12 +18,12 @@ namespace Store
 
         public void sendEmail(object sender, System.EventArgs e)
         {
-            var smtpClient = new SmtpClient("smtp.gmail.com")
+            var smtpClient = new SmtpClient("smtp.sendgrid.net")
             {
                 Port = 587,
                 UseDefaultCredentials = false,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                Credentials = new NetworkCredential("john5sco717@gmail.com", "Joh98Sco!!"),
+                Credentials = new NetworkCredential("apikey", "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"),
                 EnableSsl = true
             };
 
