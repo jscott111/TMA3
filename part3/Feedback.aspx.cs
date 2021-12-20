@@ -22,7 +22,7 @@ namespace Store
             {
                 Port = 465,
                 Credentials = new NetworkCredential("john5sco717@gmail.com", "Joh98Sco!!"),
-                EnableSsl = true,
+                EnableSsl = true
             };
 
             smtpClient.Send("john5sco717@gmail.com", "johnascott14@gmail.com", "Thanks for the feedback", "Test");
