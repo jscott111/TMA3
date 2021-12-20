@@ -27,7 +27,7 @@ namespace Store
                 EnableSsl = true
             };
 
-            smtpClient.Send("jscott11@unb.ca", "johnascott14@gmail.com", "Thanks for the feedback", "Test");
+            smtpClient.Send("johnascott14@gmail.com", "johnascott14@gmail.com", "Thanks for the feedback", "Test");
         }
     }
 }
