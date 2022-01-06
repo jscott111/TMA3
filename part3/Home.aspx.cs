@@ -38,6 +38,7 @@ namespace Store
                     panel.Controls.Add(itemName);
                     panel.Controls.Add(itemPrice);
                     panel.Attributes["class"] = "itemDiv";
+                    panel.Attributes["onClick"] = "productView('" + reader[3].ToString() + "')";
                     panel.ID = reader[3].ToString();
 
                     bestSeller.Controls.Add(panel);
@@ -85,6 +86,7 @@ namespace Store
                     panel.Controls.Add(itemPrice);
                     panel.Controls.Add(discountPrice);
                     panel.Attributes["class"] = "itemDiv";
+                    panel.Attributes["onClick"] = "productView('" + reader[3].ToString() + "')";
 
                     onSale.Controls.Add(panel);
                 }
