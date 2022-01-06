@@ -23,7 +23,6 @@ namespace Store
                     Panel panel = new Panel();
                     Label itemName = new Label();
                     Label itemPrice = new Label();
-                    Label discountPrice = new Label();
                     Label speed = new Label();
                     Label size = new Label();
                     Label fps = new Label();
@@ -53,6 +52,7 @@ namespace Store
                     priceDiv.Controls.Add(itemPrice);
 
                     panel.Attributes["class"] = "listItem";
+                    panel.Attributes["onClick"] = "productView('" + reader[0].ToString() + "')";
                     panel.Style.Add("cursor", "pointer");
                     panel.Controls.Add(picture);
                     panel.Controls.Add(div);
