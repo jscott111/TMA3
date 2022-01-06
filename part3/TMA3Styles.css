@@ -1,4 +1,4 @@
-﻿
+
 .header{
     background-color: dodgerblue;
     height: 100px;
@@ -134,4 +134,18 @@ p {
 .seeMore {
     float: right;
     margin-right: 30px;
+}
+.productDisplay {
+    padding: 30px 30px;
+    font-size: 30px;
+    display: inline-block;
+    width: 95%;
+}
+.productInfo {
+
+}
+.productViewPrice {
+    float: right;
+    font-weight: bold;
+    margin-left: 40px;
 }
