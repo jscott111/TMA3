@@ -32,7 +32,7 @@ namespace Store
             {
                 while (reader.Read())
                 {
-                    title.Text = reader[0].ToString();
+                    title.Text += reader[0].ToString();
                 }
             }
             con.Close();
