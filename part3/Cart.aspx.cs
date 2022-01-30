@@ -15,7 +15,7 @@ namespace Store
             SqlCommand command;
             if (Request.QueryString["action"] == "add")
             {
-                command = new SqlCommand("INSERT INTO [dbo].[cart] (ip, system) VALUES (" + Request.QueryString["ip"] + ", " + Request.QueryString["system"] + ")", con);
+                command = new SqlCommand("INSERT INTO [dbo].[cart] (ip, system) VALUES ('" + Request.QueryString["ip"] + "', " + Request.QueryString["system"] + ")", con);
                 con.Open();
                 command.ExecuteNonQuery();
                 con.Close();
@@ -25,7 +25,7 @@ namespace Store
                 title.Text = Request.QueryString["ip"];
             }
 
-            command = new SqlCommand("SELECT system FROM [dbo].[cart] WHERE ip = " + Request.QueryString["ip"], con);
+            command = new SqlCommand("SELECT system FROM [dbo].[cart] WHERE ip = '" + Request.QueryString["ip"] + "'", con);
             con.Open();
             command.ExecuteNonQuery();
             using (SqlDataReader reader = command.ExecuteReader())
