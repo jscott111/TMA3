@@ -24,7 +24,7 @@ namespace Store
 
             for (int i = 0; i < 6; i++)
             {
-                if(Request.QueryString["system"] == component[i, 1])
+                if(Request.QueryString["part"] == component[i, 1])
                 {
                     title.Text = component[i, 0];
                     query = component[i, 2];
@@ -48,6 +48,7 @@ namespace Store
                     Label itemPrice = new Label();
                     Label extra = new Label();
                     Panel div = new Panel();
+                    Panel pricePanel = new Panel();
 
                     itemName.Text = reader[1].ToString();
                     itemName.Attributes["class"] = "itemName";
@@ -66,13 +67,25 @@ namespace Store
 
                     itemPrice.Text = Convert.ToDecimal(reader[2].ToString()).ToString("C2");
                     itemPrice.ID = reader[0].ToString() + "price";
-                    itemPrice.Attributes["class"] = "price";
+                    pricePanel.Controls.Add(itemPrice);
+                    pricePanel.Attributes["class"] = "price";
 
                     panel.Attributes["class"] = "listItem";
                     panel.Controls.Add(picture);
                     panel.Controls.Add(div);
-                    panel.Controls.Add(itemPrice);
                     panel.ID = reader[0].ToString();
+
+                    if (Request.QueryString["swap"] == "true")
+                    {
+                        Button swap = new Button();
+                        swap.Text = "Swap";
+                        swap.CssClass = "swapButton";
+                        swap.OnClientClick = "productView('" + Request.QueryString["system"] + "', '" + reader[0].ToString() + "', '" + component[index, 1] + "', 'true')";
+
+                        pricePanel.Controls.Add(swap);
+                    }
+
+                    panel.Controls.Add(pricePanel);
 
                     list.Controls.Add(panel);
                 }
