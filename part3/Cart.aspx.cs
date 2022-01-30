@@ -15,7 +15,7 @@ namespace Store
             SqlCommand command;
             if (Request.QueryString["action"] == "add")
             {
-                command = new SqlCommand("INSERT INTO [dbo].[cart] (id, system) VALUES ('" + Request.QueryString["ip"] + "', " + Request.QueryString["system"] + ")", con);
+                command = new SqlCommand("INSERT INTO [dbo].[cart] (id, system) VALUES ('" + Request.QueryString["ip"] + "', '" + Request.QueryString["system"] + "')", con);
                 con.Open();
                 command.ExecuteNonQuery();
                 con.Close();
