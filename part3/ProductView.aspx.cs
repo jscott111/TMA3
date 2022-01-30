@@ -88,6 +88,7 @@ namespace Store
 
                     cart.Text = "Add to Cart";
                     cart.Attributes["class"] = "cartButton";
+                    cart.OnClientClick = "addToCart('" + Request.UserHostAddress.ToString() + "', '" + systemID + "')";
 
                     tax.Text = "Taxes:  " + (total * 0.15).ToString("C2");
                     tax.Attributes["class"] = "taxAndShippingInfo";
