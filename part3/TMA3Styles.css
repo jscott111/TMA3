@@ -136,16 +136,50 @@ p {
     margin-right: 30px;
 }
 .productDisplay {
-    padding: 30px 30px;
+    padding: 15px 30px;
     font-size: 30px;
     display: inline-block;
     width: 95%;
+    float: left;
 }
 .productInfo {
-
+    padding: 20px 30px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
 }
 .productViewPrice {
     float: right;
     font-weight: bold;
-    margin-left: 40px;
+    border: 1px solid black;
+    width: 250px;
+    margin: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.swapButton{
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 10px;
+}
+.product {
+    display: flex;
+    flex-direction: row;
+}
+.cartButton {
+    position: absolute;
+    bottom: 0;
+    display: block;
+    margin: 10px;
+    width: 90%;
+    background: #ffe729;
+}
+.taxAndShippingInfo{
+    font-size: 15px;
+    font-weight: normal;
+    margin-right: 10px;
+    display: block;
+    text-align: right;
 }
