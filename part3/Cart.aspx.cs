@@ -10,7 +10,14 @@ namespace Store
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            title.Text = Request.QueryString["ip"] + ": " + Request.QueryString["system"];
+            if(Request.QueryString["action"] == "add")
+            {
+                title.Text = Request.QueryString["ip"] + ": " + Request.QueryString["system"];
+            }
+            if(Request.QueryString["action"] == "view")
+            {
+                title.Text = Request.QueryString["ip"];
+            }
         }
     }
 }
