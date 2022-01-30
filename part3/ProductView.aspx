@@ -38,13 +38,20 @@
     </div>
 
     <br /><br />
+    
+    <form runat="server">
+        <div class="content" runat="server">
+            <asp:Panel ID="product" runat="server">
 
-    <div class="content" runat="server">
-        <asp:Panel ID="product" runat="server">
+            </asp:Panel>
+        </div>
+
+        <h2>Components</h2>
+        <asp:Panel ID="categories" runat="server" class="storeDiv">
 
         </asp:Panel>
-    </div>
-
+    </form>
+        
     <script type="text/javascript" src="storeDriver.js"></script>
 </body>
 </html>
