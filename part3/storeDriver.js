@@ -43,3 +43,12 @@ function addToCart(ip, system) {
 
     document.getElementById("form").submit();
 }
+
+function viewCart(ip) {
+    document.writeln("<form id='form' action='Cart.aspx' runat='server'>");
+    document.writeln("    <input type='hidden' id='ip' name='ip' value='" + ip + "'>");
+    document.writeln("    <input type='hidden' id='action' name='action' value='view'>");
+    document.writeln("</form>");
+
+    document.getElementById("form").submit();
+}
