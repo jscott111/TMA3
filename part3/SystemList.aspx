@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Debug="true" Async="true" AutoEventWireup="true" CodeFile="SystemList.aspx.cs" Inherits="Store.SystemList"%>
+<%@ Page Language="C#" Debug="true" Async="true" AutoEventWireup="true" CodeFile="SystemList.aspx.cs" Inherits="Store.SystemList"%>
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -23,12 +23,12 @@
                 <li><a href="SystemList.aspx">Pre-Built Systems</a></li>
                 <li><a>Components</a>
                     <ul>
-                        <li><a href="ComponentList.aspx?system=motherboard">Motherboards</a></li>
-                        <li><a href="ComponentList.aspx?system=cpu">CPUs</a></li>
-                        <li><a href="ComponentList.aspx?system=ram">RAM</a></li>
-                        <li><a href="ComponentList.aspx?system=display">Displays</a></li>
-                        <li><a href="ComponentList.aspx?system=os">Operating Systems</a></li>
-                        <li><a href="ComponentList.aspx?system=soundcard">Soundcards</a></li>
+                        <li><a href="ComponentList.aspx?part=motherboard">Motherboards</a></li>
+                        <li><a href="ComponentList.aspx?part=cpu">CPUs</a></li>
+                        <li><a href="ComponentList.aspx?part=ram">RAM</a></li>
+                        <li><a href="ComponentList.aspx?part=display">Displays</a></li>
+                        <li><a href="ComponentList.aspx?part=os">Operating Systems</a></li>
+                        <li><a href="ComponentList.aspx?part=soundcard">Soundcards</a></li>
                     </ul>
                 </li>
                 <li><a href="Contact.aspx">Contact</a></li>
