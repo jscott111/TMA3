@@ -11,6 +11,7 @@ namespace Store
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            contents.Attributes["class"] = "loginPanel";
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             SqlCommand command;
             bool access = false;
