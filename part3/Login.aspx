@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Debug="true" Async="true" AutoEventWireup="true" CodeFile="Cart.aspx.cs" Inherits="Store.Cart"%>
+﻿<%@ Page Language="C#" Debug="true" Async="true" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Store.Login"%>
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -40,11 +40,20 @@
 
     <div class="content">
         <form runat="server">
-            <div style="display: flex; flex-direction: row; width: 100%;">
-                <asp:Label ID="title" class="title" runat="server">Cart</asp:Label>
-                <button style="width: 100px; float: right; margin-right: 10px;" class="swapButton" onclick="loginPage()" runat="server">Checkout</button>
-            </div>
-            <asp:Panel ID="contents" runat="server"></asp:Panel>
+            <asp:Label ID="title" class="title" runat="server">Log in</asp:Label>
+            <asp:Panel ID="contents" class="loginPanel" runat="server">
+                <form action="Login.aspx" method="post">
+                    <label>Username:</label>
+                    <input name="username" type="text" />
+                    <label>Password:</label>
+                    <input name="password" type="password" />
+                    <div style="display: flex; flex-direction: row;">
+                        <input name="button" type="submit" style="padding: 5px 5px; margin: 10px;" value="Log In" />
+                        <input name="button" type="submit" style="padding: 5px 5px; margin: 10px;" value="Sign Up" />
+                    </div>
+                </form>
+                <asp:Label ID="incorrect" style="color: red;" runat="server"></asp:Label>
+            </asp:Panel>
         </form>
     </div>
 

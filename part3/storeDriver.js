@@ -60,3 +60,10 @@ function viewCart() {
 
     document.getElementById("form").submit();
 }
+
+function loginPage() {
+    document.writeln("<form id='form' action='Login.aspx' runat='server'>");
+    document.writeln("</form>");
+
+    document.getElementById("form").submit();
+}

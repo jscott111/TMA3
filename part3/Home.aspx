@@ -14,6 +14,7 @@
             <div class="cart" style="right: 50px; position: fixed; top: 25px; height: 53px;">
                 <p id="ip" style="display: none;"><%=Request.UserHostAddress %></p>
                 <script>var ip = document.getElementById("ip").innerHTML</script>
+                <img src="account.png" width="50" height="50" class="clickable" onclick="loginPage()"/>
                 <img id="cart" src="https://icon-library.com/images/shop-cart-icon/shop-cart-icon-13.jpg" width="50" height="50" class="clickable" onclick="viewCart()"/>
                 <b><asp:Label runat="server" ID="numberInCart" style="display: block; float: right; margin-top: 20px;"></asp:Label></b>
             </div>

@@ -130,7 +130,7 @@ namespace Store
             {
                 while (reader.Read())
                 {
-                    numberInCart.Text += reader[0].ToString();
+                    numberInCart.Text = reader[0].ToString();
                 }
             }
             con.Close();
