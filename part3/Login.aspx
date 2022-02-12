@@ -41,7 +41,7 @@
     <div class="content">
         <form runat="server">
             <asp:Label ID="title" class="title" runat="server">Log in</asp:Label>
-            <asp:Panel ID="contents" class="loginPanel" runat="server">
+            <asp:Panel ID="contents" CssClass="loginPanel" runat="server">
                 <form action="Login.aspx" method="post">
                     <label>Username:</label>
                     <input name="username" type="text" />
