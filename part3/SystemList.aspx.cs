@@ -113,7 +113,7 @@ namespace Store
                     price = (float)((float) total / (1 + Convert.ToDouble(reader[4]) / 100));
                     discountPrice.Text = Convert.ToDecimal(price.ToString()).ToString("C2");
                     discountPrice.Attributes.Add("style", "color: red;");
-                    itemPrice.Text = Convert.ToDecimal(reader[2].ToString()).ToString("C2");
+                    itemPrice.Text = Convert.ToDecimal(total.ToString()).ToString("C2");
                     itemPrice.Attributes.Add("style", "text-decoration: line-through;");
                     discountPrice.Attributes["class"] = "price";
 
@@ -121,6 +121,19 @@ namespace Store
                     total = 0;
                 }
             }
+            con.Close();
+
+            command = new SqlCommand("SELECT count(system) FROM [dbo].[cart] WHERE id = '" + Request.UserHostAddress + "'", con);
+            con.Open();
+            command.ExecuteNonQuery();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    numberInCart.Text += reader[0].ToString();
+                }
+            }
+            con.Close();
         }
     }
 }

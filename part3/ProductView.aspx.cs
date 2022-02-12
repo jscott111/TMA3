@@ -76,7 +76,7 @@ namespace Store
                     itemInfoDiv.Controls.Add(speed);
                     itemInfoDiv.Controls.Add(size);
                     itemInfoDiv.Controls.Add(fps);
-                    // TODO: Mark down items that are on sale!!
+                    
                     picture.ImageUrl = reader[3].ToString();
                     picture.Height = new Unit(200);
                     picture.Width = new Unit(270);
@@ -88,7 +88,7 @@ namespace Store
 
                     cart.Text = "Add to Cart";
                     cart.Attributes["class"] = "cartButton";
-                    cart.OnClientClick = "addToCart('" + Request.UserHostAddress.ToString() + "', '" + systemID + "')";
+                    cart.OnClientClick = "addToCart('" + systemID + "')";
 
                     tax.Text = "Taxes:  " + (total * 0.15).ToString("C2");
                     tax.Attributes["class"] = "taxAndShippingInfo";
@@ -193,6 +193,19 @@ namespace Store
 
                 categories.Controls.Add(box);
             }
+            con.Close();
+
+            command = new SqlCommand("SELECT count(system) FROM [dbo].[cart] WHERE id = '" + Request.UserHostAddress + "'", con);
+            con.Open();
+            command.ExecuteNonQuery();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    numberInCart.Text += reader[0].ToString();
+                }
+            }
+            con.Close();
         }
         public string getURL(string table, string id)
         {

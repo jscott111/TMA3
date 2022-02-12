@@ -35,19 +35,26 @@ function goHome() {
     document.getElementById("form").submit();
 }
 
-function addToCart(ip, system) {
+function addToCart(system) {
     document.writeln("<form id='form' action='Cart.aspx' runat='server'>");
-    document.writeln("    <input type='hidden' id='ip' name='ip' value=" + ip + ">");
-    document.writeln("    <input type='hidden' id='system' name='system' value=" + system + ">");
+    document.writeln("    <input type='hidden' id='system' name='system' value='" + system + "'>");
     document.writeln("    <input type='hidden' id='action' name='action' value='add'>");
     document.writeln("</form>");
 
     document.getElementById("form").submit();
 }
 
-function viewCart(ip) {
+function deleteCartItem(system) {
     document.writeln("<form id='form' action='Cart.aspx' runat='server'>");
-    document.writeln("    <input type='hidden' id='ip' name='ip' value='" + ip + "'>");
+    document.writeln("    <input type='hidden' id='system' name='system' value='" + system + "'>");
+    document.writeln("    <input type='hidden' id='action' name='action' value='delete'>");
+    document.writeln("</form>");
+
+    document.getElementById("form").submit();
+}
+
+function viewCart() {
+    document.writeln("<form id='form' action='Cart.aspx' runat='server'>");
     document.writeln("    <input type='hidden' id='action' name='action' value='view'>");
     document.writeln("</form>");
 

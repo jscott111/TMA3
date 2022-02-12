@@ -12,10 +12,8 @@
         <div class="header">
             <img src="https://github.com/jscott111/TMA3/blob/main/part3/logo.jpg?raw=true" width="200" height="100" class="clickable" onclick="goHome()"/>
             <div class="cart" style="right: 50px; position: fixed; top: 25px; height: 53px;">
-                <p id="ip" style="display: none;"><%=Request.UserHostAddress %></p>
-                <script>var ip = document.getElementById("ip").innerHTML</script>
-                <img src="https://icon-library.com/images/shop-cart-icon/shop-cart-icon-13.jpg" width="50" height="50" class="clickable" onclick="viewCart(ip)"/>
-                <b runat="server" style="display: block; float: right; margin-top: 20px;">0</b>
+                <img src="https://icon-library.com/images/shop-cart-icon/shop-cart-icon-13.jpg" width="50" height="50" class="clickable" onclick="viewCart()"/>
+                <b><asp:Label runat="server" ID="numberInCart" style="display: block; float: right; margin-top: 20px;"></asp:Label></b>
             </div>
         </div>
 
@@ -41,7 +39,11 @@
 
     <div class="content">
         <form runat="server">
-            <asp:Label ID="title" class="title" runat="server"></asp:Label>
+            <div>
+                <asp:Label ID="title" class="title" runat="server">Cart</asp:Label>
+                <button style="width: 100px; float: right; position: absolute;" class="swapButton" onclick="checkout()" runat="server">Checkout</button>
+            </div>
+            <asp:Panel ID="contents" runat="server"></asp:Panel>
         </form>
     </div>
 

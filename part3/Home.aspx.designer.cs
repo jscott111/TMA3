@@ -9,5 +9,7 @@ namespace Store
         protected global::System.Web.UI.WebControls.Panel categories;
 
         protected global::System.Web.UI.WebControls.Panel onSale;
+
+        protected global::System.Web.UI.WebControls.Label numberInCart;
     }
 }

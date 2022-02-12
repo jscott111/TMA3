@@ -1,4 +1,4 @@
-<%@ Page Language="C#" Debug="true" Async="true" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Store.Home"%>
+﻿<%@ Page Language="C#" Debug="true" Async="true" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Store.Home"%>
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -14,8 +14,8 @@
             <div class="cart" style="right: 50px; position: fixed; top: 25px; height: 53px;">
                 <p id="ip" style="display: none;"><%=Request.UserHostAddress %></p>
                 <script>var ip = document.getElementById("ip").innerHTML</script>
-                <img src="https://icon-library.com/images/shop-cart-icon/shop-cart-icon-13.jpg" width="50" height="50" class="clickable" onclick="viewCart(ip)/>
-                <b runat="server" style="display: block; float: right; margin-top: 20px;">0</b>
+                <img id="cart" src="https://icon-library.com/images/shop-cart-icon/shop-cart-icon-13.jpg" width="50" height="50" class="clickable" onclick="viewCart()"/>
+                <b><asp:Label runat="server" ID="numberInCart" style="display: block; float: right; margin-top: 20px;"></asp:Label></b>
             </div>
         </div>
 
