@@ -13,7 +13,7 @@ namespace Store
         {
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             SqlCommand command;
-            if (Request.QueryString["action"] == "create" && !Page.IsPostBack) { 
+            if (Request.QueryString["action"] == "create") { 
                 command = new SqlCommand("INSERT INTO [dbo].[orders] (userid) OUTPUT Inserted.ID VALUES ('" + Request.QueryString["userID"] + "')", con);
                 int orderID = 0;
 
