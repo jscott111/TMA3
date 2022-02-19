@@ -46,7 +46,7 @@ namespace Store
                 }
                 con.Close();
 
-                command = new SqlCommand("DELETE FROM [dbo].[cart] WHERE id = " + Request.UserHostAddress + "", con);
+                command = new SqlCommand("DELETE FROM [dbo].[cart] WHERE id = '" + Request.UserHostAddress + "'", con);
                 con.Open();
                 command.ExecuteNonQuery();
                 con.Close();
