@@ -28,7 +28,7 @@ namespace Store
                 }
                 con.Close();
 
-                command = new SqlCommand("SELECT system FROM [dbo].[cart] WHERE id = '0.0.0.0'", con);
+                command = new SqlCommand("SELECT system FROM [dbo].[cart] WHERE id = '" + Request.UserHostAddress + "'", con);
                 SqlConnection secondCon = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
                 SqlCommand insertCommand;
 
@@ -46,7 +46,7 @@ namespace Store
                 }
                 con.Close();
 
-                command = new SqlCommand("DELETE FROM [dbo].[cart] WHERE id = '0.0.0.0'", con);
+                command = new SqlCommand("DELETE FROM [dbo].[cart] WHERE id = " + Request.UserHostAddress + "", con);
                 con.Open();
                 command.ExecuteNonQuery();
                 con.Close();
