@@ -41,18 +41,21 @@
     <div class="content">
         <form runat="server">
             <asp:Label ID="title" class="title" runat="server">Log in</asp:Label>
-            <asp:Panel ID="contents" runat="server">
+            <asp:Panel ID="contents" class="loginPanel" runat="server">
                 <form action="Login.aspx" method="post">
                     <label>Username:</label>
                     <input name="username" type="text" />
                     <label>Password:</label>
                     <input name="password" type="password" />
+                    <label>Phone Number (Only when signing up):</label>
+                    <input name="phoneNumber" type="text" />
                     <div style="display: flex; flex-direction: row;">
                         <input name="button" type="submit" style="padding: 5px 5px; margin: 10px;" value="Log In" />
                         <input name="button" type="submit" style="padding: 5px 5px; margin: 10px;" value="Sign Up" />
                     </div>
                 </form>
                 <asp:Label ID="incorrect" style="color: red;" runat="server"></asp:Label>
+                <button type="button" onclick="location.href='Password.aspx'" class="password-link">Forgot Password</button>
             </asp:Panel>
         </form>
     </div>

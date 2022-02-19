@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Debug="true" Async="true" AutoEventWireup="true" CodeFile="Orders.aspx.cs" Inherits="Store.Orders"%>
+﻿<%@ Page Language="C#" Debug="true" Async="true" AutoEventWireup="true" CodeFile="Password.aspx.cs" Inherits="Store.Password"%>
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -40,8 +40,23 @@
 
     <div class="content">
         <form runat="server">
-            <asp:Label ID="title" class="title" runat="server">Orders</asp:Label>
-            <asp:Panel ID="contents" runat="server"></asp:Panel>
+            <asp:Label ID="title" class="title" runat="server">Reset</asp:Label>
+            <asp:Panel ID="contents" class="loginPanel" runat="server">
+                <form action="Login.aspx" method="post">
+                    <label>Username:</label>
+                    <input name="username" type="text" />
+                    <label>Phone Number:</label>
+                    <input name="phoneNumber" type="text" />
+                    <label>New password:</label>
+                    <input name="firstPassword" type="password" />
+                    <label>Confirm password:</label>
+                    <input name="secondPassword" type="password" />
+                    <div style="display: flex; flex-direction: row;">
+                        <input name="button" type="submit" style="padding: 5px 5px; margin: 10px;" value="Reset" />
+                    </div>
+                </form>
+                <asp:Label ID="incorrect" style="color: red;" runat="server"></asp:Label>
+            </asp:Panel>
         </form>
     </div>
 

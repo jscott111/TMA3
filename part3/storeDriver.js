@@ -44,10 +44,21 @@ function addToCart(system) {
     document.getElementById("form").submit();
 }
 
-function deleteCartItem(system) {
+function deleteCartItem(systemID, userID, orderID) {
     document.writeln("<form id='form' action='Cart.aspx' runat='server'>");
-    document.writeln("    <input type='hidden' id='system' name='system' value='" + system + "'>");
+    document.writeln("    <input type='hidden' id='system' name='system' value='" + systemID + "'>");
+    document.writeln("    <input type='hidden' id='user' name='user' value='" + userID + "'>");
+    document.writeln("    <input type='hidden' id='orderID' name='orderID' value='" + orderID + "'>");
     document.writeln("    <input type='hidden' id='action' name='action' value='delete'>");
+    document.writeln("</form>");
+
+    document.getElementById("form").submit();
+}
+
+function viewOrder(orderID, userID) {
+    document.writeln("<form id='form' action='Cart.aspx' runat='server'>");
+    document.writeln("    <input type='hidden' id='orderID' name='orderID' value='" + orderID + "'>");
+    document.writeln("    <input type='hidden' id='user' name='user' value='" + userID + "'>");
     document.writeln("</form>");
 
     document.getElementById("form").submit();

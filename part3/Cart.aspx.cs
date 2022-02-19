@@ -11,11 +11,12 @@ namespace Store
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             SqlCommand command;
             if (Request.QueryString["action"] == "add")
             {
-                command = new SqlCommand("INSERT INTO [dbo].[cart] (id, system) VALUES ('" + Request.UserHostAddress + "', '" + Request.QueryString["system"] + "')", con);
+                command = new SqlCommand("INSERT INTO [dbo].[cart] (id, system) VALUES ('0.0.0.0', '" + Request.QueryString["system"] + "')", con);
                 con.Open();
                 command.ExecuteNonQuery();
                 con.Close();
@@ -23,14 +24,54 @@ namespace Store
             }
             if(Request.QueryString["action"] == "delete")
             {
-                command = new SqlCommand("DELETE FROM [dbo].[cart] WHERE id = '" + Request.UserHostAddress + "' AND system = '" + Request.QueryString["system"] + "'", con);
-                con.Open();
-                command.ExecuteNonQuery();
-                con.Close();
-                Response.Redirect("Cart?action=view");
+                if (Request.Form["system"] != "")
+                {
+                    command = new SqlCommand("DELETE FROM [dbo].[orderedItems] WHERE orderID = '" + Request.QueryString["orderID"] + "' AND itemID = '" + Request.QueryString["system"] + "'", con);
+                    con.Open();
+                    command.ExecuteNonQuery();
+                    con.Close();
+
+                    command = new SqlCommand("SELECT COUNT(*) FROM [dbo].[orderedItems] WHERE orderID = '" + Request.QueryString["orderID"] + "'", con);
+                    con.Open();
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (Convert.ToInt32(reader[0]) == 0)
+                            {
+                                con.Close();
+                                deleteOrder(Request.QueryString["orderID"], Request.QueryString["user"]);
+                                con.Open();
+                            }
+                            else
+                            {
+                                Response.Redirect("Cart?action=view");
+                            }
+                        }
+                    }
+                    con.Close();
+
+                    Response.Redirect("Cart?orderID=" + Request.QueryString["orderID"] + "&user=" + Request.QueryString["user"]);
+                }
+                else
+                {
+                    command = new SqlCommand("DELETE FROM [dbo].[cart] WHERE id = '0.0.0.0' AND system = '" + Request.QueryString["system"] + "'", con);
+                    con.Open();
+                    command.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            if (Request.QueryString["orderID"] != null)
+            {
+                title.Text = "Order";
+                command = new SqlCommand("SELECT [orderedItems].[itemID], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps] FROM[dbo].[orderedItems] INNER JOIN[dbo].[systems] ON[orderedItems].[itemID] = [systems].[id] INNER JOIN[dbo].[orders] ON[orderedItems].[orderID] = [orders].[id] INNER JOIN[dbo].[cpu] ON[cpu].[id] = [systems].[cpu] INNER JOIN[dbo].[ram] ON[ram].[id] = [systems].[ram] INNER JOIN[dbo].[display] ON[display].[id] = [systems].[display] WHERE[orders].[userid] = '" + Request.QueryString["user"] + "' AND [orders].[id] = '" + Request.QueryString["orderID"] + "'", con);
+            }
+            else
+            {
+                command = new SqlCommand("SELECT [cart].[system], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps] FROM[dbo].[cart] INNER JOIN[cpu] ON[cart].[system] = [cpu].[id] INNER JOIN[ram] ON[cart].[system] = [ram].[id] INNER JOIN[display] ON[cart].[system] = [display].[id] INNER JOIN[systems] ON [cart].[system] = [systems].[id] WHERE [cart].[id] = '0.0.0.0'", con);
             }
 
-            command = new SqlCommand("SELECT [cart].[system], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps] FROM[dbo].[cart] INNER JOIN[cpu] ON[cart].[system] = [cpu].[id] INNER JOIN[ram] ON[cart].[system] = [ram].[id] INNER JOIN[display] ON[cart].[system] = [display].[id] INNER JOIN[systems] ON [cart].[system] = [systems].[id] WHERE [cart].[id] = '" + Request.UserHostAddress + "'", con);
             SqlConnection priceCon = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             SqlCommand priceCommand;
             con.Open();
@@ -61,7 +102,7 @@ namespace Store
                     size.Text = "Size: " + reader[5].ToString() + " GB";
                     fps.Text = "FPS: " + reader[6].ToString() + "Hz";
                     deleteButton.Text = "Delete";
-                    deleteButton.OnClientClick = "deleteCartItem('" + reader[0].ToString() + "')";
+                    deleteButton.OnClientClick = "deleteCartItem('" + reader[0].ToString() + "', '" + Request.QueryString["user"] + "', '" + Request.QueryString["orderID"] + "')";
                     deleteButton.Attributes["class"] = "swapButton";
                     deleteButton.Attributes.Add("style", "width: 80px;");
                     div.Controls.Add(speed);
@@ -121,7 +162,7 @@ namespace Store
                     double total = 0;
                     float price;
                     Label discountPrice = new Label();
-                    Label itemPrice = new Label(); ;
+                    Label itemPrice = new Label();
 
                     priceCommand = new SqlCommand("SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price] FROM[dbo].[systems] INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[os] ON[systems].[os] = [os].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] WHERE[systems].[id] = " + reader[3].ToString(), priceCon);
                     priceCon.Open();
@@ -175,6 +216,17 @@ namespace Store
                 }
             }
             con.Close();
+        }
+
+        public void deleteOrder(string orderID, string userID)
+        {
+            SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            SqlCommand command = new SqlCommand("DELETE FROM [dbo].[orders] WHERE id = '" + orderID + "'", con);
+            con.Open();
+            command.ExecuteNonQuery();
+            con.Close();
+
+            Response.Redirect("Orders?userID=" + userID);
         }
     }
 }

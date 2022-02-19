@@ -7,54 +7,45 @@ using System.Web;
 
 namespace Store
 {
-    public partial class Login : Page
+    public partial class Password : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             SqlCommand command;
+            bool wrongNumber = true;
             bool access = false;
-            bool usernameExists = false;
-            if (Request.Form["button"] == "Log In"){
-                command = new SqlCommand("SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "' AND pw='" + Request.Form["password"] + "'", con);
+
+            if (Request.Form["button"] == "Reset"){
+                command = new SqlCommand("SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "' AND number='" + Request.Form["phoneNumber"] + "'", con);
                 con.Open();
                 command.ExecuteNonQuery();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        if(reader[0].ToString() == "1")
+                        if (Convert.ToInt32(reader[0]) > 0)
                         {
-                            access = true;
+                            wrongNumber = false;
                         }
                         else
                         {
-                            incorrect.Text = "Incorrect Username or password";
-                        }
-                    }
-                }
-                con.Close();
-            }
-            else if (Request.Form["button"] == "Sign Up"){
-                command = new SqlCommand("SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "'", con);
-                con.Open();
-                command.ExecuteNonQuery();
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        if (reader[0].ToString() != "0")
-                        {
-                            usernameExists = true;
-                            incorrect.Text = "Username already exists";
+                            incorrect.Text = "Wrong username or phone number";
                         }
                     }
                 }
                 con.Close();
 
-                if(usernameExists == false)
+                bool match = String.Compare(Request.Form["firstPassword"], Request.Form["secondPassword"], false) != 0;
+
+                if (match)
                 {
-                    command = new SqlCommand("INSERT INTO [dbo].[users] (username, pw, number) VALUES ('" + Request.Form["username"] + "', '" + Request.Form["password"] + "', '" + Request.Form["phoneNumber"] + "')", con);
+                    incorrect.Text = "Passwords don't match";
+                }
+
+                if (!wrongNumber && !match)
+                {
+                    command = new SqlCommand("UPDATE [dbo].[users] SET pw='" + Request.Form["firstPassword"] + "' WHERE username='" + Request.Form["username"] + "'", con);
                     con.Open();
                     command.ExecuteNonQuery();
                     con.Close();
@@ -65,7 +56,7 @@ namespace Store
 
             if(access == true)
             {
-                Response.Redirect("Orders.aspx?action=create&userID=" + Request.Form["username"]);
+                Response.Redirect("Orders.aspx?userID=" + Request.Form["username"]);
             }
             
 
