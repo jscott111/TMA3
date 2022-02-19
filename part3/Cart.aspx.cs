@@ -16,7 +16,7 @@ namespace Store
             SqlCommand command;
             if (Request.QueryString["action"] == "add")
             {
-                command = new SqlCommand("INSERT INTO [dbo].[cart] (id, system) VALUES ('0.0.0.0', '" + Request.QueryString["system"] + "')", con);
+                command = new SqlCommand("INSERT INTO [dbo].[cart] (id, system) VALUES ('" + Request.UserHostAddress + "', '" + Request.QueryString["system"] + "')", con);
                 con.Open();
                 command.ExecuteNonQuery();
                 con.Close();
@@ -56,7 +56,7 @@ namespace Store
                 }
                 else
                 {
-                    command = new SqlCommand("DELETE FROM [dbo].[cart] WHERE id = '0.0.0.0' AND system = '" + Request.QueryString["system"] + "'", con);
+                    command = new SqlCommand("DELETE FROM [dbo].[cart] WHERE id = '" + Request.UserHostAddress + "' AND system = '" + Request.QueryString["system"] + "'", con);
                     con.Open();
                     command.ExecuteNonQuery();
                     con.Close();
@@ -69,7 +69,7 @@ namespace Store
             }
             else
             {
-                command = new SqlCommand("SELECT [cart].[system], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps] FROM[dbo].[cart] INNER JOIN[cpu] ON[cart].[system] = [cpu].[id] INNER JOIN[ram] ON[cart].[system] = [ram].[id] INNER JOIN[display] ON[cart].[system] = [display].[id] INNER JOIN[systems] ON [cart].[system] = [systems].[id] WHERE [cart].[id] = '0.0.0.0'", con);
+                command = new SqlCommand("SELECT [cart].[system], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps] FROM[dbo].[cart] INNER JOIN[cpu] ON[cart].[system] = [cpu].[id] INNER JOIN[ram] ON[cart].[system] = [ram].[id] INNER JOIN[display] ON[cart].[system] = [display].[id] INNER JOIN[systems] ON [cart].[system] = [systems].[id] WHERE [cart].[id] = '" + Request.UserHostAddress + "'", con);
             }
 
             SqlConnection priceCon = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
