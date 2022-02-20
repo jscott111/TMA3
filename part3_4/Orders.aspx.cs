@@ -58,6 +58,8 @@ namespace Store
 
 
             command = new SqlCommand("SELECT id FROM [dbo].[orders] WHERE userid = '" + Request.QueryString["userID"] + "'", con);
+            SqlConnection priceCon = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            SqlCommand priceCommand;
 
             con.Open();
             command.ExecuteNonQuery();
