@@ -24,7 +24,7 @@ namespace Store
             }
             if(Request.QueryString["action"] == "delete")
             {
-                if (Request.QueryString["system"] != "")
+                if (Request.QueryString["system"] != "" && Request.QueryString["system"] != null)
                 {
                     command = new SqlCommand("DELETE FROM [dbo].[orderedItems] WHERE orderID = '" + Request.QueryString["orderID"] + "' AND itemID = '" + Request.QueryString["system"] + "'", con);
                     con.Open();
