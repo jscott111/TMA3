@@ -4,18 +4,8 @@
 <html>
     <head>
         <title>Slideshow</title>
-        <style type="text/CSS">
-            .button{
-                margin-top: 5px;
-                margin-bottom: 5px;
-                margin-left: 5px;
-                margin-right: 5px;
-            }
-            .panel {
-                display:inline-block;
-                float: left;
-            }
-        </style>
+        
+        <link rel="stylesheet" href="../styles/TMA3Styles.css"/>  
     </head>
     <body>
         <asp:Panel ID="pictures" runat="server" HorizontalAlign="Center">
