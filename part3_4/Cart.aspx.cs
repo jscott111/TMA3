@@ -136,6 +136,9 @@ namespace Store
                     }
 
                     priceCon.Close();
+                    
+                    updatePriceDB(reader[0].ToString(), total.ToString("C2"));
+                    
                     itemPrice.Text = total.ToString("C2");
                     itemPrice.ID = reader[0].ToString() + "price";
                     priceDiv.Attributes["class"] = "price";
@@ -231,6 +234,15 @@ namespace Store
             con.Close();
 
             Response.Redirect("Orders.aspx?userID=" + userID);
+        }
+        
+        public void updatePriceDB(string itemID, string total)
+        {
+            SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            SqlCommand command = new SqlCommand("UPDATE [dbo].[systems] SET price=" + float.Parse(total) + " WHERE id = '" + itemID + "'", con);
+            con.Open();
+            command.ExecuteNonQuery();
+            con.Close();
         }
     }
 }
