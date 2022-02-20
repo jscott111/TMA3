@@ -77,7 +77,7 @@ namespace Store
                     itemName.Text = "Order #" + reader[0].ToString();
                     itemName.Attributes["class"] = "itemName";
                     
-                    priceCommand = new SqlCommand("SELECT [systems].[price] FROM [dbo].[systems] INNER JOIN [dbo].[orderedItems] ON [systems].[id]=[orderedItems].[itemID] WHERE [orderedItems].[itemID] = " + reader[0].ToString(), priceCon);
+                    priceCommand = new SqlCommand("SELECT [systems].[price] FROM [dbo].[systems] INNER JOIN [dbo].[orderedItems] ON [systems].[id]=[orderedItems].[itemID] WHERE [orderedItems].[orderID] = " + reader[0].ToString(), priceCon);
                     priceCon.Open();
                     priceCommand.ExecuteNonQuery();
                     using (SqlDataReader priceReader = priceCommand.ExecuteReader())
