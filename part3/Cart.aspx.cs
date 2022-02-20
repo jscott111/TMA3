@@ -46,7 +46,7 @@ namespace Store
                             }
                             else
                             {
-                                Response.Redirect("Orders?userID=" + Request.QueryString["user"]);
+                                Response.Redirect("Ordersaspx?userID=" + Request.QueryString["user"]);
                             }
                         }
                     }
