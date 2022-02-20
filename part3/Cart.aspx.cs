@@ -20,7 +20,7 @@ namespace Store
                 con.Open();
                 command.ExecuteNonQuery();
                 con.Close();
-                Response.Redirect("Cart?action=view");
+                Response.Redirect("part3/Cart?action=view");
             }
             if(Request.QueryString["action"] == "delete")
             {
@@ -46,13 +46,13 @@ namespace Store
                             }
                             else
                             {
-                                Response.Redirect("Cart?action=view");
+                                Response.Redirect("part3/Cart?action=view");
                             }
                         }
                     }
                     con.Close();
 
-                    Response.Redirect("Cart?orderID=" + Request.QueryString["orderID"] + "&user=" + Request.QueryString["user"]);
+                    Response.Redirect("part3/Cart?orderID=" + Request.QueryString["orderID"] + "&user=" + Request.QueryString["user"]);
                 }
                 else
                 {
@@ -226,7 +226,7 @@ namespace Store
             command.ExecuteNonQuery();
             con.Close();
 
-            Response.Redirect("Orders?userID=" + userID);
+            Response.Redirect("part3/Orders?userID=" + userID);
         }
     }
 }
