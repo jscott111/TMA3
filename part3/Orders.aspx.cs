@@ -50,6 +50,8 @@ namespace Store
                 con.Open();
                 command.ExecuteNonQuery();
                 con.Close();
+                
+                deleteEmptyOrders();
 
                 Response.Redirect("Orders.aspx?userID=" + Request.QueryString["userID"]);
             }
@@ -94,6 +96,52 @@ namespace Store
                 }
             }
             con.Close();
+        }
+        
+        public void deleteEmptyOrders()
+        {
+            SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            SqlCommand command = new SqlCommand("SELECT id FROM [dbo].[orders]", con);
+
+            con.Open();
+            command.ExecuteNonQuery();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    if (isEmpty(reader[0].ToString()))
+                    {
+                        SqlConnection secondCon = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                        SqlCommand deleteCommand = new SqlCommand("DELETE FROM [dbo].[orders] WHERE id='" + reader[0].ToString() + "'", secondCon);
+
+                        secondCon.Open();
+                        deleteCommand.ExecuteNonQuery();
+                        secondCon.Close();
+                    }
+                }
+            }
+            con.Close();
+        }
+
+        public bool isEmpty(string orderID)
+        {
+            SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            SqlCommand command = new SqlCommand("SELECT COUNT(orderID) FROM [dbo].[orderedItems] WHERE orderID='" + orderID + "'", con);
+
+            con.Open();
+            command.ExecuteNonQuery();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    if (Convert.ToInt32(reader[0]) == 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+            con.Close();
+            return false;
         }
     }
 }
