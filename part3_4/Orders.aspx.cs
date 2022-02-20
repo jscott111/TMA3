@@ -56,6 +56,7 @@ namespace Store
                 Response.Redirect("Orders.aspx?userID=" + Request.QueryString["userID"]);
             }
 
+
             command = new SqlCommand("SELECT id FROM [dbo].[orders] WHERE userid = '" + Request.QueryString["userID"] + "'", con);
 
             con.Open();
@@ -68,18 +69,39 @@ namespace Store
                     Panel panel = new Panel();
                     Label itemName = new Label();
                     Label itemPrice = new Label();
-                    Panel pricePanel = new Panel();
+                    Panel priceDiv = new Panel();
+                    double total = 0;
 
                     itemName.Text = "Order #" + reader[0].ToString();
                     itemName.Attributes["class"] = "itemName";
+                    
+                    priceCommand = new SqlCommand("SELECT [systems].[price] FROM [dbo].[systems] INNER JOIN [dbo].[orderedItems] ON [systems].[id]=[orderedItems].[itemID] WHERE [orderedItems].[itemID] = " + reader[0].ToString(), priceCon);
+                    priceCon.Open();
+                    priceCommand.ExecuteNonQuery();
+                    using (SqlDataReader priceReader = priceCommand.ExecuteReader())
+                    {
+                        while (priceReader.Read())
+                        {
+                            total += Convert.ToDouble(priceReader[0].ToString());
+                        }
+                    }
+                    priceCon.Close();
+                    
+                    itemPrice.Text = total.ToString("C2");
+                    itemPrice.ID = reader[0].ToString() + "price";
+                    priceDiv.Attributes["class"] = "price";
+                    priceDiv.ID = reader[0].ToString() + "priceDiv";
+                    priceDiv.Controls.Add(itemPrice);
 
                     panel.Attributes["class"] = "listItem";
                     panel.Controls.Add(itemName);
+                    panel.Controls.Add(priceDiv);
                     panel.ID = reader[0].ToString();
                     panel.Attributes["onClick"] = "viewOrder('" + reader[0].ToString() + "', '" + Request.QueryString["userID"] + "')";
                     panel.Attributes["style"] = "cursor: pointer;";
 
                     contents.Controls.Add(panel);
+                    total = 0;
                 }
             }
             con.Close();
