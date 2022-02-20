@@ -53,7 +53,7 @@ namespace Store
                 
                 deleteEmptyOrders();
 
-                Response.Redirect("Orders.aspx?userID=" + Request.QueryString["userID"]);
+                Response.Redirect("part3/Orders.aspx?userID=" + Request.QueryString["userID"]);
             }
 
             command = new SqlCommand("SELECT id FROM [dbo].[orders] WHERE userid = '" + Request.QueryString["userID"] + "'", con);
