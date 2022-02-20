@@ -207,3 +207,13 @@ p {
     font-family: inherit;
     font-size: inherit;
 }
+.button{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+    .panel {
+    display:inline-block;
+    float: left;
+}
