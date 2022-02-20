@@ -1,14 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web.Services;
 
 namespace Project
 {
@@ -20,7 +13,7 @@ namespace Project
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=photos;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             byte[] imageData;
             string imageUrl = "http://tma3.azurewebsites.net/part2/Images/CRW_5523.jpg";
-            int height = (Request.Browser.ScreenPixelsHeight) * 2 - 430;
+            int height = (Request.Browser.ScreenPixelsHeight) * 2 - 400;
 
             imageData = new System.Net.WebClient().DownloadData(imageUrl);
             System.IO.MemoryStream stream = new System.IO.MemoryStream(imageData);
@@ -64,8 +57,5 @@ namespace Project
         }
     }
 }
-
-
-
 
 
