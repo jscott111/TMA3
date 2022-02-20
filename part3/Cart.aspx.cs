@@ -102,7 +102,11 @@ namespace Store
                     size.Text = "Size: " + reader[5].ToString() + " GB";
                     fps.Text = "FPS: " + reader[6].ToString() + "Hz";
                     deleteButton.Text = "Delete";
-                    deleteButton.OnClientClick = "deleteCartItem('" + reader[0].ToString() + "', '" + Request.QueryString["user"] + "', '" + Request.QueryString["orderID"] + "')";
+                    if(Request.QueryString["action"] == "view"){
+                        deleteButton.OnClientClick = "deleteCartItem('" + reader[0].ToString() + "', '" + Request.QueryString["user"] + "', '" + Request.QueryString["orderID"] + "')";
+                    }else{
+                        deleteButton.OnClientClick = "deleteCartItem('" + reader[0].ToString() + "', '', '')";
+                    }
                     deleteButton.Attributes["class"] = "swapButton";
                     deleteButton.Attributes.Add("style", "width: 80px;");
                     div.Controls.Add(speed);
