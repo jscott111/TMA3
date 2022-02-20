@@ -62,7 +62,7 @@ namespace Store
                     con.Close();
                 }
             }
-            if (Request.QueryString["user"] != "")
+            if (Request.QueryString["user"] != null)
             {
                 title.Text = "Order";
                 command = new SqlCommand("SELECT [orderedItems].[itemID], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps] FROM[dbo].[orderedItems] INNER JOIN[dbo].[systems] ON[orderedItems].[itemID] = [systems].[id] INNER JOIN[dbo].[orders] ON[orderedItems].[orderID] = [orders].[id] INNER JOIN[dbo].[cpu] ON[cpu].[id] = [systems].[cpu] INNER JOIN[dbo].[ram] ON[ram].[id] = [systems].[ram] INNER JOIN[dbo].[display] ON[display].[id] = [systems].[display] WHERE[orders].[userid] = '" + Request.QueryString["user"] + "' AND [orders].[id] = '" + Request.QueryString["orderID"] + "'", con);
