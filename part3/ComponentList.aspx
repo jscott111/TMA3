@@ -5,7 +5,7 @@
 <head runat="server">
 <meta charset="utf-8" />
     <title>Computer Store</title>
-    <link rel="stylesheet" href="TMA3Styles.css"/>  
+    <link rel="stylesheet" href="../styles/TMA3Styles.css"/>  
 </head>
 <body>
     <div class="topBar" runat="server">
