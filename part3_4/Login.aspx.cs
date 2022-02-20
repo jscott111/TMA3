@@ -36,7 +36,7 @@ namespace Store
                 con.Close();
             }
             else if (Request.Form["button"] == "Sign Up"){
-                if(Request.Form["username"] != "" && Request.Form["password"] != "" && Request.Form["username"] != null && Request.Form["password"] != null){
+                if(Request.Form["username"] != "" && Request.Form["password"] != "" && Request.Form["phoneNumber"] != "" && Request.Form["username"] != null && Request.Form["password"] != null && Request.Form["phoneNumber"] != null){
                     command = new SqlCommand("SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "'", con);
                     con.Open();
                     command.ExecuteNonQuery();
