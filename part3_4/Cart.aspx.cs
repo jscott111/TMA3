@@ -192,7 +192,7 @@ namespace Store
                     itemPrice.Attributes.Add("style", "text-decoration: line-through;");
                     discountPrice.Attributes["class"] = "price";
                     
-                    updatePriceDB(reader[0].ToString(), total);
+                    updatePriceDB(reader[3].ToString(), total);
 
                     try
                     {
