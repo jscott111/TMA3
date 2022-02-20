@@ -103,9 +103,9 @@ namespace Store
                     fps.Text = "FPS: " + reader[6].ToString() + "Hz";
                     deleteButton.Text = "Delete";
                     if(Request.QueryString["action"] == "view"){
-                        deleteButton.OnClientClick = "deleteCartItem('" + reader[0].ToString() + "', '" + Request.QueryString["user"] + "', '" + Request.QueryString["orderID"] + "')";
-                    }else{
                         deleteButton.OnClientClick = "deleteCartItem('" + reader[0].ToString() + "', '', '')";
+                    }else{
+                        deleteButton.OnClientClick = "deleteCartItem('" + reader[0].ToString() + "', '" + Request.QueryString["user"] + "', '" + Request.QueryString["orderID"] + "')";
                     }
                     deleteButton.Attributes["class"] = "swapButton";
                     deleteButton.Attributes.Add("style", "width: 80px;");
