@@ -24,7 +24,7 @@ namespace Store
             }
             if(Request.QueryString["action"] == "delete")
             {
-                if (Request.QueryString["system"] != "" && Request.QueryString["system"] != null)
+                if (Request.QueryString["user"] != "" && Request.QueryString["user"] != null)
                 {
                     command = new SqlCommand("DELETE FROM [dbo].[orderedItems] WHERE orderID = '" + Request.QueryString["orderID"] + "' AND itemID = '" + Request.QueryString["system"] + "'", con);
                     con.Open();
@@ -46,7 +46,7 @@ namespace Store
                             }
                             else
                             {
-                                Response.Redirect("Cart.aspx?action=view");
+                                Response.Redirect("Orders?userID=" + Request.QueryString["user"]);
                             }
                         }
                     }
