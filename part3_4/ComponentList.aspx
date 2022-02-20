@@ -10,7 +10,7 @@
 <body>
     <div class="topBar" runat="server">
         <div class="header">
-            <img src="https://github.com/jscott111/TMA3/blob/main/part3/logo.jpg?raw=true" width="200" height="100" class="clickable" onclick="goHome()"/>
+            <img src="logo.jpg" width="200" height="100" class="clickable" onclick="goHome()"/>
             <div class="cart" style="right: 50px; position: fixed; top: 25px; height: 53px;">
                 <p id="ip" style="display: none;"><%=Request.UserHostAddress %></p>
                 <script>var ip = document.getElementById("ip").innerHTML</script>
