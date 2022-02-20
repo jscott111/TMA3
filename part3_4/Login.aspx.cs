@@ -14,7 +14,7 @@ namespace Store
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             SqlCommand command;
             bool access = false;
-            bool usernameExists = false;
+            bool usernameExists = true;
             if (Request.Form["button"] == "Log In"){
                 command = new SqlCommand("SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "' AND pw='" + Request.Form["password"] + "'", con);
                 con.Open();
@@ -36,22 +36,27 @@ namespace Store
                 con.Close();
             }
             else if (Request.Form["button"] == "Sign Up"){
-                command = new SqlCommand("SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "'", con);
-                con.Open();
-                command.ExecuteNonQuery();
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
+                if(Request.Form["username"] != "" && Request.Form["password"] != "" && Request.Form["username"] != null && Request.Form["password"] != null){
+                    command = new SqlCommand("SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "'", con);
+                    con.Open();
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        if (reader[0].ToString() != "0")
+                        while (reader.Read())
                         {
-                            usernameExists = true;
-                            incorrect.Text = "Username already exists";
+                            if (reader[0].ToString() == "0")
+                            {
+                                usernameExists = false;
+                            }else{
+                                incorrect.Text = "Username already exists";
+                            }
                         }
                     }
+                    con.Close();
+                }else{
+                    incorrect.Text = "Invalid username or password";    
                 }
-                con.Close();
-
+                
                 if(usernameExists == false)
                 {
                     command = new SqlCommand("INSERT INTO [dbo].[users] (username, pw, number) VALUES ('" + Request.Form["username"] + "', '" + Request.Form["password"] + "', '" + Request.Form["phoneNumber"] + "')", con);
