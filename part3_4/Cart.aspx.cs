@@ -16,7 +16,7 @@ namespace Store
             SqlCommand command;
             bool alreadyThere = false;
             
-            command = new SqlCommand("SELECT COUNT(system) FROM [dbo].[cart] WHERE system = '" + Request.QueryString["system"] + "'", con);
+            command = new SqlCommand("SELECT COUNT(system) FROM [dbo].[cart] WHERE system = '" + Request.QueryString["system"] + "' AND id='" + Request.UserHostAddress + "'", con);
             con.Open();
             command.ExecuteNonQuery();
             using (SqlDataReader reader = command.ExecuteReader())
