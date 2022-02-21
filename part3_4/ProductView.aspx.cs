@@ -174,7 +174,7 @@ namespace Store
                 }
             }
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 Image image = new Image();
                 Panel box = new Panel();
