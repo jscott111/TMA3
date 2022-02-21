@@ -16,7 +16,7 @@ namespace Store
             bool access = false;
             bool usernameExists = true;
             if (Request.Form["button"] == "Log In"){
-                if(Request.Form["username"] != "" && Request.Form["password"] != "" && Request.Form["phoneNumber"] != "" && Request.Form["username"] != null && Request.Form["password"] != null && Request.Form["phoneNumber"] != null){
+                if(Request.Form["username"] != "" && Request.Form["password"] != "" && Request.Form["username"] != null && Request.Form["password"] != null){
                     command = new SqlCommand("SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "' AND pw='" + Request.Form["password"] + "'", con);
                     con.Open();
                     command.ExecuteNonQuery();
