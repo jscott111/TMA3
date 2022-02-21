@@ -53,6 +53,7 @@ namespace Store
                     total += Convert.ToDouble(reader[3].ToString());
                     total += Convert.ToDouble(reader[4].ToString());
                     total += Convert.ToDouble(reader[5].ToString());
+                    total += Convert.ToDouble(reader[6].ToString());
                 }
             }
             con.Close();
@@ -78,6 +79,7 @@ namespace Store
                     itemInfoDiv.Controls.Add(speed);
                     itemInfoDiv.Controls.Add(size);
                     itemInfoDiv.Controls.Add(fps);
+                    itemInfoDiv.Controls.Add(storage);
                     
                     picture.ImageUrl = reader[3].ToString();
                     picture.Height = new Unit(200);
@@ -168,7 +170,7 @@ namespace Store
                     component[3, 2] = reader[3].ToString();
                     component[4, 2] = reader[4].ToString();
                     component[5, 2] = reader[5].ToString();
-                    component[6, 2] = reader[5].ToString();
+                    component[6, 2] = reader[6].ToString();
                 }
             }
 
