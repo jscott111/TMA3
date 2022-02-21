@@ -16,24 +16,28 @@ namespace Store
             bool access = false;
             bool usernameExists = true;
             if (Request.Form["button"] == "Log In"){
-                command = new SqlCommand("SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "' AND pw='" + Request.Form["password"] + "'", con);
-                con.Open();
-                command.ExecuteNonQuery();
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
+                if(Request.Form["username"] != "" && Request.Form["password"] != "" && Request.Form["phoneNumber"] != "" && Request.Form["username"] != null && Request.Form["password"] != null && Request.Form["phoneNumber"] != null){
+                    command = new SqlCommand("SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "' AND pw='" + Request.Form["password"] + "'", con);
+                    con.Open();
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        if(reader[0].ToString() == "1")
+                        while (reader.Read())
                         {
-                            access = true;
-                        }
-                        else
-                        {
-                            incorrect.Text = "Incorrect Username or password";
+                            if(reader[0].ToString() == "1")
+                            {
+                                access = true;
+                            }
+                            else
+                            {
+                                incorrect.Text = "Incorrect Username or password";
+                            }
                         }
                     }
+                    con.Close();
+                }else{
+                    incorrect.Text = "Invalid username or password"; 
                 }
-                con.Close();
             }
             else if (Request.Form["button"] == "Sign Up"){
                 if(Request.Form["username"] != "" && Request.Form["password"] != "" && Request.Form["phoneNumber"] != "" && Request.Form["username"] != null && Request.Form["password"] != null && Request.Form["phoneNumber"] != null){
