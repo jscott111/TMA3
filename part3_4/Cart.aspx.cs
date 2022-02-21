@@ -85,7 +85,7 @@ namespace Store
             }
             else
             {
-                command = new SqlCommand("SELECT [cart].[system], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps], [hd].[size] FROM[dbo].[cart] INNER JOIN[cpu] ON[cart].[system] = [cpu].[id] INNER JOIN[ram] ON[cart].[system] = [ram].[id] INNER JOIN[display] ON[cart].[system] = [display].[id] INNER JOIN[dbo].[hd] ON[hd].[id] = [systems].[hd] INNER JOIN[systems] ON [cart].[system] = [systems].[id] WHERE [cart].[id] = '" + Request.UserHostAddress + "'", con);
+                command = new SqlCommand("SELECT [cart].[system], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps], [hd].[size] FROM[dbo].[systems] INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[hd] ON[hd].[id] = [systems].[hd] INNER JOIN[cart] ON [cart].[system] = [systems].[id] WHERE [cart].[id] = '" + Request.UserHostAddress + "'", con);
             }
 
             SqlConnection priceCon = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
