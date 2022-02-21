@@ -2,15 +2,20 @@
     <head>
         <meta charset = "utf-8">
         <title>Assignment 3A</title>
+        <style>
+            table, th, td {
+                border: 1px solid;
+            }
+        </style>
     </head>
-    <body>
+    <body style="background-color: #DEB887;">
         <h1>CS466</h1>
         <h2>Assignment 3A</h2>
         <h2>John Scott 3542569</h2>
         <ul>
             <h4>Start Date: Oct 26 2021</h4>
             <h4>End Date: Feb 20 2022</h4>
-            <h4>Hours Spent: 400</h4>
+            <h4>Hours Spent: 350</h4>
         </ul>
         <h2>Part 1</h2>
         <ul style="margin-left: 20px; margin-right: 40%;">
@@ -44,8 +49,12 @@
 
             <br><a href="https://tma3.azurewebsites.net/part2/slideshow.aspx" target="_blank">Click here to open the slideshow application.</a>
         </ul>
-        <h2>Part 3</h2>
+        <h2>Part 3 & 4</h2>
         <ul style="margin-left: 20px; margin-right: 40%;">
+            <br><a href="https://tma3.azurewebsites.net/part3_4/Home.aspx" target="_blank">Click here to open the Computer Store application.</a>
+            <p>I have merged both part 3 and 4 into one section as there is a significant amount of overlap. I have broken it down into Reasearch, Mock-ups, Description and Requirements, Analysis, Design and Implementation and SQL Database implementation and documentation. The final project and mock-ups are not identical as they served as a draft for the interface so there will be some discrepencies and in some cases more pages than what was originally planned for.</p>
+
+            <h3>Research</h3>
             <p>
                 I was instructed to look at some online stores and analyse the layout. I went to NewEgg.ca and noticed that there is a search bar and filter type of catagory menu with options such as Cyber Monday Deals, Today's Best Deals, Best Sellers and Email Deals. On the left, there is a vertical menu containing categories such as Components, Computer Systems, Electronics and Gaming. The front page contains categories and display items in those categories such as Today's Best Deals, Staff Picks, Trending Now and a list of categories. When hovering over one of the left menu items, it then display subcategories of the hovered category each with other subcategories. This design to me speaks that they want the user to be able to find their desired product with the least clicks possible to remove confusion about where to find it and having to switch from page to page to find the desired products. When I ignore the subcategories and click the components category, it loads a new page but display all if the expandable submenu items and their categories from the previous page as a vertical menu on the left side of the page. On the component page, the search bar and menu at the top of the page remain there like on the first page. On the body of the page, the components and images of them are displayed along with the top two significant categories of it, such as for CPU's there is Intel and AMD CPUs listed beside the image. The bar with the search and logo and sign in/registration and cart buttons is fixed to the top of the screen for constant access. So to summerize, the layout of NewEgg is consistent accross each page.
 
@@ -56,55 +65,793 @@
 
                 I opened the Amazon Echo item, the same horizontal menus are at the top of the page. Similarily to NewEgg, there is an image of the product next to small images of the product which are previews of all of the images of the product. Next to the big image at the top of the body is the name or title of the product, beneath that it says the brand and it's star rating. There is then a divider and beneath that is the price with the delivery cost, then the inventory status, then the version, the colour and configuration as well as a bullet point list of similar products to buy. Because this is Amazon's product, they have a very nice advertisement level display on what the product does and it's functions. Beneath that is a table with price and feature comparisons from other generations of Alex's. Beneath that are the questions and answers about this product and lastly is the section of reviews. To the right of the original image and product information is the option to add to cart. In that divider are two radio buttons that display different content depending on which is selected. One of them is for a financing option and the monthly payment is stated, the delivery details, quantity and a button to add to cart. For the second radio it is the same except for a monthly payment, the full price is listed and continuing after the add to cart is a 'buy now' option which skips the cart aspect and begins the checkout process. When an item is added to the cart, the image shows up on the keft sude vertically and asks you if you'd like to proceed to checkout. It is broken up into 3 steps, first, confirming your shipping address, displaying the one on record and a button to change it. Second, is the payment method displaying the current information on record with a box to enter a gift card or promo code and an option to change the price, prime delivery option, quantity and gift options. Below that is abutton to place my order and it's order total briefed  on the right side which also has a button to order, below that is the summary of the price of items, delivery charge, estimated taxes and the added total.
             </p>
-            <p>
-
-            </p>
+            <br>
+            <h3>Mock-ups</h3>
             <img src="https://tma3.azurewebsites.net/mock-ups/Home.jpg" alt="Image of the Home page" height="50%">
             <br><b>Home Page</b>
             <p>
                 This is the home page, the page that will greet the user when they first visit the site. I took inspiration from Amazon and NewEgg in putting a best selling section on the home page featuring the pre-built systems that we are selling with a see more button that goes to a list of all of the systems and beneath that are links to the lists of components available to switch out on the selected computer. In the instructions for the assignment, I only saw the requirement that the purpose of the site is to sell pre-built systems with the capability to swap out it's components. At the top of the page is the logo per the assignment instructions and to the right is a button to go and view the cart with the number of items. Below that banner is a horizontal menu containing links to the home page, pre-built systems, contacts and feedback as per the instructions.
             </p>
+            <br>
             <img src="https://tma3.azurewebsites.net/mock-ups/ProductView.jpg" alt="Image of the ProductView page" height="50%" rotate="90">
             <br><b>Product View</b>
             <p>
                 The logo, cart and menu persist from page to page so they remain unchanged. First, the image, name, rating and price of the product are displayed, to the right of those there is the add to cart button. Below all of that, the current components are display with category, image and name of the product with an option to change out each of them. I took inspiration from Amazon and NewEgg for the design and layout of this. Once the change button is chosen, the user is brought to category list page.
             </p>
+            <br>
             <img src="https://tma3.azurewebsites.net/mock-ups/CategoryList.jpg" alt="Image of the CategoryList page" height="50%" rotate="90">
             <br><b>Category List</b>
             <p>
                 The purpose of the category list page is to show all of the avaiable component of a given type, i.e. Motherboard, RAM, CPU, etc. The top banner consisting of the logo, cart and navigation buttons persist like on all of the pages. Below the navigation buttons there is a title that will display the type of component you are viewing. Below that is a list of all of the available items in that list to choose from with an image, name and spicification if it has one, such as memory size for RAM. On the left is the price of the component as well as a button to swap out the component if customizing or it won't be displayed if the user is just viewing the list of components. This page is available from a product view page when the user presses the swap button above the list of components in that system.
             </p>
+            <br>
             <img src="https://tma3.azurewebsites.net/mock-ups/SystemsList.jpg" alt="Image of the SystemsList page" height="50%" rotate="90">
             <br><b>Systems List</b>
             <p>
                 The systems list page is found by clicking the 'see more' button on the home page next to the preview of available systems. On this page is the persisting top banner, cart button and navigation bar. Underneath that, is a title that says 'Pre-built Systems'. This page is very similar to the category list in which the products are all displayed in a list fashion with the image on the left with the name and specifications in the middle and the price on the far right side. When the div of one of the products is clicked however, the user is brought to the product view page where they can swap out components and see the tax and shipping and grand total information and the button to add to cart.
             </p>
+            <br>
             <img src="https://tma3.azurewebsites.net/mock-ups/Cart.jpg" alt="Image of the Cart page" height="50%">
             <br><b>Cart Page</b>
             <p>
                 On the cart page, once again the top banner with the logo, cart and nav bar persist and below that is a title saying 'Cart'. Below that is a list of items that are in the cart and each list item has it's image, name and a button to remove them. On the right is a div with a breakdown of the price of each item as well as the sub-total and taxes for that item finishing with the grand total and the button to go to checkout.
             </p>
+            <br>
             <img src="https://tma3.azurewebsites.net/mock-ups/Contact.jpg" alt="Image of the Contact page" height="50%">
             <br><b>Contact Page</b>
             <p>
                 The contact page has the persistent banner at the top of the page with the nav bar. This page doesn't serve much of a purpose other than holding a div of information to contact me.
             </p>
+            <br>
             <img src="https://tma3.azurewebsites.net/mock-ups/Feedback.jpg" alt="Image of the Feedback page" height="50%">
             <br><b>Feedback Page</b>
             <p>
                 The feedback page also has the persistent banner and nav bar at the top of the screen and this has a simple feedback form where the user provides their name and email along with a small message to send to the website.
             </p>
-            <br><b>Description and Requirements
+            <br>
+            <br>
+            <br><h3>Description and Requirements</h3>
             <p>
                 For this project of the assignment, I was tasked to create a nearly fully functioning computer store in which patrons could order pre built computer systems with the ability to customize the components that were in the systems. First, I was to go to visit other online stores to get inspiration from and I went to Amazon.ca and NewEgg.ca (The name and logo were inspired from NewEgg) as seen above. Through the development of the application I didn't follow the designs to a tee but they were used as a rough draft to arrange my thoughts and give me a good baseline of what I needed to include as I learned in a previous UI course. I needed it to feel like a real webpage  that had a home page, which it does, and navigation buttons, which it does, and pages such as 'Contact' and 'Feedback', which it does. I was required to have a list of systems and components that included at least five components. To meet that requirement I have RAM, Hard Drive, CPU, Soundcard and Motherboard and I also have display and operating system as per the requirement. A user is supposed to be able to select a system and swap around the components from those available which I added to the project. The price of the computer is to be always dynamically changed when new components are swapped in and don't display through a pop-up window. When the user clicks the add to cart button they are to see a summary of the cart with the specifications and pricing of the unit. All of the links and menus and buttons should be active which they are.
             </p>
-            <br><b>Analysis and design</b>
+            <br>
+            <br>
+            <br><h3>Analysis, Design and Implementation</h3>
             <p>
-                This is my first course with Athabasca and on the two previous assignments I've seen your feedback on my analysis and design and that I should know how it is to be done at this point in my degree but I am not aware of what the expectation is as a format like this is not what my school has. This is my best interperetation of what the analysis should look like.
+                This is my first course with Athabasca and on the two previous assignments I've seen in the feedback on my analysis and design and that I should know how it is to be done at this point in my degree but I am not aware of what the expectation is as a format like this is not what my school has. This is my best interperetation of what the analysis and design should look like.
             </p>
+            <br>
+            <br><h4><a href="https://tma3.azurewebsites.net/part3_4/Home.aspx" target="_blank">Home Page</a></h4>
+            <br>
+            <img src="ReportImages/Home.png" alt="Image of the Feedback page" height="50%">
             <p>
-                
+                This is the landing page for the user, the welcoming page that displays the information to begin the buying experience. The content shows 4 best sellers with an option at the far right to 'see more' which will go to the same page as the 'Pre-Built Systems' button in the navigation bar. It opens a <a href="https://tma3.azurewebsites.net/part3_4/ProductView.aspx?system=1" target="_blank">page</a> that shows the system and it's specifications and pricing with the ability to swap components and add to their cart. All of the items on this page are clickable, when the user clicks a specific system, it opens that system's product view.
             </p>
+            <br>
+            <img src="ReportImages/OnSale.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                Next, there is a section that displays the systems that are on sale. They are displayed with the image of the systems, the original price before discount which is crossed out and then the new discount price in red.
+            </p>
+            <br>
+            <img src="ReportImages/Components.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                Next, there is a section to view the different components offered on the site. If a component is clicked it opens the same <a href="https://tma3.azurewebsites.net/part3_4/ComponentList.aspx?part=motherboard" target="_blank">page</a> that the user will be sent to if they navigate using the nav bar under the components tab.
+            </p>
+            <br>
+            <img src="ReportImages/LogoButton.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                The logo was designed and made by me in a basic paint software, I used the NewEgg name and logo for inspiration. I have noticed over many years that the logos on almost all sites are interactive and will bring you back to the landing page. In this case, the logo button and Home button in the nav bar have the same operation.
+            </p>
+            <br>
+            <img src="ReportImages/NavBar.png" alt="Image of the Feedback page" height="35%">
+            <p>
+                This is the navigation bar, all of the buttons are clickable except 'Components' which opens a drop down menu when it is hovered over listing all of the available components to generate a list of. Pressing the home button or the logo above it will redirect the user back to the landing page discussed above. Choosing 'Pre-Built Systems' will bring the user to a <a href="https://tma3.azurewebsites.net/part3_4/SystemList.aspx" target="_blank">page</a> that lists out all of the systems available in the DB.
+            </p>
+            <br>
+            <img src="ReportImages/AccountCart.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                On the right side of the persist banner the user will find an account icon and cart icon. The account icon can be clicked and will bring the user to a login page to log in or sign up for an account. Once validated, they will be brought to a page that lists their orders and order totals. The number beside the cart dynamically changes depending on the number of contents in the cart. The icon is also clickable and will bring the user to a page that lists the contents of the cart.
+            </p>
+            <br><h4><a href="https://tma3.azurewebsites.net/part3_4/Login.aspx" target="_blank">System List</a></h4>
+            <br>
+            <br>
+            <img src="ReportImages/SystemList.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                This page is a list of the systems that are available in the store. It's laid out very simlarily to the components list but each list item is clickable and will open the ProductView page for that item. This page is accessed from the 'Pre-Built Systems' button in the nav bar or from the 'see more' link on the home page.
+            </p>
+            <br><h4><a href="https://tma3.azurewebsites.net/part3_4/ProductView.aspx?system=1" target="_blank">ProductView Page</a></h4>
+            <br>
+            <img src="ReportImages/ProductView.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                This page is the productView, where the user gets a breakdown of the specifications and components in this system along with a breakdown in pricing. I tried my best to emulate the look of the exaples I researched. I wanted to achieve a similar product description and pricing box that I saw and I am pleased with it, I believe it does a good job at removing confusion from the customer on what information is being displayed.
+            </p>
+            <br>
+            <img src="ReportImages/Details.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                This is the details section where there is an image of the system and next to is the name of the system (I named all of the systems after different birds), and below that in smaller font is the four specifications of the machine. These are specifically tied to the CPU, RAM, Display and Hard Drive respectively.
+            </p>
+            <br>
+            <img src="ReportImages/Pricing.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                This is the pricing box displayed on the right side of the screen, this is an example of what it looks like with an item that is on sale. At the top is the price of the item and in the case that it is on sale, the original price is crossed out and the new price is below in red. Underneath and to the right of that in a smaller font is the taxes (15%) which is dynamically calculated as well as the static shipping price followed by the total amount with those added into the cost. At the very bottom of the box is the button to add to add to the user's cart. Once this is pressed, the user is redirected to the cart page where they can view the contents of the cart. From here on out, the number next to the cart icon will be displaying 1 more than the previous, in this case if it was the user's first item, the number will stop displaying 0 and display 1. This is dynamically calculated when each page is loaded, more will be explained in part 4.
+            </p>
+            <br>
+            <img src="ReportImages/SwapComponents.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                Here is where the images and names of the components in the system are displayed, each component has a 'Swap' button, that when pressed will direct them to the component list <a href="https://tma3.azurewebsites.net/part3_4/ComponentList.aspx?part=motherboard&swap=true&system=1" target="_blank">page</a> and will display all of the motherboards available to swap out with. In this version of the componentList page, there will be a 'swap' button to the right of the price of the component, when selected, the user will be redirected back to the productView page and the selected component will be shown at the bottom of the screen in place of the component the user wished to swap out. The pricing box will also be updated with the new value and totals and taxes will be calculated as such.
+            </p>
+            <br><h4><a href="https://tma3.azurewebsites.net/part3_4/Cart.aspx" target="_blank">Cart Page</a></h4>
+            <br>
+            <br>
+            <img src="ReportImages/CartView.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                This is the cart page that shows the user a list of the items in their cart, if there are none, only the 'Cart' text and checkout button are displayed. At the far right of the list item is the price of the unit. The list item is clickable and when clicked will direct the user to the <a href="https://tma3.azurewebsites.net/part3_4/ProductView.aspx?system=1" target="_blank">ProductView</a> of the item where the user can still swap the components of the system and the price will also dynamically change.
+            </p>
+            <br>
+            <img src="ReportImages/CartCount.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                Now that there is an item in the cart, as you can see above, the number of items in the cart shows 1.
+            </p>
+            <br>
+            <img src="ReportImages/CartItemInfo.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                This is the details block in the Cart view, this is very similar to the detail view of <a href="https://tma3.azurewebsites.net/part3_4/ProductView.aspx?system=1" target="_blank">ProductView</a> but there is a 'delete' button now where the user can choose to remove it from their cart, once deleted the user is redirected back to their cart and can now see that the item is gone. The details below the name of the system is drawn from each component's respective tables in the DB.
+            </p>
+            <br><h4><a href="https://tma3.azurewebsites.net/part3_4/Login.aspx" target="_blank">Checkout and Orders Page</a></h4>
+            <br>
+            <br>
+            <img src="ReportImages/Login.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                When the user is ready to checkout, they need to click the checkout button which will redirect them to the login <a href="https://tma3.azurewebsites.net/part3_4/Login.aspx" target="_blank">page</a> in which they will need to either log in or sign up. Once having done so, they will be brought to the orders page where they will see a list of orders they have made.
+            </p>
+            <br>
+            <img src="ReportImages/OrdersView.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                This is the view the customer will see when the get redirected after login or sign up. They will see a list of the orders as well as the totals on the right. Each of these are clickable and will take them to see the contents of the order similar to how it is shown in the cart.
+            </p>
+            <br>
+            <img src="ReportImages/OrderClickable.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                After clicking an order, the user is brought to a list of the items in the order where they can continue to edit the components or even delete the item from the order. If the user deletes the last item in the order, the order itself is also deleted. When viewing an order, the customer also has the option to buy again using the checkout button, this will generate a new order with the current contents of the one being viewed.
+            </p>
+            <br><h4><a href="https://tma3.azurewebsites.net/part3_4/Login.aspx" target="_blank">Login Page</a></h4>
+            <br>
+            <br>
+            <img src="ReportImages/Login.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                This is the login page that the user is directed to any time they click the account icon in the banner or if they press the checkout button. The user will be presented with 3 text boxes and three buttons, a text box for username, password and phoneNumber (which is used for password recovery), a button for logging in, which is placed before the phoneNumber box to indicate the phoneNumber field is only need when signing up. There is alss a sign up button below all of the other text boxes to indicate all of the boxes need to be filled in order to process an account creation request. There is also a 'Forgot Password' button to be able to recover the account as per the requirement. The phoneNumber text box is not limited to numerical values only as there is not a required format and some formats use character such as '(', ')' and '+'.
+            </p>
+            <br>
+            <img src="ReportImages/IncorrectUnernameOrPassword.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                There is error handling for invalid entries and in the image above is an example of a username or password is incorrect upon log in. 
+            </p>
+            <br>
+            <img src="ReportImages/InvalidUsernameOrPassword.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                Above is an example of the error message displayed when any needed values for log in or sign up are blank. This will display the message: 'Invalid username or password'.
+            </p>
+            <br>
+            <img src="ReportImages/PasswordRecovery.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                If the password recovery option is chosen, the user is redirected to a page that has the fields depicted in the picture above. A text box for username, phoneNumber, new pasword and confirm password. All of the previous discussed errors also apply to this page to notify the user of incorrect or invalid entries.
+            </p>
+            <br>
+            <img src="ReportImages/PasswordsDontMatch.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                Above is an example of when the error message is thrown due to non matching new passwords. In this case the error message 'Passwords dont match' is displayed to the user.
+            </p>
+            <br><h4>Contact and Feedback</h4>
+            <br>
+            <br>
+            <img src="ReportImages/ContactPage.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                This is the contents of the contact page, this is as per the requirement but also to give the website a professional and real look and feel. I populated it with esxample information so it is not real.
+            </p>
+            <br>
+            <img src="ReportImages/FeedbackPage.png" alt="Image of the Feedback page" height="20%">
+            <p>
+                This is the Body of the feedback page. It is a simple form that takes a name and brief message as input and has a submit button. This is also as per the requirement and to give the application a real look and feel.
+            </p>
+            <br>
+            <br>
+            <br><h3>Database Design and Implementation</h3>
+            <p>
+                The following is documentation on the implemented database. I have included descriptions of the tables, their queries to create them as per requirement, as well as the quieries I used throughout the application broken down by file.
+            </p>
+            <br>
+            <h4>systems Table</h4>
+            <p>
+                I decided to structure my systems table to have fields that hold the id's of it's components rather than having the table hold all of the information in one table as it's easy to just change one value in one column to affect what component a system has than to update many fields as well as I find it keeps a cleaner and tidier look. The price of the system is updated whenever the system's components are edited.
+            </p>
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>TRUE</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>motherboard</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>ram</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>cpu</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>display</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>os</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>soundcard</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>price</td>
+                    <td>FLOAT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>url</td>
+                    <td>VARCHAR</td>
+                    <td>TRUE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>hd</td>
+                    <td>INT</td>
+                    <td>TRUE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                CREATE TABLE systems (<br>
+                    id INT IDENTITY(1, 1),<br>
+                    name VARCHAR(100) NOT NULL,<br>
+                    motherboard INT NOT NULL,<br>
+                    ram VARCHAR(10) NOT NULL,<br>
+                    cpu INT NOT NULL,<br>
+                    display INT NOT NULL,<br>
+                    os INT NOT NULL,<br>
+                    soundcard INT NOT NULL,<br>
+                    price FLOAT NOT NULL,<br>
+                    url VARCHAR(200),<br>
+                    hd INT,<br>
+                    PRIMARY KEY (id)<br>
+                )
+            </code>
+            <br>
+            <h4>cpu Table</h4>
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>TRUE</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>speed</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>price</td>
+                    <td>FLOAT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>url</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                CREATE TABLE cpu (<br>
+                    id INT IDENTITY(1, 1),<br>
+                    name VARCHAR(100) NOT NULL,<br>
+                    speed VARCHAR(10) NOT NULL,<br>
+                    price FLOAT NOT NULL,<br>
+                    url VARCHAR(200),<br>
+                    PRIMARY KEY (id)<br>
+                )
+            </code>
+            <br>
+            <h4>display Table</h4>
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>TRUE</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>fps</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>price</td>
+                    <td>FLOAT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>url</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                CREATE TABLE display (<br>
+                    id INT IDENTITY(1, 1),<br>
+                    name VARCHAR(100) NOT NULL,<br>
+                    fps VARCHAR(10) NOT NULL,<br>
+                    price FLOAT NOT NULL,<br>
+                    url VARCHAR(200),<br>
+                    PRIMARY KEY (id)<br>
+                )
+            </code>
+            <br>
+            <h4>hd Table</h4>
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>TRUE</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>size</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>price</td>
+                    <td>FLOAT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>url</td>
+                    <td>VARCHAR</td>
+                    <td>TRUE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                CREATE TABLE hd (<br>
+                    id INT IDENTITY(1, 1),<br>
+                    name VARCHAR(100) NOT NULL,<br>
+                    price FLOAT NOT NULL,<br>
+                    url VARCHAR(200),<br>
+                    PRIMARY KEY (id)<br>
+                )
+            </code>
+            <br>
+            <h4>motherboard Table</h4>
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>TRUE</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>price</td>
+                    <td>FLOAT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>url</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                CREATE TABLE motherboard (<br>
+                    id INT IDENTITY(1, 1),<br>
+                    name VARCHAR(100) NOT NULL,<br>
+                    price FLOAT NOT NULL,<br>
+                    url VARCHAR(200) NOT NULL,<br>
+                    PRIMARY KEY (id)<br>
+                )
+            </code>
+            <br>
+            <h4>os Table</h4>
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>TRUE</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>price</td>
+                    <td>FLOAT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>url</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                CREATE TABLE os (<br>
+                    id INT IDENTITY(1, 1),<br>
+                    name VARCHAR(100) NOT NULL,<br>
+                    price FLOAT NOT NULL,<br>
+                    url VARCHAR(200) NOT NULL,<br>
+                    PRIMARY KEY (id)<br>
+                )
+            </code>
+            <br>
+            <h4>ram Table</h4>
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>TRUE</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>size</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>price</td>
+                    <td>FLOAT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>url</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                CREATE TABLE ram (<br>
+                    id INT IDENTITY(1, 1),<br>
+                    name VARCHAR(100) NOT NULL,<br>
+                    speed VARCHAR(10) NOT NULL,<br>
+                    price FLOAT NOT NULL,<br>
+                    url VARCHAR(200) NOT NULL,<br>
+                    PRIMARY KEY (id)<br>
+                )
+            </code>
+            <br>
+            <h4>soundcard Table</h4>
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>TRUE</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>price</td>
+                    <td>FLOAT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>url</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                CREATE TABLE soundcard (<br>
+                    id INT IDENTITY(1, 1),<br>
+                    name VARCHAR(100) NOT NULL,<br>
+                    price FLOAT NOT NULL,<br>
+                    url VARCHAR(200) NOT NULL,<br>
+                    PRIMARY KEY (id)<br>
+                )
+            </code>
+            <br>
+            <h4>users Table</h4>
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>TRUE</td>
+                </tr>
+                <tr>
+                    <td>username</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>pw</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>number</td>
+                    <td>VARCHAR</td>
+                    <td>TRUE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                CREATE TABLE users (<br>
+                    id INT IDENTITY(1, 1),<br>
+                    username VARCHAR(20) NOT NULL,<br>
+                    pw VARCHAR(20) NOT NULL,<br>
+                    number VARCHAR(20),<br>
+                    PRIMARY KEY (id)<br>
+                )
+            </code>
+            <br>
+            <h4>orders Table</h4>
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>TRUE</td>
+                </tr>
+                <tr>
+                    <td>userid</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                CREATE TABLE orders (<br>
+                    id INT IDENTITY(1, 1),<br>
+                    userid VARCHAR(20) NOT NULL,<br>
+                    PRIMARY KEY (id)<br>
+                )
+            </code>
+            <br>
+            <h4>orderedItems Table</h4>
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>orderID</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>itemID</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                CREATE TABLE orderedItems (<br>
+                    orderID VARCHAR(20) NOT NULL,<br>
+                    userID VARCHAR(20) NOT NULL<br>
+                )
+            </code>
+            <br>
+            <h4>onSale Table</h4>
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>system</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>TRUE</td>
+                </tr>
+                <tr>
+                    <td>discount</td>
+                    <td>INT</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                CREATE TABLE onSale (<br>
+                    system INT NOT NULL,<br>
+                    discount INT NOT NULL,<br>
+                    PRIMARY KEY(system)<br>
+                )
+            </code>
+            <br>
+            <h4>cart Table</h4>
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>VARCHAR</td>
+                    <td>TRUE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>system</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                CREATE TABLE cart (<br>
+                    id VARCHAR(20),<br>
+                    system VARCHAR(20) NOT NULL<br>
+                )
+            </code>
         </ul>
     </body>
 </html>
