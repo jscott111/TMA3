@@ -48,8 +48,8 @@
         <p>John Scott</p>
         <p>195 Mountain Rd</p>
         <p>Moncton, NB, Canada</p>
-        <p>E1J 1V3</p>
-        <p>(506) 875-9816</p>
+        <p>E1J 2C5</p>
+        <p>(506) 555-5555</p>
     </div>
 
     <script type="text/javascript" src="storeDriver.js"></script>
