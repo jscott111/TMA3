@@ -74,7 +74,7 @@ namespace Store
                     speed.Text = "Speed: " + reader[4].ToString() + " GHz";
                     size.Text = "Size: " + reader[5].ToString() + " GB";
                     fps.Text = "FPS: " + reader[6].ToString() + "Hz";
-                    storage.Text = "Storage: " + reader[7].toString() + " TB";
+                    storage.Text = "Storage: " + reader[7].ToString() + " TB";
                     itemInfoDiv.Controls.Add(speed);
                     itemInfoDiv.Controls.Add(size);
                     itemInfoDiv.Controls.Add(fps);
