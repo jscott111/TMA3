@@ -17,39 +17,43 @@ namespace Store
             bool access = false;
 
             if (Request.Form["button"] == "Reset"){
-                command = new SqlCommand("SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "' AND number='" + Request.Form["phoneNumber"] + "'", con);
-                con.Open();
-                command.ExecuteNonQuery();
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        if (Convert.ToInt32(reader[0]) > 0)
-                        {
-                            wrongNumber = false;
-                        }
-                        else
-                        {
-                            incorrect.Text = "Wrong username or phone number";
-                        }
-                    }
-                }
-                con.Close();
-
-                bool match = String.Compare(Request.Form["firstPassword"], Request.Form["secondPassword"], false) != 0;
-
-                if (match)
-                {
-                    incorrect.Text = "Passwords don't match";
-                }
-
-                if (!wrongNumber && !match)
-                {
-                    command = new SqlCommand("UPDATE [dbo].[users] SET pw='" + Request.Form["firstPassword"] + "' WHERE username='" + Request.Form["username"] + "'", con);
+                if(Request.Form["username"] != "" && Request.Form["password"] != "" && Request.Form["phoneNumber"] != "" && Request.Form["username"] != null && Request.Form["password"] != null && Request.Form["phoneNumber"] != null){
+                    command = new SqlCommand("SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "' AND number='" + Request.Form["phoneNumber"] + "'", con);
                     con.Open();
                     command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (Convert.ToInt32(reader[0]) > 0)
+                            {
+                                wrongNumber = false;
+                            }
+                            else
+                            {
+                                incorrect.Text = "Wrong username or phone number";
+                            }
+                        }
+                    }
                     con.Close();
-                    access = true;
+
+                    bool match = String.Compare(Request.Form["firstPassword"], Request.Form["secondPassword"], false) != 0;
+
+                    if (match)
+                    {
+                        incorrect.Text = "Passwords don't match";
+                    }
+
+                    if (!wrongNumber && !match)
+                    {
+                        command = new SqlCommand("UPDATE [dbo].[users] SET pw='" + Request.Form["firstPassword"] + "' WHERE username='" + Request.Form["username"] + "'", con);
+                        con.Open();
+                        command.ExecuteNonQuery();
+                        con.Close();
+                        access = true;
+                    }
+                }else{
+                    incorrect.Text = "Invalid Entry";
                 }
             }
 
