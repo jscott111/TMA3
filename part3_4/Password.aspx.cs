@@ -17,7 +17,7 @@ namespace Store
             bool access = false;
 
             if (Request.Form["button"] == "Reset"){
-                if(Request.Form["username"] != "" && Request.Form["password"] != "" && Request.Form["phoneNumber"] != "" && Request.Form["username"] != null && Request.Form["password"] != null && Request.Form["phoneNumber"] != null){
+                if(Request.Form["username"] != "" && Request.Form["firstPassword"] != "" && Request.Form["secondPassword"] != "" && Request.Form["phoneNumber"] != "" && Request.Form["username"] != null && Request.Form["firstPassword"] != null && Request.Form["secondPassword"] != null && Request.Form["phoneNumber"] != null){
                     command = new SqlCommand("SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "' AND number='" + Request.Form["phoneNumber"] + "'", con);
                     con.Open();
                     command.ExecuteNonQuery();
