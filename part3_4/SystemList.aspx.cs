@@ -13,7 +13,7 @@ namespace Store
             float price;
             double total = 0;
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-            SqlCommand command = new SqlCommand("SELECT[systems].[id], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps] FROM[dbo].[systems] INNER JOIN[cpu] ON[systems].[id] = [cpu].[id] INNER JOIN[ram] ON[systems].[id] = [ram].[id] INNER JOIN[display] ON[systems].[id] = [display].[id]", con);
+            SqlCommand command = new SqlCommand("SELECT [systems].[id], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps], [hd].[size] FROM [dbo].[systems] INNER JOIN [hd] ON [systems].[hd] = [hd].[id] INNER JOIN [cpu] ON [systems].[cpu] = [cpu].[id] INNER JOIN [ram] ON [systems].[ram] = [ram].[id] INNER JOIN [display] ON [systems].[display] = [display].[id] WHERE [systems].[id] = " + id, con);
             SqlConnection priceCon = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             SqlCommand priceCommand;
             con.Open();
@@ -29,6 +29,7 @@ namespace Store
                     Label speed = new Label();
                     Label size = new Label();
                     Label fps = new Label();
+                    Label storage = new Label();
                     Panel div = new Panel();
                     Panel priceDiv = new Panel();
 
@@ -39,16 +40,18 @@ namespace Store
                     speed.Text = "Speed: " + reader[4].ToString() + " GHz";
                     size.Text = "Size: " + reader[5].ToString() + " GB";
                     fps.Text = "FPS: " + reader[6].ToString() + "Hz";
+                    storage.Text = "Storage: " + reader[7].ToString() + " TB";
                     div.Controls.Add(speed);
                     div.Controls.Add(size);
                     div.Controls.Add(fps);
+                    div.Controls.Add(storage);
 
                     picture.ImageUrl = reader[3].ToString();
                     picture.Height = new Unit(120);
                     picture.Width = new Unit(170);
                     picture.Attributes["class"] = "itemImage";
 
-                    priceCommand = new SqlCommand("SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price] FROM[dbo].[systems] INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[os] ON[systems].[os] = [os].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] WHERE[systems].[id] = " + reader[0].ToString(), priceCon);
+                    priceCommand = new SqlCommand("SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price], [hd].[price] FROM[dbo].[systems] INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[hd] ON[systems].[hd] = [hd].[id] INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[os] ON[systems].[os] = [os].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] WHERE[systems].[id] = " + reader[0].ToString(), priceCon);
                     priceCon.Open();
                     priceCommand.ExecuteNonQuery();
                     using (SqlDataReader priceReader = priceCommand.ExecuteReader())
@@ -61,6 +64,7 @@ namespace Store
                             total += Convert.ToDouble(priceReader[3].ToString());
                             total += Convert.ToDouble(priceReader[4].ToString());
                             total += Convert.ToDouble(priceReader[5].ToString());
+                            total += Convert.ToDouble(priceReader[6].ToString());
                         }
                     }
                     priceCon.Close();
@@ -94,7 +98,7 @@ namespace Store
                     Label discountPrice = new Label();
                     Label itemPrice = (Label) Page.FindControl(reader[3].ToString() + "price");
 
-                    priceCommand = new SqlCommand("SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price] FROM[dbo].[systems] INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[os] ON[systems].[os] = [os].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] WHERE[systems].[id] = " + reader[3].ToString(), priceCon);
+                    priceCommand = new SqlCommand("SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price], [hd].[price] FROM[dbo].[systems] INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[hd] ON[systems].[hd] = [hd].[id] INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[os] ON[systems].[os] = [os].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] WHERE[systems].[id] = " + reader[3].ToString(), priceCon);
                     priceCon.Open();
                     priceCommand.ExecuteNonQuery();
                     using (SqlDataReader priceReader = priceCommand.ExecuteReader())
@@ -107,6 +111,7 @@ namespace Store
                             total += Convert.ToDouble(priceReader[3].ToString());
                             total += Convert.ToDouble(priceReader[4].ToString());
                             total += Convert.ToDouble(priceReader[5].ToString());
+                            total += Convert.ToDouble(priceReader[6].ToString());
                         }
                     }
                     priceCon.Close();
