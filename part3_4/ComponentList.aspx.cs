@@ -20,7 +20,7 @@ namespace Store
                 { "Displays", "display", "SELECT id, name, price, url, fps FROM [dbo].[display]", "FPS", "Hz"}, 
                 { "Operating Systems", "os", "SELECT id, name, price, url FROM [dbo].[os]", "", ""}, 
                 { "Soundcards", "soundcard", "SELECT id, name, price, url FROM [dbo].[soundcard]", "", ""},
-                { "Hard Drives", "hd", "SELECT id, name, price, url FROM [dbo].[hd]", "Storage", "TB"} 
+                { "Hard Drives", "hd", "SELECT id, name, price, url, size FROM [dbo].[hd]", "Storage", "TB"} 
             };
 
             for (int i = 0; i < 7; i++)
