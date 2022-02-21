@@ -12,7 +12,7 @@ namespace Store
         {
             double total = 0;
             float price = 0;
-            string[,] component = new string[6, 2] { { "Motherboards", "motherboard" }, { "CPUs", "cpu" }, { "RAM", "ram" }, { "Displays", "display" }, { "Operating Systems", "os" }, { "Soundcards", "soundcard" }, { "Hard Drives", "hd" } };
+            string[,] component = new string[7, 2] { { "Motherboards", "motherboard" }, { "CPUs", "cpu" }, { "RAM", "ram" }, { "Displays", "display" }, { "Operating Systems", "os" }, { "Soundcards", "soundcard" }, { "Hard Drives", "hd" } };
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             SqlConnection priceCon = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             SqlCommand command = new SqlCommand("SELECT TOP(4) name, url, price, id FROM [dbo].[systems]", con);
