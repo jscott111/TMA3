@@ -7,7 +7,7 @@
         <title>Cookie</title>    
     </head>
     <body style="height: 532px; text-align: center; background-color: #4E7FB6;">
-        <div style="text-align: center; padding: 100px;">
+        <div style="text-align: center; padding: 400px;">
             <%
                 if(Request.Cookies[Request.UserHostAddress] != null)
                 {
