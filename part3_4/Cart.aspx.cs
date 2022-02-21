@@ -81,11 +81,11 @@ namespace Store
             if (Request.QueryString["user"] != null && Request.QueryString["user"] != "")
             {
                 title.Text = "Order";
-                command = new SqlCommand("SELECT [orderedItems].[itemID], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps] FROM[dbo].[orderedItems] INNER JOIN[dbo].[systems] ON[orderedItems].[itemID] = [systems].[id] INNER JOIN[dbo].[orders] ON[orderedItems].[orderID] = [orders].[id] INNER JOIN[dbo].[cpu] ON[cpu].[id] = [systems].[cpu] INNER JOIN[dbo].[ram] ON[ram].[id] = [systems].[ram] INNER JOIN[dbo].[display] ON[display].[id] = [systems].[display] WHERE[orders].[userid] = '" + Request.QueryString["user"] + "' AND [orders].[id] = '" + Request.QueryString["orderID"] + "'", con);
+                command = new SqlCommand("SELECT [orderedItems].[itemID], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps], [hd].[price] FROM[dbo].[orderedItems] INNER JOIN[dbo].[systems] ON[orderedItems].[itemID] = [systems].[id] INNER JOIN[dbo].[orders] ON[orderedItems].[orderID] = [orders].[id] INNER JOIN[dbo].[cpu] ON[cpu].[id] = [systems].[cpu] INNER JOIN[dbo].[hd] ON[hd].[id] = [systems].[hd] INNER JOIN[dbo].[ram] ON[ram].[id] = [systems].[ram] INNER JOIN[dbo].[display] ON[display].[id] = [systems].[display] WHERE[orders].[userid] = '" + Request.QueryString["user"] + "' AND [orders].[id] = '" + Request.QueryString["orderID"] + "'", con);
             }
             else
             {
-                command = new SqlCommand("SELECT [cart].[system], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps] FROM[dbo].[cart] INNER JOIN[cpu] ON[cart].[system] = [cpu].[id] INNER JOIN[ram] ON[cart].[system] = [ram].[id] INNER JOIN[display] ON[cart].[system] = [display].[id] INNER JOIN[systems] ON [cart].[system] = [systems].[id] WHERE [cart].[id] = '" + Request.UserHostAddress + "'", con);
+                command = new SqlCommand("SELECT [cart].[system], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps], [hd].[price] FROM[dbo].[cart] INNER JOIN[cpu] ON[cart].[system] = [cpu].[id] INNER JOIN[ram] ON[cart].[system] = [ram].[id] INNER JOIN[display] ON[cart].[system] = [display].[id] INNER JOIN[dbo].[hd] ON[hd].[id] = [systems].[hd] INNER JOIN[systems] ON [cart].[system] = [systems].[id] WHERE [cart].[id] = '" + Request.UserHostAddress + "'", con);
             }
 
             SqlConnection priceCon = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
@@ -108,6 +108,7 @@ namespace Store
                     Panel priceDiv = new Panel();
                     Panel item = new Panel();
                     Label name = new Label();
+                    Label storage = new Label();
                     Button deleteButton = new Button();
 
                     itemName.Text = reader[1].ToString();
@@ -117,6 +118,7 @@ namespace Store
                     speed.Text = "Speed: " + reader[4].ToString() + " GHz";
                     size.Text = "Size: " + reader[5].ToString() + " GB";
                     fps.Text = "FPS: " + reader[6].ToString() + "Hz";
+                    storage.Text = "Storage: " + reader[7].ToString() + " TB";
                     deleteButton.Text = "Delete";
                     if(Request.QueryString["action"] == "view"){
                         deleteButton.OnClientClick = "deleteCartItem('" + reader[0].ToString() + "', '', '')";
@@ -128,6 +130,7 @@ namespace Store
                     div.Controls.Add(speed);
                     div.Controls.Add(size);
                     div.Controls.Add(fps);
+                    div.Controls.Add(storage);
                     div.Controls.Add(deleteButton);
 
                     picture.ImageUrl = reader[3].ToString();
@@ -135,7 +138,7 @@ namespace Store
                     picture.Width = new Unit(170);
                     picture.Attributes["class"] = "itemImage";
 
-                    priceCommand = new SqlCommand("SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price] FROM[dbo].[systems] INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[os] ON[systems].[os] = [os].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] WHERE[systems].[id] = " + reader[0].ToString(), priceCon);
+                    priceCommand = new SqlCommand("SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price], [hd].[price] FROM[dbo].[systems] INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[dbo].[hd] ON[hd].[id] = [systems].[hd] INNER JOIN[os] ON[systems].[os] = [os].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] WHERE[systems].[id] = " + reader[0].ToString(), priceCon);
                     priceCon.Open();
                     priceCommand.ExecuteNonQuery();
                     using (SqlDataReader priceReader = priceCommand.ExecuteReader())
@@ -185,7 +188,7 @@ namespace Store
                     Label discountPrice = new Label();
                     Label itemPrice = new Label();
 
-                    priceCommand = new SqlCommand("SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price] FROM[dbo].[systems] INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[os] ON[systems].[os] = [os].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] WHERE[systems].[id] = " + reader[3].ToString(), priceCon);
+                    priceCommand = new SqlCommand("SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price], [hd].[price] FROM[dbo].[systems] INNER JOIN[dbo].[hd] ON[hd].[id] = [systems].[hd] INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[os] ON[systems].[os] = [os].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] WHERE[systems].[id] = " + reader[3].ToString(), priceCon);
                     priceCon.Open();
                     priceCommand.ExecuteNonQuery();
                     using (SqlDataReader priceReader = priceCommand.ExecuteReader())
