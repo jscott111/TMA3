@@ -32,6 +32,7 @@
                         <li><a href="ComponentList.aspx?part=display">Displays</a></li>
                         <li><a href="ComponentList.aspx?part=os">Operating Systems</a></li>
                         <li><a href="ComponentList.aspx?part=soundcard">Soundcards</a></li>
+                        <li><a href="ComponentList.aspx?part=hd">Soundcards</a></li>
                     </ul>
                 </li>
                 <li><a href="Contact.aspx">Contact</a></li>
