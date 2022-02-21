@@ -14,7 +14,23 @@ namespace Store
             
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             SqlCommand command;
-            if (Request.QueryString["action"] == "add")
+            bool alreadyThere = false;
+            
+            command = new SqlCommand("SELECT COUNT(system) FROM [dbo].[cart] WHERE system = '" + Request.QueryString["system"] + "'", con);
+            con.Open();
+            command.ExecuteNonQuery();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    if(Convert.ToInt32(reader[0]) > 0){
+                        alreadyThere = true;
+                    }
+                }
+            }
+            con.Close();
+            
+            if (Request.QueryString["action"] == "add" && !alreadyThere)
             {
                 command = new SqlCommand("INSERT INTO [dbo].[cart] (id, system) VALUES ('" + Request.UserHostAddress + "', '" + Request.QueryString["system"] + "')", con);
                 con.Open();
