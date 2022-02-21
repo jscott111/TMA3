@@ -10,7 +10,7 @@ namespace Store
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string[,] component = new string[6, 3] { { "Motherboard", "motherboard", "" }, { "CPU", "cpu", "" }, { "RAM", "ram", "" }, { "Display", "display", "" }, { "OS", "os", "" }, { "Soundcard", "soundcard", "" } };
+            string[,] component = new string[7, 3] { { "Motherboard", "motherboard", "" }, { "CPU", "cpu", "" }, { "RAM", "ram", "" }, { "Display", "display", "" }, { "OS", "os", "" }, { "Soundcard", "soundcard", "" }, { "Hard Drive", "hd", "" } };
             string id = Request.QueryString["system"];
             string systemID = "";
             double total = 0;
@@ -21,6 +21,7 @@ namespace Store
             Label speed = new Label();
             Label size = new Label();
             Label fps = new Label();
+            Label storage = new Label();
             Label tax = new Label();
             Label shipping = new Label();
             Label totalPrice = new Label();
@@ -39,7 +40,7 @@ namespace Store
                 con.Close();
             }
 
-            command = new SqlCommand("SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price] FROM[dbo].[systems] INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[os] ON[systems].[os] = [os].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] WHERE[systems].[id] = " + id, con);
+            command = new SqlCommand("SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price], [hd].[price] FROM[dbo].[systems] INNER JOIN [hd] ON [systems].[hd] = [hd].[id]  INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[os] ON[systems].[os] = [os].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] WHERE[systems].[id] = " + id, con);
             con.Open();
             command.ExecuteNonQuery();
             using (SqlDataReader reader = command.ExecuteReader())
@@ -57,7 +58,7 @@ namespace Store
             con.Close();
 
 
-            command = new SqlCommand("SELECT [systems].[id], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps] FROM [dbo].[systems] INNER JOIN [cpu] ON [systems].[cpu] = [cpu].[id] INNER JOIN [ram] ON [systems].[ram] = [ram].[id] INNER JOIN [display] ON [systems].[display] = [display].[id] WHERE [systems].[id] = " + id, con);
+            command = new SqlCommand("SELECT [systems].[id], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps], [hd].[size] FROM [dbo].[systems] INNER JOIN [hd] ON [systems].[hd] = [hd].[id] INNER JOIN [cpu] ON [systems].[cpu] = [cpu].[id] INNER JOIN [ram] ON [systems].[ram] = [ram].[id] INNER JOIN [display] ON [systems].[display] = [display].[id] WHERE [systems].[id] = " + id, con);
             con.Open();
             command.ExecuteNonQuery();
             using (SqlDataReader reader = command.ExecuteReader())
@@ -73,6 +74,7 @@ namespace Store
                     speed.Text = "Speed: " + reader[4].ToString() + " GHz";
                     size.Text = "Size: " + reader[5].ToString() + " GB";
                     fps.Text = "FPS: " + reader[6].ToString() + "Hz";
+                    storage.Text = "Storage: " + reader[7].toString() + " TB";
                     itemInfoDiv.Controls.Add(speed);
                     itemInfoDiv.Controls.Add(size);
                     itemInfoDiv.Controls.Add(fps);
@@ -153,7 +155,7 @@ namespace Store
 
                     product.Attributes["class"] = "product";
 
-            command = new SqlCommand("SELECT motherboard, cpu, ram, display, os, soundcard FROM [dbo].[systems] WHERE id = " + systemID, con);
+            command = new SqlCommand("SELECT motherboard, cpu, ram, display, os, soundcard, hd FROM [dbo].[systems] WHERE id = " + systemID, con);
             con.Open();
             command.ExecuteNonQuery();
             using (SqlDataReader reader = command.ExecuteReader())
@@ -166,6 +168,7 @@ namespace Store
                     component[3, 2] = reader[3].ToString();
                     component[4, 2] = reader[4].ToString();
                     component[5, 2] = reader[5].ToString();
+                    component[6, 2] = reader[5].ToString();
                 }
             }
 
