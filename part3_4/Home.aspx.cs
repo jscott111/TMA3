@@ -47,6 +47,7 @@ namespace Store
                             total += Convert.ToDouble(priceReader[3].ToString());
                             total += Convert.ToDouble(priceReader[4].ToString());
                             total += Convert.ToDouble(priceReader[5].ToString());
+                            total += Convert.ToDouble(priceReader[6].ToString());
                         }
                     }
                     priceCon.Close();
@@ -98,6 +99,7 @@ namespace Store
                             total += Convert.ToDouble(priceReader[3].ToString());
                             total += Convert.ToDouble(priceReader[4].ToString());
                             total += Convert.ToDouble(priceReader[5].ToString());
+                            total += Convert.ToDouble(priceReader[6].ToString());
                         }
                     }
                     priceCon.Close();
@@ -130,7 +132,7 @@ namespace Store
 
 
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 Image image = new Image();
                 Panel box = new Panel();
