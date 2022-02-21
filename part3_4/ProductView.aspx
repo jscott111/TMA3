@@ -32,7 +32,7 @@
                         <li><a href="ComponentList.aspx?system=display">Displays</a></li>
                         <li><a href="ComponentList.aspx?system=os">Operating Systems</a></li>
                         <li><a href="ComponentList.aspx?system=soundcard">Soundcards</a></li>
-                        <li><a href="ComponentList.aspx?part=hd">Soundcards</a></li>
+                        <li><a href="ComponentList.aspx?part=hd">Hard Drives</a></li>
                     </ul>
                 </li>
                 <li><a href="Contact.aspx">Contact</a></li>
