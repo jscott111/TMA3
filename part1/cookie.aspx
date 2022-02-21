@@ -4,10 +4,11 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">
         <meta charset="utf-8" />
-        <title>Cookie</title>    
+        <title>Cookie</title>
+        <link rel="stylesheet" href="../styles/TMA3Styles.css"/> 
     </head>
-    <body style="height: 532px; text-align: center; background-color: #4E7FB6;">
-        <div style="text-align: center; padding: 400px;">
+    <body class="cookiesBody">
+        <div class="cookieDiv">
             <%
                 if(Request.Cookies[Request.UserHostAddress] != null)
                 {
@@ -31,16 +32,16 @@
                     Response.Cookies.Add(cookie);
                 }
             %>
-            <p style="font-size: xx-large; text-align: center;">
+            <p class="cookieText">
                 Your IP address is <b><%=Request.UserHostAddress%></b>
             </p>
-            <p style="font-size: xx-large; text-align: center;">
+            <p class="cookieText">
                 Your time zone is 
                 <b><script>
                     document.write(Intl.DateTimeFormat().resolvedOptions().timeZone);
                 </script></b>
             </p>
-            <p style="font-size: xx-large; text-align: center;">You've visited this site <b><%=Request.Cookies[Request.UserHostAddress].Value.Substring(Request.Cookies[Request.UserHostAddress].Name.Length + 1)%></b> times</p>
+            <p class="cookieText">You've visited this site <b><%=Request.Cookies[Request.UserHostAddress].Value.Substring(Request.Cookies[Request.UserHostAddress].Name.Length + 1)%></b> times</p>
         </div>
     </body>
 </html>
