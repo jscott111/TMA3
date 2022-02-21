@@ -151,6 +151,7 @@ namespace Store
                             total += Convert.ToDouble(priceReader[3].ToString());
                             total += Convert.ToDouble(priceReader[4].ToString());
                             total += Convert.ToDouble(priceReader[5].ToString());
+                            total += Convert.ToDouble(priceReader[6].ToString());
                         }
                     }
 
@@ -201,6 +202,7 @@ namespace Store
                             total += Convert.ToDouble(priceReader[3].ToString());
                             total += Convert.ToDouble(priceReader[4].ToString());
                             total += Convert.ToDouble(priceReader[5].ToString());
+                            total += Convert.ToDouble(priceReader[6].ToString());
                         }
                     }
                     priceCon.Close();
