@@ -23,7 +23,7 @@ namespace Store
                 { "Hard Drives", "hd", "SELECT id, name, price, url FROM [dbo].[hd]", "Storage", "TB"} 
             };
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 if(Request.QueryString["part"] == component[i, 1])
                 {
