@@ -13,7 +13,7 @@ namespace Store
             float price;
             double total = 0;
             SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-            SqlCommand command = new SqlCommand("SELECT [systems].[id], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps], [hd].[size] FROM [dbo].[systems] INNER JOIN [hd] ON [systems].[hd] = [hd].[id] INNER JOIN [cpu] ON [systems].[cpu] = [cpu].[id] INNER JOIN [ram] ON [systems].[ram] = [ram].[id] INNER JOIN [display] ON [systems].[display] = [display].[id] WHERE [systems].[id] = " + id, con);
+            SqlCommand command = new SqlCommand("SELECT [systems].[id], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps], [hd].[size] FROM [dbo].[systems] INNER JOIN [hd] ON [systems].[hd] = [hd].[id] INNER JOIN [cpu] ON [systems].[cpu] = [cpu].[id] INNER JOIN [ram] ON [systems].[ram] = [ram].[id] INNER JOIN [display] ON [systems].[display] = [display].[id]", con);
             SqlConnection priceCon = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             SqlCommand priceCommand;
             con.Open();
