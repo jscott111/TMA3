@@ -14,40 +14,81 @@
         <h2>John Scott 3542569</h2>
         <ul>
             <h4>Start Date: Oct 26 2021</h4>
-            <h4>End Date: Feb 20 2022</h4>
+            <h4>End Date: Feb 21 2022</h4>
             <h4>Hours Spent: 350</h4>
         </ul>
         <h2>Part 1</h2>
         <ul style="margin-left: 20px; margin-right: 40%;">
+            <a href="https://tma3.azurewebsites.net/part1/cookie.aspx" target="_blank">Click here to open the cookie application.</a>
             <p>
-                In this persistent cookie application I provided a basic webpage that nicely displays the IP address of the client, the client's timezone and the number of visits by the client in the middle of the screen. I used C# to get the IP address from the request and checked if a cookie already existed for that IP address and if that was true, the application converts the value from a string type to an integer type, delete that cookie, increase the value by 1, and convert back to a string type and save that as a new cookie and set the expiry date to 5 years out. If the IP doesn't exist as a key, simply create a new persistent cookie with an expiry date of 5 years and set the value to 1.
+                In this persistent cookie application I provided a basic webpage that nicely displays the IP address of the client, the client's timezone and the number of visits by the client in the middle of the screen. To see the change, continue to refresh the browser to see the visit count go up.
             </p>
+            <img src="ReportImages/GetIPAddress.png" alt="Image of the Home page" height="5%">
             <p>
                 The first thing I display is the IP address of the client using the Request class. I use in line commands to reference and print out the 'Request.UserHostAddress' result. I put the important information in bold to make it more visible. Next, I use JavaScript to get the
                 time zone of the client and print it using 'document.write()' to print it in line with the html body text.
             </p>
+            <img src="ReportImages/GetTimezone.png" alt="Image of the Home page" height="5%">
             <p>
                 To print the number of times an IP address visited the site I use 'Request.Cookies[Request.UserHostAddress].Value.Substring(Request.Cookies[Request.UserHostAddress].Name.Length + 1)' to retrieve the string number and I had to use the Substring method to seperate the value from the key because the .Value attribute was returning a string with the key and the value so I had to seperate the value by using the length of the IP address to use as a starting point to get the value only.
             </p>
-            <a href="https://tma3.azurewebsites.net/part1/cookie.aspx" target="_blank">Click here to open the cookie application.</a>
+            <img src="ReportImages/CookieHandler.png" alt="Image of the Home page" height="30%">
+            <p>
+                I used C# to get the IP address from the request and checked if a cookie already existed for that IP address and if that was true, the application converts the value from a string type to an integer type, delete that cookie, increase the value by 1, and convert back to a string type and save that as a new cookie and set the expiry date to 5 years out. If the IP doesn't exist as a key, simply create a new persistent cookie with an expiry date of 5 years and set the value to 1.
+            </p>
         </ul>
         <h2>Part 2</h2>
         <ul style="margin-left: 20px; margin-right: 40%;">
-            <p>
-                For this part I mostly copied the one that I made from Assignment 1 with the main difference being that the images are not stored locally but rather in a database and on the server. I stored the URL and captions in a table in the database, I reference it to get the URL and caption using this query "SELECT name, caption, url FROM [dbo].[pic]", display the caption and open a stream for the URL to get the actual image. I display the caption underneath the image as well as the buttons. I handle events for these buttons and the image switching with JavaScript like I did with A1. In C#, I create each image as an asp:Image and captions as an asp:Label but set the display to 'none' and display the image and its caption one at a time one at a time by setting display to 'inline-block' through JS.
-            </p>
-            <p>
-                The app starts with displaying the first image and caption with ID = '0' by setting the display to 'inline-block' and calling the sequential loop using a counter to keep track of the current image and decide the next image whether it be just the next Id number or randomizing the next image. When the pause button is pushed, I clear the ID of the interval but because I have the number of the current image stored as the counter variable so that it can continue from that point. I use a try-catch to know when I've reached the last image and reset the counter to 0. I had a bug where I could pause the loop but if I clicked the button to toggle between random and sequential it would start that loop and mess up the pause/play button and have two loops going at once. I fixed it by only starting the new loop if the pause button said 'pause' which meant it was in a play state. Once the play button is pressed to start the loop again, I check the text of the toggle button to see which loop to start and call the proper loop.
-            </p>
-            <p>
-                To get the right size of the image, I used (Request.Browser.ScreenPixelsHeight) * 2 - 400 to calculate the right height of the image. I needed to download the image in a memory stream and bitmap. I needed to use this to get the actual dimensions of the image because just creating an asp:Image and setting the URL to the images's URL doesn't hold the dimensions of the image. I calculate the ratio of the bitmap image to know what to set the width of the asp:Image so that it's ratio is set to the right amount in ratio to the height that I'm looking for.
-            </p>
-            <img src="" alt="">
-            <p>
-
-            </p>
-
             <br><a href="https://tma3.azurewebsites.net/part2/slideshow.aspx" target="_blank">Click here to open the slideshow application.</a>
+            <p>
+                For this part I mostly copied the one that I made from Assignment 1 with the main difference being that the images are not stored locally but rather in a database and on the server.
+            </p> 
+            <table>
+                <tr>
+                    <td>Column Name</td>
+                    <td>Data Type</td>
+                    <td>Can be Null</td>
+                    <td>Primary Key</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>url</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+                <tr>
+                    <td>caption</td>
+                    <td>VARCHAR</td>
+                    <td>FALSE</td>
+                    <td>FALSE</td>
+                </tr>
+            </table>
+            <br>
+            <code>
+                SELECT name, caption, url FROM [dbo].[pic]
+            </code>
+            <p>
+                I stored the URL and captions in the table depicted above, I reference it to get the URL and caption using the query above, display the caption and open a stream for the URL to get the actual image. I display the caption underneath the image as well as the buttons. I handle events for these buttons and the image switching with JavaScript like I did with TMA1.
+            </p>
+            <p>
+                In C#, I create each image as an asp:Image and captions as an asp:Label but set the display to 'none' and display the image and its caption one at a time by setting display to 'inline-block' through JS.
+            </p>
+            <p>
+                The app starts with displaying the first image and caption with ID = '0' by setting the display to 'inline-block' and calling the sequential loop using a counter to keep track of the current image and decide the next image whether it be just the next Id number or randomizing the next image. 
+                
+                When the pause button is pushed, I clear the ID of the interval but because I have the number of the current image stored as the counter variable, that it can continue from that saved point otherwise it woud've been lost when the loop was terminated. I use a try-catch to know when I've reached the last image and then reset the counter to 0. I had a bug where I could pause the loop but if I clicked the button to toggle between random and sequential it would start that loop and mess up the pause/play button and have two loops going at once. I fixed it by only starting the new loop if the pause button said 'pause' which meant it was in a play state. Once the play button is pressed to start the loop again, I check the text of the toggle button to see which loop to start and call the proper loop. <b>See below</b>.
+            </p>
+            <img src="ReportImages/LoopFunction.png" alt="Image of the Home page" height="30%">
+            <p>
+                To get the right size of the image, I used <code>(Request.Browser.ScreenPixelsHeight) * 2 - 400</code> to calculate the right height of the image. I needed to download the image in a memory stream and bitmap. I needed to use this to get the actual dimensions of the image because just creating an asp:Image and setting the URL to the images's URL doesn't hold the dimensions of the image. I calculate the ratio of the bitmap image to know what to set the width of the asp:Image so that it's ratio is set to the right amount in ratio to the height that I'm looking for. <b>See below</b>.
+            </p>
+            <img src="ReportImages/RatioCorrector.png" alt="Image of the Home page" height="30%">
         </ul>
         <h2>Part 3 & 4</h2>
         <ul style="margin-left: 20px; margin-right: 40%;">
@@ -190,7 +231,7 @@
             <br>
             <img src="ReportImages/CartCount.png" alt="Image of the Feedback page" height="20%">
             <p>
-                Now that there is an item in the cart, as you can see above, the number of items in the cart shows 1.
+                Now that there is an item in the cart, as you can see above, the number of items in the cart shows 1. On each page I calculate this by having an asp:Label called numberInCart that will display to the right of the cart icon and in the code behind I have a quick query that can be found below that uses Request.UserHostAddress to get the IP of the user and get the count of how many entries there are with an id that matches the IP address, then I set the numberInCart label to that number.
             </p>
             <br>
             <img src="ReportImages/CartItemInfo.png" alt="Image of the Feedback page" height="20%">
@@ -251,7 +292,7 @@
             <br>
             <img src="ReportImages/FeedbackPage.png" alt="Image of the Feedback page" height="20%">
             <p>
-                This is the Body of the feedback page. It is a simple form that takes a name and brief message as input and has a submit button. This is also as per the requirement and to give the application a real look and feel.
+                This is the Body of the feedback page. It is a simple form that takes a name and brief message as input and has a submit button. This is also as per the requirement and to give the application a real look and feel. I tried to set it up so that an email would get sent to me once it was filled out so there is some code in the code behind file but I could not get it to work.
             </p>
             <br>
             <br>
@@ -357,6 +398,9 @@
             </code>
             <br>
             <h4>cpu Table</h4>
+            <p>
+                This table holds all of the necessary data for each cpu, systems holds the id of this table
+            </p>
             <table>
                 <tr>
                     <td>Column Name</td>
@@ -408,6 +452,9 @@
             </code>
             <br>
             <h4>display Table</h4>
+            <p>
+                This table holds all of the necessary data for each display, systems holds the id of this table
+            </p>
             <table>
                 <tr>
                     <td>Column Name</td>
@@ -459,6 +506,9 @@
             </code>
             <br>
             <h4>hd Table</h4>
+            <p>
+                This table holds all of the necessary data for each hd, systems holds the id of this table
+            </p>
             <table>
                 <tr>
                     <td>Column Name</td>
@@ -509,6 +559,9 @@
             </code>
             <br>
             <h4>motherboard Table</h4>
+            <p>
+                This table holds all of the necessary data for each motherboard, systems holds the id of this table
+            </p>
             <table>
                 <tr>
                     <td>Column Name</td>
@@ -553,6 +606,9 @@
             </code>
             <br>
             <h4>os Table</h4>
+            <p>
+                This table holds all of the necessary data for each os, systems holds the id of this table
+            </p>
             <table>
                 <tr>
                     <td>Column Name</td>
@@ -597,6 +653,9 @@
             </code>
             <br>
             <h4>ram Table</h4>
+            <p>
+                This table holds all of the necessary data for each ram, systems holds the id of this table
+            </p>
             <table>
                 <tr>
                     <td>Column Name</td>
@@ -648,6 +707,9 @@
             </code>
             <br>
             <h4>soundcard Table</h4>
+            <p>
+                This table holds all of the necessary data for each soundcard, systems holds the id of this table
+            </p>
             <table>
                 <tr>
                     <td>Column Name</td>
@@ -692,6 +754,9 @@
             </code>
             <br>
             <h4>users Table</h4>
+            <p>
+                This table holds the data for users, each row is essentially an account
+            </p>
             <table>
                 <tr>
                     <td>Column Name</td>
@@ -736,6 +801,9 @@
             </code>
             <br>
             <h4>orders Table</h4>
+            <p>
+                This table holds a row for each order, it is paired up with orderedItems to get the items in an order. I set it up this way because having one column for each items in an order is not good since there is no way to know how many items there will be in an order, this way I can just make a reference and filter the items from orderedItems.
+            </p>
             <table>
                 <tr>
                     <td>Column Name</td>
@@ -766,6 +834,9 @@
             </code>
             <br>
             <h4>orderedItems Table</h4>
+            <p>
+                This table holds every item that has been ordered as well as it's order number
+            </p>
             <table>
                 <tr>
                     <td>Column Name</td>
@@ -795,6 +866,9 @@
             </code>
             <br>
             <h4>onSale Table</h4>
+            <p>
+                This table holds which systems are on sale as well as its discount percentage
+            </p>
             <table>
                 <tr>
                     <td>Column Name</td>
@@ -825,6 +899,9 @@
             </code>
             <br>
             <h4>cart Table</h4>
+            <p>
+                This table is similar to orderedItems, it holds all of the items that have been placed in a cart corresponding to a user IP
+            </p>
             <table>
                 <tr>
                     <td>Column Name</td>
@@ -852,6 +929,347 @@
                     system VARCHAR(20) NOT NULL<br>
                 )
             </code>
+            <br>
+            <h4>Queries by file</h4>
+            <br>
+            <b>Cart.aspx.cs</b>
+            <br>
+            <br>
+            <p>This query is used to add a system to the cart with a given id and the user's IP address</p>
+            <code>
+                INSERT INTO [dbo].[cart] (id, system) VALUES ('" + Request.UserHostAddress + "', '" + Request.QueryString["system"] + "')
+            </code><br><br>
+            <p>This query is used to delete an item from the orderedItems table</p>
+            <code>
+                DELETE FROM [dbo].[orderedItems] <br>
+                WHERE orderID = '" + Request.QueryString["orderID"] + "' AND itemID = '" + Request.QueryString["system"] + "'
+            </code><br><br>
+            <p>Delete an item from the cart</p>
+            <code>
+                DELETE FROM [dbo].[cart] WHERE id = '" + Request.UserHostAddress + "' AND system = '" + Request.QueryString["system"] + "'
+            </code><br><br>
+            <p>Getting general info used in displaying the contents of an order</p>
+            <code>
+                SELECT [orderedItems].[itemID], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps], [hd].[size] <br>
+                FROM[dbo].[orderedItems] <br>
+                INNER JOIN[dbo].[systems] ON[orderedItems].[itemID] = [systems].[id] <br>
+                INNER JOIN[dbo].[orders] ON[orderedItems].[orderID] = [orders].[id] <br>
+                INNER JOIN[dbo].[cpu] ON[cpu].[id] = [systems].[cpu] <br>
+                INNER JOIN[dbo].[hd] ON[hd].[id] = [systems].[hd] <br>
+                INNER JOIN[dbo].[ram] ON[ram].[id] = [systems].[ram] <br>
+                INNER JOIN[dbo].[display] ON[display].[id] = [systems].[display] <br>
+                WHERE[orders].[userid] = '" + Request.QueryString["user"] + "' AND [orders].[id] = '" + Request.QueryString["orderID"] + "'
+            </code><br><br>
+            <p>Getting general information of a particular cart item used in creating the cart list</p>
+            <code>
+                SELECT [cart].[system], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps], [hd].[size] <br>
+                FROM[dbo].[systems] <br>
+                INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] <br>
+                INNER JOIN[ram] ON[systems].[ram] = [ram].[id] <br>
+                INNER JOIN[display] ON[systems].[display] = [display].[id] <br>
+                INNER JOIN[hd] ON[hd].[id] = [systems].[hd] <br>
+                INNER JOIN[cart] ON [cart].[system] = [systems].[id] <br>
+                WHERE [cart].[id] = '" + Request.UserHostAddress + "'
+            </code><br><br>
+            <p>Getting all of the individual prices of each component to be added up and also to calcualte the discounted price</p>
+            <code>
+                SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price], [hd].[price] <br>
+                FROM[dbo].[systems] <br>
+                INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] <br>
+                INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] <br>
+                INNER JOIN[display] ON[systems].[display] = [display].[id] <br>
+                INNER JOIN[dbo].[hd] ON[hd].[id] = [systems].[hd] <br>
+                INNER JOIN[os] ON[systems].[os] = [os].[id] <br>
+                INNER JOIN[ram] ON[systems].[ram] = [ram].[id] <br>
+                INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] <br>
+                WHERE[systems].[id] = " + reader[0].ToString()
+            </code><br><br>
+            <p>Getting the discount of a system to be used in the calculation of the discounted price as well as some other data</p>
+            <code>
+                SELECT [systems].name, [systems].url, [systems].price, [systems].id, [onSale].discount <br>
+                FROM[dbo].[systems] INNER JOIN [dbo].[onSale] ON [systems].id = [onSale].system
+            </code><br><br>
+            <p>Delete an order</p>
+            <code>
+                DELETE FROM [dbo].[orders] WHERE id = '" + orderID + "'
+            </code><br><br>
+            <p>Update the price of a system once the dynamic price has been calculated</p>
+            <code>
+                UPDATE [dbo].[systems] SET price=" + ((float) total) + " WHERE id = '" + itemID + "'
+            </code>
+            <br>
+            <br>
+            <b>ComponentList.aspx.cs</b>
+            <br>
+            <br>
+            <p>Get data from motherboard for component list</p>
+            <code>
+                SELECT id, name, price, url FROM [dbo].[motherboard]
+            </code>
+            <br>
+            <br>
+            <p>Get data from cpu for component list</p>
+            <code>
+                SELECT id, name, price, url, speed FROM [dbo].[cpu]
+            </code>
+            <br>
+            <br>
+            <p>Get data from ram for component list</p>
+            <code>
+                SELECT id, name, price, url, size FROM [dbo].[ram]
+            </code>
+            <br>
+            <br>
+            <p>Get data from display for component list</p>
+            <code>
+                SELECT id, name, price, url, fps FROM [dbo].[display]
+            </code>
+            <br>
+            <br>
+            <p>Get data from os for component list</p>
+            <code>
+                SELECT id, name, price, url FROM [dbo].[os]
+            </code>
+            <br>
+            <br>
+            <p>Get data from soundcard for component list</p>
+            <code>
+                SELECT id, name, price, url FROM [dbo].[soundcard]
+            </code>
+            <br>
+            <br>
+            <p>Get data from hd for component list</p>
+            <code>
+                SELECT id, name, price, url, size FROM [dbo].[hd]
+            </code>
+            <br>
+            <br>
+            <b>Home.aspx.cs</b>
+            <br>
+            <br>
+            <p>Get prices of a systems components to get new price</p>
+            <code>
+                SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price], [hd].[price] <br>
+                FROM[dbo].[systems] <br>
+                INNER JOIN[hd] ON[systems].[hd] = [hd].[id] <br>
+                INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] <br>
+                INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] <br>
+                INNER JOIN[display] ON[systems].[display] = [display].[id] <br>
+                INNER JOIN[os] ON[systems].[os] = [os].[id] <br>
+                INNER JOIN[ram] ON[systems].[ram] = [ram].[id] <br>
+                INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] <br>
+                WHERE[systems].[id] = " + reader[3].ToString()
+            </code>
+            <br>
+            <br>
+            <p>Get discount amount if a system is in the onSale table</p>
+            <code>
+                SELECT [systems].name, [systems].url, [systems].price, [systems].id, [onSale].discount <br>
+                FROM[dbo].[systems] <br>
+                INNER JOIN [dbo].[onSale] ON [systems].id = [onSale].system
+            </code>
+            <br>
+            <br>
+            <p>Retrieve image URL for a component and just use one, such as a random motherboard picture for the motherboards button</p>
+            <code>
+                SELECT url FROM [dbo].[" + table + "]
+            </code>
+            <br>
+            <br>
+            <b>Login.aspx.cs</b>
+            <br>
+            <br>
+            <p>Check if username and password are with valid accounts</p>
+            <code>
+                SELECT COUNT(username) FROM [dbo].[users] <br>
+                WHERE username='" + Request.Form["username"] + "' AND pw='" + Request.Form["password"] + "'
+            </code>
+            <br>
+            <br>
+            <p>Check if username already exists</p>
+            <code>
+                SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "'
+            </code>
+            <br>
+            <br>
+            <p>Add a new account</p>
+            <code>
+                INSERT INTO [dbo].[users] (username, pw, number) <br>
+                VALUES ('" + Request.Form["username"] + "', '" + Request.Form["password"] + "', '" + Request.Form["phoneNumber"] + "')
+            </code>
+            <br>
+            <br>
+            <p></p>
+            <b>Orders.aspx.cs</b>
+            <br>
+            <br>
+            <p>Add a new order and get back the associated auto genrated ID</p>
+            <code>
+                INSERT INTO [dbo].[orders] (userid) OUTPUT Inserted.ID VALUES ('" + Request.QueryString["userID"] + "')
+            </code>
+            <br>
+            <br>
+            <p>Get the systems in a user's cart</p>
+            <code>
+                SELECT system FROM [dbo].[cart] WHERE id = '" + Request.UserHostAddress + "'
+            </code>
+            <br>
+            <br>
+            <p>Add an order's items to orderedItems</p>
+            <code>
+                INSERT INTO [dbo].[orderedItems] (orderID, itemID) VALUES (" + orderID + ", " + Convert.ToInt32(reader[0]) + ")
+            </code>
+            <br>
+            <br>
+            <p>Delete a user's cart</p>
+            <code>
+                DELETE FROM [dbo].[cart] WHERE id = '" + Request.UserHostAddress + "'
+            </code>
+            <br>
+            <br>
+            <p>Get the Id's of a customers orders</p>
+            <code>
+                SELECT id FROM [dbo].[orders] WHERE userid = '" + Request.QueryString["userID"] + "'
+            </code>
+            <br>
+            <br>
+            <p>Get the price of a system in an order to be added to the others in the order and get a total</p>
+            <code>
+                SELECT [systems].[price] FROM [dbo].[systems] <br>
+                INNER JOIN [dbo].[orderedItems] ON [systems].[id]=[orderedItems].[itemID] <br>
+                WHERE [orderedItems].[orderID] = " + reader[0].ToString()
+            </code>
+            <br>
+            <br>
+            <p>Delete an Order</p>
+            <code>
+                DELETE FROM [dbo].[orders] WHERE id='" + reader[0].ToString() + "'
+            </code>
+            <br>
+            <br>
+            <p>Delete an order's items from orderedItems</p>
+            <code>
+                SELECT COUNT(orderID) FROM [dbo].[orderedItems] WHERE orderID='" + orderID + "'
+            </code>
+            <br>
+            <br>
+            <b>Password.aspx.cs</b>
+            <br>
+            <br>
+            <p>Check if there is an account with given username and phone number</p>
+            <code>
+                SELECT COUNT(username) FROM [dbo].[users] WHERE username='" + Request.Form["username"] + "' AND number='" + Request.Form["phoneNumber"] + "'
+            </code>
+            <br>
+            <br>
+            <p>Update the account with the new password</p>
+            <code>
+                UPDATE [dbo].[users] SET pw='" + Request.Form["firstPassword"] + "' WHERE username='" + Request.Form["username"] + "'
+            </code>
+            <br>
+            <br>
+            <b>ProductView.aspx.cs</b>
+            <br>
+            <br>
+            <p>Change the id of a component of a system in the systems table</p>
+            <code>
+                UPDATE [dbo].[systems] SET " + Request.QueryString["part"] + " = " + Request.QueryString["partID"] + " WHERE id = " + Request.QueryString["system"]
+            </code>
+            <br>
+            <br>
+            <p>Get component prices to calculate actual cost</p>
+            <code>
+                SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price], [hd].[price] <br>
+                FROM[dbo].[systems] <br>
+                INNER JOIN [hd] ON [systems].[hd] = [hd].[id]  <br>
+                INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] <br>
+                INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] <br>
+                INNER JOIN[display] ON[systems].[display] = [display].[id] <br>
+                INNER JOIN[os] ON[systems].[os] = [os].[id] <br>
+                INNER JOIN[ram] ON[systems].[ram] = [ram].[id] <br>
+                INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] <br>
+                WHERE[systems].[id] = " + id
+            </code>
+            <br>
+            <br>
+            <p>Get general info to display the specifications and pricing and image of a system</p>
+            <code>
+                SELECT [systems].[id], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps], [hd].[size] <br>
+                FROM [dbo].[systems] <br>
+                INNER JOIN [hd] ON [systems].[hd] = [hd].[id] <br>
+                INNER JOIN [cpu] ON [systems].[cpu] = [cpu].[id] <br>
+                INNER JOIN [ram] ON [systems].[ram] = [ram].[id] <br>
+                INNER JOIN [display] ON [systems].[display] = [display].[id]
+            </code>
+            <br>
+            <br>
+            <p>Get the discount percentage of a system</p>
+            <code>
+                SELECT discount FROM [dbo].[onSale] WHERE system = " + systemID
+            </code>
+            <br>
+            <br>
+            <p>Get the components of a system to be displayed at the bottom of the screen avaiable for swap</p>
+            <code>
+                SELECT motherboard, cpu, ram, display, os, soundcard, hd FROM [dbo].[systems] WHERE id = " + systemID
+            </code>
+            <br>
+            <br>
+            <p>Get a url of a component</p>
+            <code>
+                SELECT url FROM [dbo].[" + table + "] WHERE id = " + id
+            </code>
+            <br>
+            <br>
+            <p>Get the name of a component</p>
+            <code>
+                SELECT name FROM [dbo].[" + table + "] WHERE id = " + id
+            </code>
+            <br>
+            <br>
+            <b>SystemList.aspx.cs</b>
+            <br>
+            <br>
+            <p>Get specifications and name of system</p>
+            <code>
+                SELECT[systems].[id], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps], [hd].[size] <br>
+                FROM[dbo].[systems] <br>
+                INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] <br>
+                INNER JOIN[ram] ON[systems].[ram] = [ram].[id] <br>
+                INNER JOIN[hd] ON[systems].[hd] = [hd].[id] <br>
+                INNER JOIN[display] ON[systems].[display] = [display].[id]
+            </code>
+            <br>
+            <br>
+            <p>Get proces to calculate cost of system</p>
+            <code>
+                SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price], [hd].[price] <br>
+                FROM[dbo].[systems] <br>
+                INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] <br>
+                INNER JOIN[hd] ON[systems].[hd] = [hd].[id] <br>
+                INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] <br>
+                INNER JOIN[display] ON[systems].[display] = [display].[id] <br>
+                INNER JOIN[os] ON[systems].[os] = [os].[id] <br>
+                INNER JOIN[ram] ON[systems].[ram] = [ram].[id] <br>
+                INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] <br>
+                WHERE[systems].[id] = " + reader[0].ToString()
+            </code>
+            <br>
+            <br>
+            <p>Get data for system including discount percentage</p>
+            <code>
+                SELECT [systems].name, [systems].url, [systems].price, [systems].id, [onSale].discount FROM[dbo].[systems] <br>
+                INNER JOIN [dbo].[onSale] ON [systems].id = [onSale].system
+            </code>
+            <br>
+            <b>All Files</b>
+            <br>
+            <br>
+            <p>Get the amount of items in the user's cart</p>
+            <code>
+                SELECT count(system) FROM [dbo].[cart] WHERE id = '" + Request.UserHostAddress + "'
+            </code>
+            <br>
         </ul>
     </body>
 </html>
