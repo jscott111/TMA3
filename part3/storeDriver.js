@@ -35,9 +35,16 @@ function goHome() {
     document.getElementById("form").submit();
 }
 
-function addToCart(system) {
+function addToCart(system, motherboard, ram, cpu, display, os, soundcard, hd) {
     document.writeln("<form id='form' action='Cart.aspx' runat='server'>");
     document.writeln("    <input type='hidden' id='system' name='system' value='" + system + "'>");
+    document.writeln("    <input type='hidden' id='motherboard' name='motherboard' value='" + motherboard + "'>");
+    document.writeln("    <input type='hidden' id='ram' name='ram' value='" + ram + "'>");
+    document.writeln("    <input type='hidden' id='cpu' name='cpu' value='" + cpu + "'>");
+    document.writeln("    <input type='hidden' id='display' name='display' value='" + display + "'>");
+    document.writeln("    <input type='hidden' id='os' name='os' value='" + os + "'>");
+    document.writeln("    <input type='hidden' id='soundcard' name='soundcard' value='" + soundcard + "'>");
+    document.writeln("    <input type='hidden' id='hd' name='hd' value='" + hd + "'>");
     document.writeln("    <input type='hidden' id='action' name='action' value='add'>");
     document.writeln("</form>");
 

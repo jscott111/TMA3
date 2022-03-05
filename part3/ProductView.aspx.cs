@@ -1,8 +1,6 @@
 using System;
 using System.Web.UI;
-using System.Data.SqlClient;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 
 namespace Store
 {
@@ -31,18 +29,16 @@ namespace Store
             {"9", "AMD Ryzen 5 3rd Gen - RYZEN 5 3600", "3.6", "289.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-113-569-V01.jpg"},
             {"10", "Intel Core i7 10th Gen - Core i7-10700K", "3.8", "419.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-118-123-V01.jpg"}
         };
-        public string[,] display = new string[10, 5]
+        public string[,] display = new string[8, 5]
         {
-            {"1", "AMD Ryzen 9 5950X 16-Core", "3.4", "949.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-113-663-V01.jpg"},
-            {"2", "Intel Core i9-11900K", "3.5", "619.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-118-231-V04.jpg"},
-            {"3", "AMD Ryzen 9 5900X", "3.7", "659.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-113-664-V01.jpg"},
-            {"4", "Intel Core i7-11700K", "3.6", "429.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-118-233-V01.jpg"},
-            {"5", "AMD Ryzen 7 5800X", "3.8", "499.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-113-665-V01.jpg"},
-            {"6", "Intel Core i5-11600K", "3.9", "319.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-118-235-V01.jpg"},
-            {"7", "AMD Ryzen 5 5600X", "3.7", "374.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-113-666-V01.jpg"},
-            {"8", "Intel Core i9-11900KF", "3.5", "599.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-118-259-V01.jpg"},
-            {"9", "AMD Ryzen 5 3rd Gen - RYZEN 5 3600", "3.6", "289.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-113-569-V01.jpg"},
-            {"10", "Intel Core i7 10th Gen - Core i7-10700K", "3.8", "419.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-118-123-V01.jpg"}
+            {"1", "ASUS TUF Gaming VG27VH1B 27inch Curved Monitor", "165", "249.99", "https://c1.neweggimages.com/ProductImageCompressAll300/24-281-063-S01.jpg"},
+            {"2", "ASUS VG248QG 24inch Full HD 1920 x 1080", "165", "249.99", "https://c1.neweggimages.com/ProductImageCompressAll300/24-236-978-V90.jpg"},
+            {"3", "BenQ EW2780 27inch Full HD 1920 x 1080", "60", "264.99", "https://c1.neweggimages.com/ProductImageCompressAll300/24-014-660-S01.jpg"},
+            {"4", "ASUS TUF GAMING VG27WQ 27inch WQHD", "165", "449.99", "https://c1.neweggimages.com/ProductImageCompressAll300/24-281-049-S01.jpg"},
+            {"5", "MSI Optix G241V E2 24inch Full HD", "75", "169.99", "https://c1.neweggimages.com/ProductImageCompressAll300/24-475-134-V06.jpg"},
+            {"6", "ASUS VL249HE 24inch (23.8inch Viewable) Eye Care Monitor", "75", "189.99", "https://c1.neweggimages.com/ProductImageCompressAll300/24-281-091-S01.jpg"},
+            {"7", "LG - 29WL500-B 29inch IPS LED UltraWide", "75", "229.99", "https://c1.neweggimages.com/ProductImageCompressAll300/AKVHD2101011Z40F.jpg"},
+            {"8", "LG 22BK400H-B 21.5inch Full HD", "75", "161.99", "https://c1.neweggimages.com/ProductImageCompressAll300/0JC-000D-006A4-S01.jpg"}
         };
         public string[,] hd = new string[6, 5]
         {
@@ -108,7 +104,7 @@ namespace Store
                 { "Soundcard", "soundcard", "", "", "" },
                 { "Hard Drive", "hd", "", "", "" }
             };
-            string id = Request.QueryString["system"];
+
             double total = 0;
             Image picture = new Image();
             Panel panel = new Panel();
@@ -157,6 +153,12 @@ namespace Store
                 {
                     systems[system, 10] = Request.QueryString["partID"];
                 }
+                Session["systemsList"] = systems;
+            }
+
+            if (Session["systemsList"] != null)
+            {
+                systems = (string[,])Session["systemsList"];
             }
 
 
@@ -173,10 +175,10 @@ namespace Store
             itemName.Attributes["class"] = "itemName";
             itemInfoDiv.Controls.Add(itemName);
             itemInfoDiv.Attributes["class"] = "productInfo";
-            speed.Text = "Speed: " + cpu[Convert.ToInt32(systems[system, 4]), 2] + " GHz";
-            size.Text = "Size: " + ram[Convert.ToInt32(systems[system, 3]), 2] + " GB";
-            fps.Text = "FPS: " + display[Convert.ToInt32(systems[system, 5]), 2] + "Hz";
-            storage.Text = "Storage: " + hd[Convert.ToInt32(systems[system, 10]), 2] + " TB";
+            speed.Text = "Speed: " + cpu[Convert.ToInt32(systems[system, 4]) - 1, 2] + " GHz";
+            size.Text = "Size: " + ram[Convert.ToInt32(systems[system, 3]) - 1, 2] + " GB";
+            fps.Text = "FPS: " + display[Convert.ToInt32(systems[system, 5]) - 1, 2] + "Hz";
+            storage.Text = "Storage: " + hd[Convert.ToInt32(systems[system, 10]) - 1, 2] + " TB";
             itemInfoDiv.Controls.Add(speed);
             itemInfoDiv.Controls.Add(size);
             itemInfoDiv.Controls.Add(fps);
@@ -193,7 +195,7 @@ namespace Store
 
             cart.Text = "Add to Cart";
             cart.Attributes["class"] = "cartButton";
-            cart.OnClientClick = "addToCart('" + system + "')";
+            cart.OnClientClick = "addToCart('" + system + "', '" + systems[system, 2] + "', '" + systems[system, 3] + "', '" + systems[system, 4] + "', '" + systems[system, 5] + "', '" + systems[system, 6] + "', '" + systems[system, 7] + "', '" + systems[system, 10] + "')";
 
             tax.Text = "Taxes:  " + (total * 0.15).ToString("C2");
             tax.Attributes["class"] = "taxAndShippingInfo";
@@ -250,7 +252,7 @@ namespace Store
             component[5, 4] = soundcard[Convert.ToInt32(systems[system, 7]) - 1, 1];
             component[6, 4] = hd[Convert.ToInt32(systems[system, 10]) - 1, 1];
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 Image image = new Image();
                 Panel box = new Panel();

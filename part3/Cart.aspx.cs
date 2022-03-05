@@ -1,8 +1,6 @@
 using System;
 using System.Web.UI;
-using System.Data.SqlClient;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using System.Web;
 
 namespace Store
@@ -32,18 +30,16 @@ namespace Store
             {"9", "AMD Ryzen 5 3rd Gen - RYZEN 5 3600", "3.6", "289.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-113-569-V01.jpg"},
             {"10", "Intel Core i7 10th Gen - Core i7-10700K", "3.8", "419.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-118-123-V01.jpg"}
         };
-        public string[,] display = new string[10, 5]
+        public string[,] display = new string[8, 5]
         {
-            {"1", "AMD Ryzen 9 5950X 16-Core", "3.4", "949.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-113-663-V01.jpg"},
-            {"2", "Intel Core i9-11900K", "3.5", "619.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-118-231-V04.jpg"},
-            {"3", "AMD Ryzen 9 5900X", "3.7", "659.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-113-664-V01.jpg"},
-            {"4", "Intel Core i7-11700K", "3.6", "429.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-118-233-V01.jpg"},
-            {"5", "AMD Ryzen 7 5800X", "3.8", "499.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-113-665-V01.jpg"},
-            {"6", "Intel Core i5-11600K", "3.9", "319.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-118-235-V01.jpg"},
-            {"7", "AMD Ryzen 5 5600X", "3.7", "374.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-113-666-V01.jpg"},
-            {"8", "Intel Core i9-11900KF", "3.5", "599.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-118-259-V01.jpg"},
-            {"9", "AMD Ryzen 5 3rd Gen - RYZEN 5 3600", "3.6", "289.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-113-569-V01.jpg"},
-            {"10", "Intel Core i7 10th Gen - Core i7-10700K", "3.8", "419.99", "https://c1.neweggimages.com/ProductImageCompressAll300/19-118-123-V01.jpg"}
+            {"1", "ASUS TUF Gaming VG27VH1B 27inch Curved Monitor", "165", "249.99", "https://c1.neweggimages.com/ProductImageCompressAll300/24-281-063-S01.jpg"},
+            {"2", "ASUS VG248QG 24inch Full HD 1920 x 1080", "165", "249.99", "https://c1.neweggimages.com/ProductImageCompressAll300/24-236-978-V90.jpg"},
+            {"3", "BenQ EW2780 27inch Full HD 1920 x 1080", "60", "264.99", "https://c1.neweggimages.com/ProductImageCompressAll300/24-014-660-S01.jpg"},
+            {"4", "ASUS TUF GAMING VG27WQ 27inch WQHD", "165", "449.99", "https://c1.neweggimages.com/ProductImageCompressAll300/24-281-049-S01.jpg"},
+            {"5", "MSI Optix G241V E2 24inch Full HD", "75", "169.99", "https://c1.neweggimages.com/ProductImageCompressAll300/24-475-134-V06.jpg"},
+            {"6", "ASUS VL249HE 24inch (23.8inch Viewable) Eye Care Monitor", "75", "189.99", "https://c1.neweggimages.com/ProductImageCompressAll300/24-281-091-S01.jpg"},
+            {"7", "LG - 29WL500-B 29inch IPS LED UltraWide", "75", "229.99", "https://c1.neweggimages.com/ProductImageCompressAll300/AKVHD2101011Z40F.jpg"},
+            {"8", "LG 22BK400H-B 21.5inch Full HD", "75", "161.99", "https://c1.neweggimages.com/ProductImageCompressAll300/0JC-000D-006A4-S01.jpg"}
         };
         public string[,] hd = new string[6, 5]
         {
@@ -100,210 +96,118 @@ namespace Store
         };
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-            SqlCommand command;
+            int[] systemList = new int[1];
+
             if (Request.QueryString["action"] == "add")
             {
-                command = new SqlCommand("INSERT INTO [dbo].[cart] (id, system) VALUES ('0.0.0.0', '" + Request.QueryString["system"] + "')", con);
-                con.Open();
-                command.ExecuteNonQuery();
-                con.Close();
-                Response.Redirect("Cart?action=view");
-            }
-            if(Request.QueryString["action"] == "delete")
-            {
-                if (Request.QueryString["system"] != "")
+                if(Request.Cookies[Request.UserHostAddress] != null)
                 {
-                    command = new SqlCommand("DELETE FROM [dbo].[orderedItems] WHERE orderID = '" + Request.QueryString["orderID"] + "' AND itemID = '" + Request.QueryString["system"] + "'", con);
-                    con.Open();
-                    command.ExecuteNonQuery();
-                    con.Close();
+                    systems[Convert.ToInt32(Request.QueryString["system"]), 2] = Request.QueryString["motherboard"];
+                    systems[Convert.ToInt32(Request.QueryString["system"]), 3] = Request.QueryString["ram"];
+                    systems[Convert.ToInt32(Request.QueryString["system"]), 4] = Request.QueryString["cpu"];
+                    systems[Convert.ToInt32(Request.QueryString["system"]), 5] = Request.QueryString["display"];
+                    systems[Convert.ToInt32(Request.QueryString["system"]), 6] = Request.QueryString["os"];
+                    systems[Convert.ToInt32(Request.QueryString["system"]), 7] = Request.QueryString["soundcard"];
+                    systems[Convert.ToInt32(Request.QueryString["system"]), 10] = Request.QueryString["hd"];
 
-                    command = new SqlCommand("SELECT COUNT(*) FROM [dbo].[orderedItems] WHERE orderID = '" + Request.QueryString["orderID"] + "'", con);
-                    con.Open();
-                    command.ExecuteNonQuery();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            if (Convert.ToInt32(reader[0]) == 0)
-                            {
-                                con.Close();
-                                deleteOrder(Request.QueryString["orderID"], Request.QueryString["user"]);
-                                con.Open();
-                            }
-                            else
-                            {
-                                Response.Redirect("Orders?userID=" + Request.QueryString["user"]);
-                            }
-                        }
-                    }
-                    con.Close();
+                    Session["systemsList"] = systems;
 
-                    Response.Redirect("Cart?orderID=" + Request.QueryString["orderID"] + "&user=" + Request.QueryString["user"]);
+                    HttpCookie cookie = Request.Cookies[Request.UserHostAddress];
+                    string value = cookie.Value.Substring(cookie.Name.Length + 1);
+                    value += Request.QueryString["system"];
+                    cookie.Expires = DateTime.Now.AddDays(-1);
+                    Response.Cookies.Add(cookie);
+                    cookie = new HttpCookie(Request.UserHostAddress);
+                    cookie.Values.Add(Request.UserHostAddress, value);
+                    cookie.Expires = DateTime.Now.AddYears(5);
+                    Response.Cookies.Add(cookie);
                 }
                 else
                 {
-                    command = new SqlCommand("DELETE FROM [dbo].[cart] WHERE id = '0.0.0.0' AND system = '" + Request.QueryString["system"] + "'", con);
-                    con.Open();
-                    command.ExecuteNonQuery();
-                    con.Close();
+                    HttpCookie cookie = new HttpCookie(Request.UserHostAddress);
+                    cookie.Values.Add(Request.UserHostAddress, Request.QueryString["system"]);
+                    cookie.Expires = DateTime.Now.AddYears(5);
+                    Response.Cookies.Add(cookie);
                 }
-            }
-            if (Request.QueryString["orderID"] != null)
-            {
-                title.Text = "Order";
-                command = new SqlCommand("SELECT [orderedItems].[itemID], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps] FROM[dbo].[orderedItems] INNER JOIN[dbo].[systems] ON[orderedItems].[itemID] = [systems].[id] INNER JOIN[dbo].[orders] ON[orderedItems].[orderID] = [orders].[id] INNER JOIN[dbo].[cpu] ON[cpu].[id] = [systems].[cpu] INNER JOIN[dbo].[ram] ON[ram].[id] = [systems].[ram] INNER JOIN[dbo].[display] ON[display].[id] = [systems].[display] WHERE[orders].[userid] = '" + Request.QueryString["user"] + "' AND [orders].[id] = '" + Request.QueryString["orderID"] + "'", con);
+                Response.Redirect("Cart.aspx?action=view");
             }
             else
             {
-                command = new SqlCommand("SELECT [cart].[system], [systems].[name], [systems].[price], [systems].[url], [cpu].[speed], [ram].[size], [display].[fps] FROM[dbo].[cart] INNER JOIN[cpu] ON[cart].[system] = [cpu].[id] INNER JOIN[ram] ON[cart].[system] = [ram].[id] INNER JOIN[display] ON[cart].[system] = [display].[id] INNER JOIN[systems] ON [cart].[system] = [systems].[id] WHERE [cart].[id] = '0.0.0.0'", con);
-            }
-
-            SqlConnection priceCon = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-            SqlCommand priceCommand;
-            con.Open();
-            command.ExecuteNonQuery();
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
+                if (Request.Cookies[Request.UserHostAddress] != null)
                 {
-                    double total = 0;
-                    Image picture = new Image();
-                    Panel panel = new Panel();
-                    Label itemName = new Label();
-                    Label itemPrice = new Label();
-                    Label speed = new Label();
-                    Label size = new Label();
-                    Label fps = new Label();
-                    Panel div = new Panel();
-                    Panel priceDiv = new Panel();
-                    Panel item = new Panel();
-                    Label name = new Label();
-                    Button deleteButton = new Button();
-
-                    itemName.Text = reader[1].ToString();
-                    itemName.Attributes["class"] = "itemName";
-                    div.Controls.Add(itemName);
-                    div.Attributes["class"] = "listItemTitle";
-                    speed.Text = "Speed: " + reader[4].ToString() + " GHz";
-                    size.Text = "Size: " + reader[5].ToString() + " GB";
-                    fps.Text = "FPS: " + reader[6].ToString() + "Hz";
-                    deleteButton.Text = "Delete";
-                    deleteButton.OnClientClick = "deleteCartItem('" + reader[0].ToString() + "', '" + Request.QueryString["user"] + "', '" + Request.QueryString["orderID"] + "')";
-                    deleteButton.Attributes["class"] = "swapButton";
-                    deleteButton.Attributes.Add("style", "width: 80px;");
-                    div.Controls.Add(speed);
-                    div.Controls.Add(size);
-                    div.Controls.Add(fps);
-                    div.Controls.Add(deleteButton);
-
-                    picture.ImageUrl = reader[3].ToString();
-                    picture.Height = new Unit(120);
-                    picture.Width = new Unit(170);
-                    picture.Attributes["class"] = "itemImage";
-
-                    priceCommand = new SqlCommand("SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price] FROM[dbo].[systems] INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[os] ON[systems].[os] = [os].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] WHERE[systems].[id] = " + reader[0].ToString(), priceCon);
-                    priceCon.Open();
-                    priceCommand.ExecuteNonQuery();
-                    using (SqlDataReader priceReader = priceCommand.ExecuteReader())
+                    HttpCookie cookie = Request.Cookies[Request.UserHostAddress];
+                    string value = cookie.Value.Substring(cookie.Name.Length + 1);
+                    int length = value.Length;
+                    systemList = new int[length];
+                    for (int i = 0; i < length; i++)
                     {
-                        while (priceReader.Read())
-                        {
-                            total += Convert.ToDouble(priceReader[0].ToString());
-                            total += Convert.ToDouble(priceReader[1].ToString());
-                            total += Convert.ToDouble(priceReader[2].ToString());
-                            total += Convert.ToDouble(priceReader[3].ToString());
-                            total += Convert.ToDouble(priceReader[4].ToString());
-                            total += Convert.ToDouble(priceReader[5].ToString());
-                        }
+                        systemList[i] = Convert.ToInt32(value.Substring(i, 1));
                     }
-
-                    priceCon.Close();
-                    itemPrice.Text = total.ToString("C2");
-                    itemPrice.ID = reader[0].ToString() + "price";
-                    priceDiv.Attributes["class"] = "price";
-                    priceDiv.ID = reader[0].ToString() + "priceDiv";
-                    priceDiv.Controls.Add(itemPrice);
-
-                    panel.Attributes["class"] = "listItem";
-                    panel.Attributes["onClick"] = "productView('" + reader[0].ToString() + "', '', '', false)";
-                    panel.Style.Add("cursor", "pointer");
-                    panel.Controls.Add(picture);
-                    panel.Controls.Add(div);
-                    panel.Controls.Add(priceDiv);
-                    panel.ID = reader[0].ToString();
-
-                    contents.Controls.Add(panel);
-                    total = 0;
                 }
             }
-            con.Close();
 
-            command = new SqlCommand("SELECT [systems].name, [systems].url, [systems].price, [systems].id, [onSale].discount FROM[dbo].[systems] INNER JOIN [dbo].[onSale] ON [systems].id = [onSale].system", con);
-            con.Open();
-            command.ExecuteNonQuery();
-            using (SqlDataReader reader = command.ExecuteReader())
+            if (Session["systemsList"] != null)
             {
-                while (reader.Read())
-                {
-                    double total = 0;
-                    float price;
-                    Label discountPrice = new Label();
-                    Label itemPrice = new Label();
-
-                    priceCommand = new SqlCommand("SELECT [cpu].[price], [motherboard].[price], [display].[price], [os].[price], [ram].[price], [soundcard].[price] FROM[dbo].[systems] INNER JOIN[cpu] ON[systems].[cpu] = [cpu].[id] INNER JOIN[motherboard] ON[systems].[motherboard] = [motherboard].[id] INNER JOIN[display] ON[systems].[display] = [display].[id] INNER JOIN[os] ON[systems].[os] = [os].[id] INNER JOIN[ram] ON[systems].[ram] = [ram].[id] INNER JOIN[soundcard] ON[systems].[soundcard] = [soundcard].[id] WHERE[systems].[id] = " + reader[3].ToString(), priceCon);
-                    priceCon.Open();
-                    priceCommand.ExecuteNonQuery();
-                    using (SqlDataReader priceReader = priceCommand.ExecuteReader())
-                    {
-                        while (priceReader.Read())
-                        {
-                            total += Convert.ToDouble(priceReader[0].ToString());
-                            total += Convert.ToDouble(priceReader[1].ToString());
-                            total += Convert.ToDouble(priceReader[2].ToString());
-                            total += Convert.ToDouble(priceReader[3].ToString());
-                            total += Convert.ToDouble(priceReader[4].ToString());
-                            total += Convert.ToDouble(priceReader[5].ToString());
-                        }
-                    }
-                    priceCon.Close();
-                    price = (float)((float)total / (1 + Convert.ToDouble(reader[4]) / 100));
-                    discountPrice.Text = Convert.ToDecimal(price.ToString()).ToString("C2");
-                    discountPrice.Attributes.Add("style", "color: red;");
-                    itemPrice.Text = Convert.ToDecimal(total.ToString()).ToString("C2");
-                    itemPrice.Attributes.Add("style", "text-decoration: line-through;");
-                    discountPrice.Attributes["class"] = "price";
-
-                    try
-                    {
-                        if (Page.FindControl(reader[3].ToString() + "priceDiv") != null)
-                        {
-                            Page.FindControl(reader[3].ToString() + "priceDiv").Controls.Remove(Page.FindControl(reader[3].ToString() + "price"));
-                            Page.FindControl(reader[3].ToString() + "priceDiv").Controls.Add(discountPrice);
-                            Page.FindControl(reader[3].ToString() + "priceDiv").Controls.Add(itemPrice);
-                        }
-                        total = 0;
-                    }
-                    catch (Exception){
-
-                    }
-                    
-                }
+                systems = (string[,])Session["systemsList"];
             }
-            con.Close();
-        }
 
-        public void deleteOrder(string orderID, string userID)
-        {
-            SqlConnection con = new SqlConnection("Server=tcp:jscott11.database.windows.net,1433;Initial Catalog=store;Persist Security Info=False;User ID=jscott11;Password=3557321Joh--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-            SqlCommand command = new SqlCommand("DELETE FROM [dbo].[orders] WHERE id = '" + orderID + "'", con);
-            con.Open();
-            command.ExecuteNonQuery();
-            con.Close();
+            for(int i = 0; i < systemList.Length; i++) { 
+                double total = 0;
+                Image picture = new Image();
+                Panel panel = new Panel();
+                Label itemName = new Label();
+                Label itemPrice = new Label();
+                Label speed = new Label();
+                Label size = new Label();
+                Label fps = new Label();
+                Label storage = new Label();
+                Panel div = new Panel();
+                Panel priceDiv = new Panel();
 
-            Response.Redirect("Orders?userID=" + userID);
+                itemName.Text = systems[systemList[i], 1];
+                itemName.Attributes["class"] = "itemName";
+                div.Controls.Add(itemName);
+                div.Attributes["class"] = "listItemTitle";
+                speed.Text = "Speed: " + cpu[Convert.ToInt32(systems[systemList[i], 4]) - 1, 2] + " GHz";
+                size.Text = "Size: " + ram[Convert.ToInt32(systems[systemList[i], 3]) - 1, 2] + " GB";
+                fps.Text = "FPS: " + display[Convert.ToInt32(systems[systemList[i], 5]) - 1, 2] + "Hz";
+                storage.Text = "Storage: " + hd[Convert.ToInt32(systems[systemList[i], 10]) - 1, 2] + " TB";
+                div.Controls.Add(speed);
+                div.Controls.Add(size);
+                div.Controls.Add(fps);
+                div.Controls.Add(storage);
+
+                picture.ImageUrl = systems[systemList[i], 9];
+                picture.Height = new Unit(120);
+                picture.Width = new Unit(170);
+                picture.Attributes["class"] = "itemImage";
+
+                total += Convert.ToDouble(cpu[Convert.ToInt32(systems[systemList[i], 4]) - 1, 3]);
+                total += Convert.ToDouble(motherboard[Convert.ToInt32(systems[systemList[i], 2]) - 10, 2]);
+                total += Convert.ToDouble(ram[Convert.ToInt32(systems[systemList[i], 3]) - 1, 3]);
+                total += Convert.ToDouble(display[Convert.ToInt32(systems[systemList[i], 5]) - 1, 3]);
+                total += Convert.ToDouble(os[Convert.ToInt32(systems[systemList[i], 6]) - 1, 2]);
+                total += Convert.ToDouble(soundcard[Convert.ToInt32(systems[systemList[i], 7]) - 1, 2]);
+                total += Convert.ToDouble(hd[Convert.ToInt32(systems[systemList[i], 10]) - 1, 3]);
+
+                itemPrice.Text = total.ToString("C2");
+                itemPrice.ID = (Convert.ToInt32(systemList[i]) + 1).ToString() + "price";
+                priceDiv.Attributes["class"] = "price";
+                priceDiv.ID = (Convert.ToInt32(systemList[i]) + 1).ToString() + "priceDiv";
+                priceDiv.Controls.Add(itemPrice);
+
+                panel.Attributes["class"] = "listItem";
+                panel.Attributes["onClick"] = "productView('" + (Convert.ToInt32(systemList[i]) + 1).ToString() + "', '', '', false)";
+                panel.Style.Add("cursor", "pointer");
+                panel.Controls.Add(picture);
+                panel.Controls.Add(div);
+                panel.Controls.Add(priceDiv);
+                panel.ID = (Convert.ToInt32(systemList[i]) + 1).ToString();
+
+                contents.Controls.Add(panel);
+            }
+
+
         }
     }
 }

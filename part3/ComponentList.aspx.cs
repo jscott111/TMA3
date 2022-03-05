@@ -219,16 +219,16 @@ namespace Store
                 soundcard.Visible = true;
                 if (Request.QueryString["swap"] == "true")
                 {
-                    soundcard1.OnClientClick = "productView('" + Request.QueryString["system"] + "', '10', '" + Request.QueryString["part"] + "', 'true');";
-                    soundcard2.OnClientClick = "productView('" + Request.QueryString["system"] + "', '11', '" + Request.QueryString["part"] + "', 'true');";
-                    soundcard3.OnClientClick = "productView('" + Request.QueryString["system"] + "', '12', '" + Request.QueryString["part"] + "', 'true');";
-                    soundcard4.OnClientClick = "productView('" + Request.QueryString["system"] + "', '13', '" + Request.QueryString["part"] + "', 'true');";
-                    soundcard5.OnClientClick = "productView('" + Request.QueryString["system"] + "', '14', '" + Request.QueryString["part"] + "', 'true');";
-                    soundcard6.OnClientClick = "productView('" + Request.QueryString["system"] + "', '15', '" + Request.QueryString["part"] + "', 'true');";
-                    soundcard7.OnClientClick = "productView('" + Request.QueryString["system"] + "', '16', '" + Request.QueryString["part"] + "', 'true');";
-                    soundcard8.OnClientClick = "productView('" + Request.QueryString["system"] + "', '17', '" + Request.QueryString["part"] + "', 'true');";
-                    soundcard9.OnClientClick = "productView('" + Request.QueryString["system"] + "', '18', '" + Request.QueryString["part"] + "', 'true');";
-                    soundcard10.OnClientClick = "productView('" + Request.QueryString["system"] + "', '19', '" + Request.QueryString["part"] + "', 'true');";
+                    soundcard1.OnClientClick = "productView('" + Request.QueryString["system"] + "', '1', '" + Request.QueryString["part"] + "', 'true');";
+                    soundcard2.OnClientClick = "productView('" + Request.QueryString["system"] + "', '2', '" + Request.QueryString["part"] + "', 'true');";
+                    soundcard3.OnClientClick = "productView('" + Request.QueryString["system"] + "', '3', '" + Request.QueryString["part"] + "', 'true');";
+                    soundcard4.OnClientClick = "productView('" + Request.QueryString["system"] + "', '4', '" + Request.QueryString["part"] + "', 'true');";
+                    soundcard5.OnClientClick = "productView('" + Request.QueryString["system"] + "', '5', '" + Request.QueryString["part"] + "', 'true');";
+                    soundcard6.OnClientClick = "productView('" + Request.QueryString["system"] + "', '6', '" + Request.QueryString["part"] + "', 'true');";
+                    soundcard7.OnClientClick = "productView('" + Request.QueryString["system"] + "', '7', '" + Request.QueryString["part"] + "', 'true');";
+                    soundcard8.OnClientClick = "productView('" + Request.QueryString["system"] + "', '8', '" + Request.QueryString["part"] + "', 'true');";
+                    soundcard9.OnClientClick = "productView('" + Request.QueryString["system"] + "', '9', '" + Request.QueryString["part"] + "', 'true');";
+                    soundcard10.OnClientClick = "productView('" + Request.QueryString["system"] + "', '10', '" + Request.QueryString["part"] + "', 'true');";
 
                     soundcard1.Visible = true;
                     soundcard2.Visible = true;
